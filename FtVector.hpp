@@ -3,8 +3,13 @@
 
 class FtVector {
    public:
+    unsigned int size(void) const;
+
+    double get(int index);
+    void set(int index, double value);  
+
     FtVector(int size);
-    unsigned int getSize(void) const;
+    ~FtVector();
 
    private:
     double *_elements;
