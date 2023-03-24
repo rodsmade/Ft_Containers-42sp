@@ -7,9 +7,9 @@ void test_vector_creation() {
     // Testing Size on Creation
     std::cout << "Size on creation: ";
     if (testVector.size() == intendedSize)
-        std::cout << "OK";
+        std::cout << BOLD LIGHT_GREEN "OK" RESET;
     else
-        std::cout << "NOK";
+        std::cout << BOLD LIGHT_RED "NOK" RESET;
     std::cout << std::endl;
 
     // Testing Initialisation of values
@@ -17,9 +17,9 @@ void test_vector_creation() {
     for (unsigned int i = 0; i < testVector.size(); i++) {
 
         if (testVector.get(i) != 0)
-            std::cout << "NOK";
+            std::cout << BOLD LIGHT_RED "NOK" RESET;
     }
-    std::cout << "OK";
+    std::cout << BOLD LIGHT_GREEN "OK" RESET;
     std::cout << std::endl;
 
     // Testing Valid set() operation at valid index
@@ -30,9 +30,9 @@ void test_vector_creation() {
     
     testVector.set(designatedIndex, designatedValue);
     if (testVector.get(designatedIndex) == designatedValue)
-        std::cout << "OK";
+        std::cout << BOLD LIGHT_GREEN "OK" RESET;
     else
-        std::cout << "NOK";
+        std::cout << BOLD LIGHT_RED "NOK" RESET;
     std::cout << std::endl;
 }
 

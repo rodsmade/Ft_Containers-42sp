@@ -1,11 +1,9 @@
 #include "ft_map.hpp"
 
-#include <iostream>
-
 namespace ft {
 
 void Map::test(void) {
-    std::cout << "calling Map member function, test OK!" << std::endl;
+    std::cout << "calling Map member function, test " << BOLD LIGHT_GREEN "OK" RESET << std::endl;
 };
 
 }  // namespace ft

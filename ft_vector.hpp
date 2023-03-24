@@ -4,6 +4,8 @@
 #include <iostream> // printing, etc.
 #include <memory> // std::allocator
 
+#include "colourise_my_prints.hpp"
+
 namespace ft {
 
 class Vector {

@@ -1,6 +1,10 @@
 #ifndef FT_MAP_HPP
 #define FT_MAP_HPP
 
+#include <iostream>
+
+#include "colourise_my_prints.hpp"
+
 namespace ft {
 
 class Map {

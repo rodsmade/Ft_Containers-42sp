@@ -5,7 +5,7 @@ namespace ft {
 unsigned int Vector::size(void) const { return _size; };
 
 void Vector::test(void) {
-    std::cout << "calling Map member function, test OK!" << std::endl;
+    std::cout << "calling Map member function, test " << BOLD LIGHT_GREEN "OK" RESET << std::endl;
 };
 
 
