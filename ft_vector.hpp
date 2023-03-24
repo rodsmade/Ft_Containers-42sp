@@ -1,19 +1,24 @@
 #ifndef FT_VECTOR_HPP
 #define FT_VECTOR_HPP
 
-class FtVector {
+namespace ft {
+
+class Vector {
    public:
     unsigned int size(void) const;
+    static void test(void);
 
     double get(int index);
-    void set(int index, double value);  
+    void set(int index, double value);
 
-    FtVector(int size);
-    ~FtVector();
+    Vector(int size);
+    ~Vector();
 
    private:
     double *_elements;
     unsigned int _size;
 };
+
+}  // namespace ft
 
 #endif
