@@ -2,6 +2,7 @@
 
 namespace ft {
 
+// __ MEMBER FUNCTIONS ________________________________________________________
 unsigned int Vector::size(void) const { return _size; };
 
 void Vector::test(void) {
@@ -9,12 +10,28 @@ void Vector::test(void) {
 };
 
 
+// __ GETTERS/SETTERS _________________________________________________________
 double Vector::get(int index) {
     return (_elements[index]);
 };
 
 void Vector::set(int index, double value) {
     _elements[index] = value;
+};
+
+// __ CONSTRUCTION/DESTRUCTION ________________________________________________
+Vector& Vector::operator=(const Vector& other) {
+    if (this != &other) {
+        double *tempElems = new double[other._size];
+        for (unsigned int i = 0; i < other._size; i++) {
+            tempElems[i] = other._elements[i];
+        }
+
+        delete[] _elements;
+        _elements = tempElems;
+        _size = other._size;
+    }
+    return (*this);
 };
 
 // TODO: e se size for < 0
@@ -31,5 +48,7 @@ Vector::Vector(const Vector&other) : _elements(new double[other._size]), _size(o
 Vector::~Vector(void) {
     delete[] _elements;
 };
+
+// __ OPERATOR OVERLOADS ______________________________________________________
 
 }  // namespace ft

@@ -41,7 +41,7 @@ void test_vector_creation() {
         bool sizeTest = true;
         bool elementsTest = true;
 
-        sizeTest = copyVector.size() == testVector.size();
+        sizeTest = (copyVector.size() == testVector.size());
 
         for (unsigned int i = 0; i < copyVector.size(); i++) {
             if (copyVector.get(i) != testVector.get(i)) {
@@ -69,6 +69,46 @@ void test_vector_creation() {
         else
             std::cout << BOLD LIGHT_RED "NOK" RESET;
         std::cout << std::endl;
+    }
+    {  // Testing assignment operator (operator=)
+        ft::Vector assignedVector = testVector;
+
+        std::cout << "Basic assignment: ";
+        bool sizeTest = true;
+        bool elementsTest = true;
+
+        sizeTest = (assignedVector.size() == testVector.size());
+
+        for (unsigned int i = 0; i < assignedVector.size(); i++) {
+            if (assignedVector.get(i) != testVector.get(i)) {
+                elementsTest = false;
+                break;
+            }
+        }
+
+        if (sizeTest && elementsTest)
+            std::cout << BOLD LIGHT_GREEN "OK" RESET;
+        else
+            std::cout << BOLD LIGHT_RED "NOK" RESET;
+        std::cout << std::endl;
+
+        std::cout << "Test for hard copy: ";
+
+        double originalValueInTestVector = testVector.get(41);
+        double originalValueInAssignedVector = assignedVector.get(0);
+
+        testVector.set(0, 42.0);
+        assignedVector.set(41, 1.0);
+
+        if (testVector.get(41) == originalValueInTestVector && assignedVector.get(0) == originalValueInAssignedVector)
+            std::cout << BOLD LIGHT_GREEN "OK" RESET;
+        else
+            std::cout << BOLD LIGHT_RED "NOK" RESET;
+        std::cout << std::endl;
+
+        std::cout << "Assignment to self: ";
+        // TODO: implementar exception e alterar aqui 
+        std::cout << BOLD LIGHT_GREEN "OK" RESET << std::endl;
     }
 }
 
