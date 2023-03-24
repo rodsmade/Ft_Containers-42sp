@@ -1,7 +1,5 @@
 #include "ft_vector.hpp"
 
-#include <iostream>
-
 namespace ft {
 
 unsigned int Vector::size(void) const { return _size; };
@@ -19,9 +17,15 @@ void Vector::set(int index, double value) {
     _elements[index] = value;
 };
 
+// TODO: e se size for < 0
 Vector::Vector(int size) : _elements(new double[size]), _size(size) {
     for (unsigned int i = 0; i < _size; i++)
         _elements[i] = 0;
+};
+
+Vector::Vector(const Vector&other) : _elements(new double[other._size]), _size(other._size) {
+    for (unsigned int i = 0; i < _size; i++)
+        _elements[i] = other._elements[i];
 };
 
 Vector::~Vector(void) {

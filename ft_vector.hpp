@@ -1,6 +1,9 @@
 #ifndef FT_VECTOR_HPP
 #define FT_VECTOR_HPP
 
+#include <iostream> // printing, etc.
+#include <memory> // std::allocator
+
 namespace ft {
 
 class Vector {
@@ -12,6 +15,7 @@ class Vector {
     void set(int index, double value);
 
     Vector(int size);
+    Vector(const Vector& other);
     ~Vector();
 
    private:
