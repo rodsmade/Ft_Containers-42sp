@@ -15,12 +15,15 @@ class Vector {
 
     double get(int index);
     void set(int index, double value);
+    void printAll(void);
 
     Vector();
     explicit Vector(int size);
     Vector(const Vector& other);
     ~Vector();
     Vector& operator=(const Vector& other);
+    double &operator[](int index); // returns a reference, i. e., the object itself, knowing this "address" won't possibly change or be changed.
+    const double &operator[](int index) const; // returns a copy of what is stored in the nth element. it is not the object itself, so it can't be assigned something else (not an l value)
 
    private:
     double* _elements;

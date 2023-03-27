@@ -9,6 +9,11 @@ void Vector::test(void) {
     std::cout << "calling Map member function, test " << BOLD LIGHT_GREEN "OK" RESET << std::endl;
 };
 
+void Vector::printAll(void) {
+    for (unsigned int i = 0; i < _size; i++)
+        std::cout << _elements[i] << std::endl;
+};
+
 // __ GETTERS/SETTERS _________________________________________________________
 double Vector::get(int index) {
     return (_elements[index]);
@@ -49,6 +54,14 @@ Vector& Vector::operator=(const Vector& other) {
         _size = other._size;
     }
     return (*this);
+};
+
+double &Vector::operator[](int index) {
+    return _elements[index];
+};
+
+const double &Vector::operator[](int index) const {
+    return _elements[index];
 };
 
 }  // namespace ft
