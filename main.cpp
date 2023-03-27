@@ -15,7 +15,7 @@ void test_vector_creation() {
     {  // Testing Initialisation of values
         std::cout << "Initialisation values: ";
         for (unsigned int i = 0; i < testVector.size(); i++) {
-            if (testVector.get(i) != 0)
+            if (testVector[i] != 0)
                 std::cout << BOLD LIGHT_RED "NOK" RESET;
         }
         std::cout << BOLD LIGHT_GREEN "OK" RESET;
@@ -27,8 +27,8 @@ void test_vector_creation() {
         double designatedValue = 42.0;
         unsigned int designatedIndex = 12;
 
-        testVector.set(designatedIndex, designatedValue);
-        if (testVector.get(designatedIndex) == designatedValue)
+        testVector[designatedIndex] =  designatedValue;
+        if (testVector[designatedIndex] == designatedValue)
             std::cout << BOLD LIGHT_GREEN "OK" RESET;
         else
             std::cout << BOLD LIGHT_RED "NOK" RESET;
@@ -44,7 +44,7 @@ void test_vector_creation() {
         sizeTest = (copyVector.size() == testVector.size());
 
         for (unsigned int i = 0; i < copyVector.size(); i++) {
-            if (copyVector.get(i) != testVector.get(i)) {
+            if (copyVector[i] != testVector[i]) {
                 elementsTest = false;
                 break;
             }
@@ -58,13 +58,13 @@ void test_vector_creation() {
 
         std::cout << "Test for hard copy: ";
 
-        double originalValueInTestVector = testVector.get(41);
-        double originalValueInCopyVector = copyVector.get(0);
+        double originalValueInTestVector = testVector[41];
+        double originalValueInCopyVector = copyVector[0];
 
-        testVector.set(0, 42.0);
-        copyVector.set(41, 1.0);
+        testVector[0] =  42.0;
+        copyVector[41] =  1.0;
 
-        if (testVector.get(41) == originalValueInTestVector && copyVector.get(0) == originalValueInCopyVector)
+        if (testVector[41] == originalValueInTestVector && copyVector[0] == originalValueInCopyVector)
             std::cout << BOLD LIGHT_GREEN "OK" RESET;
         else
             std::cout << BOLD LIGHT_RED "NOK" RESET;
@@ -80,7 +80,7 @@ void test_vector_creation() {
         sizeTest = (assignedVector.size() == testVector.size());
 
         for (unsigned int i = 0; i < assignedVector.size(); i++) {
-            if (assignedVector.get(i) != testVector.get(i)) {
+            if (assignedVector[i] != testVector[i]) {
                 elementsTest = false;
                 break;
             }
@@ -94,13 +94,13 @@ void test_vector_creation() {
 
         std::cout << "Test for hard copy: ";
 
-        double originalValueInTestVector = testVector.get(41);
-        double originalValueInAssignedVector = assignedVector.get(0);
+        double originalValueInTestVector = testVector[41];
+        double originalValueInAssignedVector = assignedVector[0];
 
-        testVector.set(0, 42.0);
-        assignedVector.set(41, 1.0);
+        testVector[0] =  42.0;
+        assignedVector[41] =  1.0;
 
-        if (testVector.get(41) == originalValueInTestVector && assignedVector.get(0) == originalValueInAssignedVector)
+        if (testVector[41] == originalValueInTestVector && assignedVector[0] == originalValueInAssignedVector)
             std::cout << BOLD LIGHT_GREEN "OK" RESET;
         else
             std::cout << BOLD LIGHT_RED "NOK" RESET;

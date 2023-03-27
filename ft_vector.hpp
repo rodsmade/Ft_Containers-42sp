@@ -13,8 +13,7 @@ class Vector {
     unsigned int size(void) const;
     static void test(void);
 
-    double get(int index);
-    void set(int index, double value);
+    // TODO: remove before submission
     void printAll(void);
 
     Vector();

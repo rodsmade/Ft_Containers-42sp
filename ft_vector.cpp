@@ -14,15 +14,6 @@ void Vector::printAll(void) {
         std::cout << _elements[i] << std::endl;
 };
 
-// __ GETTERS/SETTERS _________________________________________________________
-double Vector::get(int index) {
-    return (_elements[index]);
-};
-
-void Vector::set(int index, double value) {
-    _elements[index] = value;
-};
-
 // __ CONSTRUCTION/DESTRUCTION ________________________________________________
 Vector::Vector(void) : _elements(nullptr), _size(0) {};
 
@@ -56,11 +47,11 @@ Vector& Vector::operator=(const Vector& other) {
     return (*this);
 };
 
-double &Vector::operator[](int index) {
+double &Vector::operator[](int index) { // for non-const Vectors
     return _elements[index];
 };
 
-const double &Vector::operator[](int index) const {
+const double &Vector::operator[](int index) const { // for const Vectors
     return _elements[index];
 };
 
