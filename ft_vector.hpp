@@ -17,7 +17,7 @@ class Vector {
     void set(int index, double value);
 
     Vector();
-    Vector(int size);
+    explicit Vector(int size);
     Vector(const Vector& other);
     ~Vector();
     Vector& operator=(const Vector& other);
