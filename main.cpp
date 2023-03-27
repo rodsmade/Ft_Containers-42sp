@@ -112,6 +112,50 @@ void test_vector_creation() {
     }
 }
 
+void test_vector_access() {
+    unsigned int size = 10;
+    ft::Vector myVector(size);
+    const ft::Vector &myVectorRef = myVector;
+
+    {  // Testing initialising vector values
+        std::cout << "Initialising vector values: ";
+        for (unsigned int i = 0; i < size; i++)
+            myVector[i] = i * 0.1;
+        for (unsigned int i = 0; i < size; i++) {
+            if (myVector[i] != i * 0.1)
+                std::cout << BOLD LIGHT_RED "NOK" RESET;
+        }
+        std::cout << BOLD LIGHT_GREEN "OK" RESET;
+        std::cout << std::endl;
+    }
+    {
+        std::cout << "Accessing vector values: ";
+        for (unsigned int i = 0; i < size; i++) {
+            if (myVector[i] != i * 0.1)
+                std::cout << BOLD LIGHT_RED "NOK" RESET;
+        }
+        std::cout << BOLD LIGHT_GREEN "OK" RESET;
+        std::cout << std::endl;
+    }
+    {
+        int index = 2;
+        std::cout << "Testing accessors by reference: ";
+        myVector[index] = 42;
+        (myVectorRef[index] != myVector[index]) ? (std::cout << BOLD LIGHT_RED "NOK" RESET) : (std::cout << BOLD LIGHT_GREEN "OK" RESET);
+        std::cout << " ";
+
+        index = 9;
+        myVector[index] = -42;
+        (myVectorRef[index] != myVector[index]) ? (std::cout << BOLD LIGHT_RED "NOK" RESET) : (std::cout << BOLD LIGHT_GREEN "OK" RESET);
+        std::cout << " ";
+
+        index = 0;
+        myVector[index] = 24;
+        (myVectorRef[index] != myVector[index]) ? (std::cout << BOLD LIGHT_RED "NOK" RESET) : (std::cout << BOLD LIGHT_GREEN "OK" RESET);
+        std::cout << std::endl;
+    }
+}
+
 int main() {
     // Preliminary tests, delete later maybe
     std::cout << "Preliminary tests:" << std::endl;
@@ -124,6 +168,11 @@ int main() {
     // Vector creation test
     std::cout << "Vector creation tests:" << std::endl;
     test_vector_creation();
+    std::cout << std::endl;
+
+    // Accessing elements of Vector
+    std::cout << "Vector accessor tests (subscript operator):" << std::endl;
+    test_vector_access();
 
     return 0;
 }
