@@ -5,6 +5,8 @@ namespace ft {
 // __ MEMBER FUNCTIONS ________________________________________________________
 unsigned int Vector::size(void) const { return _size; };
 
+unsigned int Vector::capacity(void) const { return _capacity; };
+
 void Vector::test(void) {
     std::cout << "calling Map member function, test " << BOLD LIGHT_GREEN "OK" RESET << std::endl;
 };
@@ -15,10 +17,10 @@ void Vector::printAll(void) {
 };
 
 // __ CONSTRUCTION/DESTRUCTION ________________________________________________
-Vector::Vector(void) : _elements(nullptr), _size(0) {};
+Vector::Vector(void) : _elements(nullptr), _size(0), _capacity(0) {};
 
 // TODO: e se size for < 0
-Vector::Vector(int size) : _elements(new double[size]), _size(size) {
+Vector::Vector(int size) : _elements(new double[size]), _size(size), _capacity(size) {
     for (unsigned int i = 0; i < _size; i++)
         _elements[i] = 0;
 };
