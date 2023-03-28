@@ -1,16 +1,21 @@
-NAME = containers_test.out
+NAME = containers.out
 
 CC = c++ -Wall -Wextra -Werror
 
-SOURCES = ft_map.cpp ft_set.cpp ft_stack.cpp ft_vector.cpp
-OBJECTS = $(SOURCES:.cpp=.o)
+OBJDIR = ./objs
 
-all: $(NAME)
+SOURCES = ft_map.cpp ft_set.cpp ft_stack.cpp ft_vector.cpp
+OBJECTS = $(addprefix $(OBJDIR)/,$(SOURCES:.cpp=.o))
+
+all: mkdirs $(NAME)
+
+mkdirs:
+	@mkdir -p $(OBJDIR)
 
 $(NAME): main.cpp $(OBJECTS)
 	$(CC) $(CFLAGS) main.cpp $(OBJECTS) -o $(NAME)
 
-%.o:	%.cpp %.hpp
+$(OBJDIR)/%.o:	%.cpp %.hpp
 	$(CC) $(CFLAGS) $< -c -o $@
 
 run: all
