@@ -174,5 +174,9 @@ int main() {
     std::cout << "Vector accessor tests (subscript operator):" << std::endl;
     test_vector_access();
 
+    // TODO: testes de inicialização de capacity
+    // TODO: testes de resize
+
+
     return 0;
 }

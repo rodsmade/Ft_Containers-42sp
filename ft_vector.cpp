@@ -7,6 +7,16 @@ unsigned int Vector::size(void) const { return _size; };
 
 unsigned int Vector::capacity(void) const { return _capacity; };
 
+void Vector::resize(unsigned int newCapacity) {
+    if (newCapacity <= _capacity) return ;
+    _capacity = newCapacity;
+    double *temp = new double[_capacity];
+    for (unsigned int i = 0; i < _size; i++)
+        temp[i] = _elements[i];
+    delete[] _elements;
+    _elements = temp;
+};
+
 void Vector::test(void) {
     std::cout << "calling Map member function, test " << BOLD LIGHT_GREEN "OK" RESET << std::endl;
 };
