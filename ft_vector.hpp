@@ -12,7 +12,7 @@ class Vector {
    public:
     unsigned int size(void) const;
     unsigned int capacity(void) const;
-    void resize(unsigned int newCapacity);
+    void reserve(unsigned int newCapacity);
 
     // TODO: remove before submission:
     static void test(void);

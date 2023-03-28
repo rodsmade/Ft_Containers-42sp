@@ -7,7 +7,7 @@ unsigned int Vector::size(void) const { return _size; };
 
 unsigned int Vector::capacity(void) const { return _capacity; };
 
-void Vector::resize(unsigned int newCapacity) {
+void Vector::reserve(unsigned int newCapacity) {
     if (newCapacity <= _capacity) return ;
     _capacity = newCapacity;
     double *temp = new double[_capacity];

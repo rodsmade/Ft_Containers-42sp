@@ -175,7 +175,7 @@ int main() {
     test_vector_access();
 
     // TODO: testes de inicialização de capacity
-    // TODO: testes de resize
+    // TODO: testes de reserve
 
 
     return 0;
