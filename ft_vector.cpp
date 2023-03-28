@@ -17,6 +17,10 @@ void Vector::reserve(unsigned int newCapacity) {
     _elements = temp;
 };
 
+void Vector::resize(unsigned int newSize) {
+    _size = newSize;
+};
+
 void Vector::test(void) {
     std::cout << "calling Map member function, test " << BOLD LIGHT_GREEN "OK" RESET << std::endl;
 };

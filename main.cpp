@@ -176,6 +176,7 @@ int main() {
 
     // TODO: testes de inicialização de capacity
     // TODO: testes de reserve
+    // TODO: testes do reserve e resize comparando com o resultado da std library (tipo a POC)
 
 
     return 0;

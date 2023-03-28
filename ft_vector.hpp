@@ -13,6 +13,7 @@ class Vector {
     unsigned int size(void) const;
     unsigned int capacity(void) const;
     void reserve(unsigned int newCapacity);
+    void resize(unsigned int newSize);
 
     // TODO: remove before submission:
     static void test(void);
