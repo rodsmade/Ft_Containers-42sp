@@ -14,6 +14,7 @@ class Vector {
     unsigned int capacity(void) const;
     void reserve(unsigned int newCapacity);
     void resize(unsigned int newSize);
+    void push_back(double newElem);
 
     // TODO: remove before submission:
     static void test(void);
