@@ -60,7 +60,14 @@ Vector::~Vector(void) {
 
 // __ OPERATOR OVERLOADS ______________________________________________________
 Vector& Vector::operator=(const Vector& other) {
-    if (this != &other) {
+    if (this == &other) return (*this);
+
+    if (other._size <= _capacity) {
+        for (unsigned int i = 0; i < other._size; i++) {
+            _elements[i] = other[i];
+            _size = other._size;
+        }
+    } else {
         double *tempElems = new double[other._size];
         for (unsigned int i = 0; i < other._size; i++) {
             tempElems[i] = other._elements[i];
@@ -68,8 +75,9 @@ Vector& Vector::operator=(const Vector& other) {
 
         delete[] _elements;
         _elements = tempElems;
-        _size = other._size;
+        _capacity = _size = other._size;
     }
+
     return (*this);
 };
 

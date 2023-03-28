@@ -174,10 +174,13 @@ int main() {
     std::cout << "Vector accessor tests (subscript operator):" << std::endl;
     test_vector_access();
 
+    // TODO: testes de assignment com vetor fonte maior, menor e igual que vetor destino.
     // TODO: testes de inicialização de capacity
     // TODO: testes de reserve
     // TODO: testes do reserve e resize comparando com o resultado da std library (tipo a POC)
-    // TODO: testes do push_back
+    // TODO: testes do push_back, comparar sizes e capacitys do vetor com o da std
+    // TODO: escrever teste de assignment operator e comparar sizes e capacitys com os da std
+    //          todos os testes de copy e assignment vale a pena checar o size e capacity contra a std lib
 
     return 0;
 }
