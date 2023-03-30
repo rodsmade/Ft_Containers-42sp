@@ -1,22 +1,20 @@
 NAME = containers.out
 
 CC = c++ -Wall -Wextra -Werror
+INCLUDES = -I./headers -I./map -I./set -I./stack -I./vector
 
 OBJDIR = ./objs
 
-SOURCES = ft_map.cpp ft_set.cpp ft_stack.cpp ft_vector.cpp
-OBJECTS = $(addprefix $(OBJDIR)/,$(SOURCES:.cpp=.o))
+SOURCES = ft_map.tpp ft_set.tpp ft_stack.tpp ft_vector.tpp
+OBJECTS = $(addprefix $(OBJDIR)/,$(SOURCES:.tpp=.o))
 
 all: mkdirs $(NAME)
 
 mkdirs:
 	@mkdir -p $(OBJDIR)
 
-$(NAME): main.cpp $(OBJECTS)
-	$(CC) $(CFLAGS) main.cpp $(OBJECTS) -o $(NAME)
-
-$(OBJDIR)/%.o:	%.cpp %.hpp
-	$(CC) $(CFLAGS) $< -c -o $@
+$(NAME): main.cpp vector/ft_vector.hpp vector/ft_vector.tpp
+	$(CC) $(CFLAGS) main.cpp $(INCLUDES) -o $(NAME)
 
 run: all
 	./$(NAME)

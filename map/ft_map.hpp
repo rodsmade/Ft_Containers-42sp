@@ -14,4 +14,6 @@ class Map {
 
 }  // namespace ft
 
+#include "ft_map.tpp"
+
 #endif

@@ -1,5 +1,3 @@
-#include "ft_set.hpp"
-
 namespace ft {
 
 void Set::test(void) {

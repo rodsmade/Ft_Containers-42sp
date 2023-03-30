@@ -14,4 +14,6 @@ class Set {
 
 }  // namespace ft
 
+#include "ft_set.tpp"
+
 #endif

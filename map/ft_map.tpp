@@ -1,5 +1,3 @@
-#include "ft_map.hpp"
-
 namespace ft {
 
 void Map::test(void) {

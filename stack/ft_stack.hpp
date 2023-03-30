@@ -14,4 +14,6 @@ class Stack {
 
 }  // namespace ft
 
+#include "ft_stack.tpp"
+
 #endif

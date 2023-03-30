@@ -2,7 +2,7 @@
 
 void test_vector_creation() {
     unsigned int intendedSize = 42;
-    ft::Vector testVector(intendedSize);
+    ft::Vector<double> testVector(intendedSize);
 
     {  // Testing Size on Creation
         std::cout << "Size on creation: ";
@@ -21,7 +21,9 @@ void test_vector_creation() {
         std::cout << BOLD LIGHT_GREEN "OK" RESET;
         std::cout << std::endl;
     }
-    {  // Testing Valid set() operation at valid index
+    {  // Testing Vali    // ft::Map::test();
+    // ft::Set::test();
+    // ft::Stack::test();d set() operation at valid index
         std::cout << "Setting value at valid index: ";
 
         double designatedValue = 42.0;
@@ -35,7 +37,7 @@ void test_vector_creation() {
         std::cout << std::endl;
     }
     {  // Testing copy construction
-        ft::Vector copyVector(testVector);
+        ft::Vector<double> copyVector(testVector);
 
         std::cout << "Copy-construction: ";
         bool sizeTest = true;
@@ -71,7 +73,7 @@ void test_vector_creation() {
         std::cout << std::endl;
     }
     {  // Testing assignment operator (operator=)
-        ft::Vector assignedVector = testVector;
+        ft::Vector<double> assignedVector = testVector;
 
         std::cout << "Basic assignment: ";
         bool sizeTest = true;
@@ -114,8 +116,8 @@ void test_vector_creation() {
 
 void test_vector_access() {
     unsigned int size = 10;
-    ft::Vector myVector(size);
-    const ft::Vector &myVectorRef = myVector;
+    ft::Vector<double> myVector(size);
+    const ft::Vector<double> &myVectorRef = myVector;
 
     {  // Testing initialising vector values
         std::cout << "Initialising vector values: ";
@@ -162,7 +164,7 @@ int main() {
     ft::Map::test();
     ft::Set::test();
     ft::Stack::test();
-    ft::Vector::test();
+    ft::Vector<double>::test();
     std::cout << std::endl;
 
     // Vector creation test

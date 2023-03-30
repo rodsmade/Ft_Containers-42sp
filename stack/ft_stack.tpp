@@ -1,5 +1,3 @@
-#include "ft_stack.hpp"
-
 namespace ft {
 
 void Stack::test(void) {
