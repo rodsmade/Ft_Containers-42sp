@@ -8,13 +8,14 @@
 
 namespace ft {
 
+template <typename T>
 class Vector {
    public:
     unsigned int size(void) const;
     unsigned int capacity(void) const;
     void reserve(unsigned int newCapacity);
     void resize(unsigned int newSize);
-    void push_back(double newElem);
+    void push_back(T newElem);
 
     // TODO: remove before submission:
     static void test(void);
@@ -25,15 +26,17 @@ class Vector {
     Vector(const Vector& other);
     ~Vector();
     Vector& operator=(const Vector& other);
-    double &operator[](int index); // returns a reference, i. e., the object itself, knowing this "address" won't possibly change or be changed.
-    const double &operator[](int index) const; // returns a *copy* of what is stored in the nth element. it is not the object itself, so it can't be assigned something else (not an l-value)
+    T &operator[](int index); // returns a reference, i. e., the object itself, knowing this "address" won't possibly change or be changed.
+    const T &operator[](int index) const; // returns a *copy* of what is stored in the nth element. it is not the object itself, so it can't be assigned something else (not an l-value)
 
    private:
-    double* _elements;
+    T* _elements;
     unsigned int _size;
     unsigned int _capacity;
 };
 
-}  // namespace ft
+};  // namespace ft
+
+#include "ft_vector.tpp"
 
 #endif
