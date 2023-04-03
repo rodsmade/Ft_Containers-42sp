@@ -20,6 +20,7 @@ class Vector {
     // TODO: remove before submission:
     static void test(void);
     void printAll(void);
+    void fill(Vector<T> &vector, const T& value);
 
     Vector();
     explicit Vector(int size);

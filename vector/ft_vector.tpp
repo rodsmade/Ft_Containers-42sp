@@ -36,18 +36,6 @@ void Vector<T>::push_back(T newElem) {
     _size++;
 };
 
-//TODO: REMOVE BEFORE SUBMISSION
-template <typename T>
-void Vector<T>::test(void) {
-    std::cout << "calling Map member function, test " << BOLD LIGHT_GREEN "OK" RESET << std::endl;
-};
-
-template <typename T>
-void Vector<T>::printAll(void) {
-    for (unsigned int i = 0; i < _size; i++)
-        std::cout << _elements[i] << std::endl;
-};
-
 // __ CONSTRUCTION/DESTRUCTION ________________________________________________
 template <typename T>
 Vector<T>::Vector(void) : _elements(NULL), _size(0), _capacity(0) {};
@@ -102,6 +90,26 @@ T &Vector<T>::operator[](int index) { // for non-const Vectors
 template <typename T>
 const T &Vector<T>::operator[](int index) const { // for const Vectors
     return _elements[index];
+};
+
+// __ EXTRA FUNCTIONS _________________________________________________________
+//TODO: REMOVE BEFORE SUBMISSION
+template <typename T>
+void Vector<T>::test(void) {
+    std::cout << "calling Map member function, test " << BOLD LIGHT_GREEN "OK" RESET << std::endl;
+};
+
+template <typename T>
+void Vector<T>::printAll(void) {
+    for (unsigned int i = 0; i < _size; i++)
+        std::cout << _elements[i] << std::endl;
+};
+
+template <typename T>
+void Vector<T>::fill(Vector<T> &vector, const T& value) {
+    for (unsigned int i = 0; i < vector.size(); i++) {
+        vector[i] = value;
+    }
 };
 
 }  // namespace ft
