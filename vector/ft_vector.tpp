@@ -12,7 +12,8 @@ unsigned int Vector<T>::capacity(void) const { return _capacity; };
 
 template <typename T>
 void Vector<T>::reserve(unsigned int newCapacity) {
-    if (newCapacity <= _capacity) return ;
+    if (newCapacity <= _capacity) return;
+
     _capacity = newCapacity;
     T *temp = new T[_capacity];
     for (unsigned int i = 0; i < _size; i++)
@@ -23,13 +24,15 @@ void Vector<T>::reserve(unsigned int newCapacity) {
 
 template <typename T>
 void Vector<T>::resize(unsigned int newSize) {
+    if (newSize > _size)
+        reserve(newSize);
     _size = newSize;
 };
 
 template <typename T>
 void Vector<T>::push_back(T newElem) {
     if (!_capacity)
-        reserve(8);
+        reserve(1);
     if (_size == _capacity)
         reserve(_capacity * 2);
     _elements[_size] = newElem;
@@ -38,7 +41,7 @@ void Vector<T>::push_back(T newElem) {
 
 // __ CONSTRUCTION/DESTRUCTION ________________________________________________
 template <typename T>
-Vector<T>::Vector(void) : _elements(NULL), _size(0), _capacity(0) {};
+Vector<T>::Vector(void) : _elements(NULL), _size(0), _capacity(0){};
 
 // TODO: e se size for < 0
 template <typename T>
@@ -48,7 +51,7 @@ Vector<T>::Vector(int size) : _elements(new T[size]), _size(size), _capacity(siz
 };
 
 template <typename T>
-Vector<T>::Vector(const Vector&other) : _elements(new T[other._size]), _size(other._size) {
+Vector<T>::Vector(const Vector &other) : _elements(new T[other._size]), _size(other._size) {
     for (unsigned int i = 0; i < _size; i++)
         _elements[i] = other._elements[i];
 };
@@ -60,7 +63,7 @@ Vector<T>::~Vector(void) {
 
 // __ OPERATOR OVERLOADS ______________________________________________________
 template <typename T>
-Vector<T>& Vector<T>::operator=(const Vector& other) {
+Vector<T> &Vector<T>::operator=(const Vector &other) {
     if (this == &other) return (*this);
 
     if (other._size <= _capacity) {
@@ -83,17 +86,17 @@ Vector<T>& Vector<T>::operator=(const Vector& other) {
 };
 
 template <typename T>
-T &Vector<T>::operator[](int index) { // for non-const Vectors
+T &Vector<T>::operator[](int index) {  // for non-const Vectors
     return _elements[index];
 };
 
 template <typename T>
-const T &Vector<T>::operator[](int index) const { // for const Vectors
+const T &Vector<T>::operator[](int index) const {  // for const Vectors
     return _elements[index];
 };
 
 // __ EXTRA FUNCTIONS _________________________________________________________
-//TODO: REMOVE BEFORE SUBMISSION
+// TODO: REMOVE BEFORE SUBMISSION
 template <typename T>
 void Vector<T>::test(void) {
     std::cout << "calling Map member function, test " << BOLD LIGHT_GREEN "OK" RESET << std::endl;
@@ -106,7 +109,7 @@ void Vector<T>::printAll(void) {
 };
 
 template <typename T>
-void Vector<T>::fill(Vector<T> &vector, const T& value) {
+void Vector<T>::fill(Vector<T> &vector, const T &value) {
     for (unsigned int i = 0; i < vector.size(); i++) {
         vector[i] = value;
     }
