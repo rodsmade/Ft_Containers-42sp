@@ -39,6 +39,18 @@ void Vector<T>::push_back(T newElem) {
     _size++;
 };
 
+template <typename T>
+T &Vector<T>::at(int index) {
+    if (index < 0 || (unsigned long int)index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
+    return _elements[index];
+};
+
+template <typename T>
+const T &Vector<T>::at(int index) const {
+    if (index < 0 || (unsigned long int)index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
+    return _elements[index];
+};
+
 // __ CONSTRUCTION/DESTRUCTION ________________________________________________
 template <typename T>
 Vector<T>::Vector(void) : _elements(NULL), _size(0), _capacity(0){};
@@ -93,6 +105,12 @@ T &Vector<T>::operator[](int index) {  // for non-const Vectors
 template <typename T>
 const T &Vector<T>::operator[](int index) const {  // for const Vectors
     return _elements[index];
+};
+
+// __ PRIVATE FUNCTIONS _______________________________________________________
+template <typename T>
+std::string Vector<T>::getOutOfRangeErrorMessage(int index) const {
+    return ("vector::_M_range_check: __n (which is " + std::to_string((unsigned long int)index) + ") >= this->size() (which is " + std::to_string(_size) + ")");
 };
 
 // __ EXTRA FUNCTIONS _________________________________________________________
