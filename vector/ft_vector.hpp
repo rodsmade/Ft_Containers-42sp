@@ -10,7 +10,7 @@
 namespace ft {
 
 template <typename T>
-class Vector {
+class vector {
    public:
     unsigned int size(void) const;
     unsigned int capacity(void) const;
@@ -23,13 +23,13 @@ class Vector {
     // TODO: remove before submission:
     static void test(void);
     void printAll(void);
-    void fill(Vector<T>& vector, const T& value);
+    void fill(vector<T>& vector, const T& value);
 
-    Vector();
-    explicit Vector(int size);
-    Vector(const Vector& other);
-    ~Vector();
-    Vector& operator=(const Vector& other);
+    vector();
+    explicit vector(int size);
+    vector(const vector& other);
+    ~vector();
+    vector& operator=(const vector& other);
     T& operator[](int index);              // returns a reference, i. e., the object itself, knowing this "address" won't possibly change or be changed, but its contents can.
     const T& operator[](int index) const;  // returns a *copy* of what is stored in the nth element. it is not the object itself, so its contents can't be assigned something else (not an l-value)
 

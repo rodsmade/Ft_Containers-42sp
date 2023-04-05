@@ -1,8 +1,14 @@
 #include "ft_containers.hpp"
 
+struct No_default {
+    No_default(int ay) {
+        (void) ay;
+    };  // the only constructor for No_default
+};
+
 void test_vector_creation() {
     unsigned int intendedSize = 42;
-    ft::Vector<double> testVector(intendedSize);
+    ft::vector<double> testVector(intendedSize);
 
     {  // Testing Size on Creation
         std::cout << "Size on creation: ";
@@ -21,15 +27,15 @@ void test_vector_creation() {
         std::cout << BOLD LIGHT_GREEN "OK" RESET;
         std::cout << std::endl;
     }
-    {  // Testing Vali    // ft::Map::test();
-    // ft::Set::test();
-    // ft::Stack::test();d set() operation at valid index
+    {   // Testing Vali    // ft::Map::test();
+        // ft::Set::test();
+        // ft::Stack::test();d set() operation at valid index
         std::cout << "Setting value at valid index: ";
 
         double designatedValue = 42.0;
         unsigned int designatedIndex = 12;
 
-        testVector[designatedIndex] =  designatedValue;
+        testVector[designatedIndex] = designatedValue;
         if (testVector[designatedIndex] == designatedValue)
             std::cout << BOLD LIGHT_GREEN "OK" RESET;
         else
@@ -37,7 +43,7 @@ void test_vector_creation() {
         std::cout << std::endl;
     }
     {  // Testing copy construction
-        ft::Vector<double> copyVector(testVector);
+        ft::vector<double> copyVector(testVector);
 
         std::cout << "Copy-construction: ";
         bool sizeTest = true;
@@ -63,8 +69,8 @@ void test_vector_creation() {
         double originalValueInTestVector = testVector[41];
         double originalValueInCopyVector = copyVector[0];
 
-        testVector[0] =  42.0;
-        copyVector[41] =  1.0;
+        testVector[0] = 42.0;
+        copyVector[41] = 1.0;
 
         if (testVector[41] == originalValueInTestVector && copyVector[0] == originalValueInCopyVector)
             std::cout << BOLD LIGHT_GREEN "OK" RESET;
@@ -73,7 +79,7 @@ void test_vector_creation() {
         std::cout << std::endl;
     }
     {  // Testing assignment operator (operator=)
-        ft::Vector<double> assignedVector = testVector;
+        ft::vector<double> assignedVector = testVector;
 
         std::cout << "Basic assignment: ";
         bool sizeTest = true;
@@ -99,8 +105,8 @@ void test_vector_creation() {
         double originalValueInTestVector = testVector[41];
         double originalValueInAssignedVector = assignedVector[0];
 
-        testVector[0] =  42.0;
-        assignedVector[41] =  1.0;
+        testVector[0] = 42.0;
+        assignedVector[41] = 1.0;
 
         if (testVector[41] == originalValueInTestVector && assignedVector[0] == originalValueInAssignedVector)
             std::cout << BOLD LIGHT_GREEN "OK" RESET;
@@ -109,15 +115,15 @@ void test_vector_creation() {
         std::cout << std::endl;
 
         std::cout << "Assignment to self: ";
-        // TODO: implementar exception e alterar aqui 
+        // TODO: implementar exception e alterar aqui
         std::cout << BOLD LIGHT_GREEN "OK" RESET << std::endl;
     }
 }
 
 void test_vector_access() {
     unsigned int size = 10;
-    ft::Vector<double> myVector(size);
-    const ft::Vector<double> &myVectorRef = myVector;
+    ft::vector<double> myVector(size);
+    const ft::vector<double> &myVectorRef = myVector;
 
     {  // Testing initialising vector values
         std::cout << "Initialising vector values: ";
@@ -164,7 +170,7 @@ int main() {
     ft::Map::test();
     ft::Set::test();
     ft::Stack::test();
-    ft::Vector<double>::test();
+    ft::vector<double>::test();
     std::cout << std::endl;
 
     // Vector creation test
@@ -183,6 +189,7 @@ int main() {
     // TODO: testes do push_back, comparar sizes e capacitys do vetor com o da std
     // TODO: escrever teste de assignment operator e comparar sizes e capacitys com os da std
     //          todos os testes de copy e assignment vale a pena checar o size e capacity contra a std lib
+    // TODO: escrever teste de protected value access (at) comparando com a std::vector
 
     return 0;
 }
