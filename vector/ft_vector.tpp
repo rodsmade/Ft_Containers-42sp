@@ -32,7 +32,7 @@ void vector<T>::resize(size_type newSize) {
 };
 
 template <typename T>
-void vector<T>::push_back(T newElem) {
+void vector<T>::push_back(const T& newElem) {
     if (!_capacity)
         reserve(1);
     if (_size == _capacity)
