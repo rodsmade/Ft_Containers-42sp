@@ -3,7 +3,9 @@
 
 namespace ft {
 
-// __ MEMBER FUNCTIONS ________________________________________________________
+/*=============================================================================
+===  MEMBER FUNCTIONS                                                       ===
+=============================================================================*/
 template <typename T>
 typename vector<T>::size_type vector<T>::size(void) const { return _size; };
 
@@ -51,7 +53,9 @@ const T &vector<T>::at(size_type index) const {
     return _elements[index];
 };
 
-// __ CONSTRUCTION/DESTRUCTION ________________________________________________
+/*=============================================================================
+===  CONSTRUCTION / DESTRUCTION                                             ===
+=============================================================================*/
 template <typename T>
 vector<T>::vector(void) : _elements(NULL), _size(0), _capacity(0){};
 
@@ -73,7 +77,9 @@ vector<T>::~vector(void) {
     delete[] _elements;
 };
 
-// __ OPERATOR OVERLOADS ______________________________________________________
+/*=============================================================================
+===  OPERATOR OVERLOADS                                                     ===
+=============================================================================*/
 template <typename T>
 vector<T> &vector<T>::operator=(const vector &other) {
     if (this == &other) return (*this);
@@ -107,14 +113,18 @@ const T &vector<T>::operator[](size_type index) const {  // for const vectors
     return _elements[index];
 };
 
-// __ PRIVATE FUNCTIONS _______________________________________________________
+/*=============================================================================
+===  PRIVATE FUNCTIONS                                                      ===
+=============================================================================*/
 template <typename T>
 std::string vector<T>::getOutOfRangeErrorMessage(size_type index) const {
     return ("vector::_M_range_check: __n (which is " + std::to_string((unsigned long int)index) + ") >= this->size() (which is " + std::to_string(_size) + ")");
 };
 
-// __ EXTRA FUNCTIONS _________________________________________________________
-// TODO: REMOVE BEFORE SUBMISSION
+/*=============================================================================
+===  EXTRA FUNCTIONS                                                        ===
+===  TODO: REMOVE BEFORE SUBMISSION                                         ===
+=============================================================================*/
 template <typename T>
 void vector<T>::test(void) {
     std::cout << "calling Map member function, test " << BOLD LIGHT_GREEN "OK" RESET << std::endl;
