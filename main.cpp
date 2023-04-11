@@ -27,9 +27,7 @@ void test_vector_creation() {
         std::cout << BOLD LIGHT_GREEN "OK" RESET;
         std::cout << std::endl;
     }
-    {   // Testing Vali    // ft::Map::test();
-        // ft::Set::test();
-        // ft::Stack::test();d set() operation at valid index
+    {   // Testing Valid set() operation at valid index
         std::cout << "Setting value at valid index: ";
 
         double designatedValue = 42.0;

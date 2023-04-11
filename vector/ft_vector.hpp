@@ -1,9 +1,9 @@
 #ifndef FT_VECTOR_HPP
 #define FT_VECTOR_HPP
 
-#include <iostream>  // printing, etc.
-#include <memory>    // std::allocator
-#include <stdexcept>
+#include <iostream>     // printing, etc.
+#include <memory>       // std::allocator
+#include <stdexcept>    // std::out_of_range
 
 #include "colourise_my_prints.hpp"
 
@@ -16,7 +16,7 @@ class vector {
     /*=============================================
     ===                ALIASES                  ===
     =============================================*/
-    // Servem pra abstrair ao máximo pra cada container o que vale seu size_type, value_type, iterator e const_iterator. Generic Programming beb
+    //  Aliases function as an interface for containers to be handled the same. They each will have their size_type, value_type, iterator and etc. const_iterator. This is called Generic Programming.
     using size_type = unsigned long;
     using value_type = T;
     using iterator = T*;
@@ -80,8 +80,8 @@ class vector {
     ===      CONSTRUCTION / DESTRUCTION         ===
     =============================================*/
     vector();
-    // the explicit keyword forbids implicit conversion of any type into a vector, which avoids bugs and makes code clearer and explicit.
     explicit vector(size_type size);
+    //  the explicit keyword forbids implicit conversion of any type into a vector, which avoids bugs and makes code clearer and explicit.
     vector(const vector& other);
     ~vector();
 
@@ -95,10 +95,10 @@ class vector {
     ===           OPERATOR OVERLOADS            ===
     =============================================*/
     vector&         operator=(const vector& other);
-    // returns a reference, i. e., the object itself, knowing this "address" won't possibly change or be changed, but its contents can.
     reference       operator[](size_type index);
-    // returns a *copy* of what is stored in the nth element. it is not the object itself, so its contents can't be assigned something else (not an l-value)
+    //  returns a reference, i. e., the object itself, knowing this "address" won't possibly change or be changed, but its contents can.
     const_reference operator[](size_type index) const;
+    //  returns a *copy* of what is stored in the nth element. it is not the object itself, so its contents can't be assigned something else (not an l-value)
 
    private:
     T* _elements;
