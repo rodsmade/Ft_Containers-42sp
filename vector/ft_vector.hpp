@@ -9,7 +9,7 @@
 
 namespace ft {
 
-template <typename T>
+template <typename T, typename A = std::allocator<T>>
 class vector {
    public:
 
@@ -74,7 +74,7 @@ class vector {
     // TODO: remove before submission:
     static void test(void);
     void printAll(void);
-    void fill(vector<T>& vector, const T& value);
+    void fill(vector<T, A>& vector, const T& value);
 
     /*=============================================
     ===      CONSTRUCTION / DESTRUCTION         ===
