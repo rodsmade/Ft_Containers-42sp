@@ -16,11 +16,17 @@ template <typename T, typename A>
 void vector<T, A>::reserve(size_type newCapacity) {
     if (newCapacity <= _capacity) return;
 
+    // T *temp = new T[_capacity];
+    T *temp = _allocator.allocate(newCapacity); // Allocate more (uninitialized) memory
+    for (size_type i = 0; i < _size; i++) // Construct (initialize) allocated memory
+        // temp[i] = _elements[i];
+        _allocator.construct(&temp[i], _elements[i]);
+    // delete[] _elements;
+    for (size_type i = 0; i < _size; i++) // Destroy (return back to unitialized state?) old memory
+        _allocator.destroy(&_elements[i]);
+    _allocator.deallocate(_elements, _capacity);
+
     _capacity = newCapacity;
-    T *temp = new T[_capacity];
-    for (size_type i = 0; i < _size; i++)
-        temp[i] = _elements[i];
-    delete[] _elements;
     _elements = temp;
 };
 

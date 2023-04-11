@@ -101,6 +101,7 @@ class vector {
     //  returns a *copy* of what is stored in the nth element. it is not the object itself, so its contents can't be assigned something else (not an l-value)
 
    private:
+    A _allocator;
     T* _elements;
     size_type _size;
     size_type _capacity;
