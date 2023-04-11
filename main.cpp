@@ -163,14 +163,6 @@ void test_vector_access() {
 }
 
 int main() {
-    // Preliminary tests, delete later maybe
-    std::cout << "Preliminary tests:" << std::endl;
-    ft::Map::test();
-    ft::Set::test();
-    ft::Stack::test();
-    ft::vector<double>::test();
-    std::cout << std::endl;
-
     // Vector creation test
     std::cout << "Vector creation tests:" << std::endl;
     test_vector_creation();
@@ -182,6 +174,7 @@ int main() {
 
     // TODO: testes de assignment com vetor fonte maior, menor e igual que vetor destino.
     // TODO: testes de inicialização de capacity
+    // TODO: testes de inicialização de uma classe sem default (No_Default)
     // TODO: testes de reserve
     // TODO: testes do reserve e resize comparando com o resultado da std library (tipo a POC)
     // TODO: testes do push_back, comparar sizes e capacitys do vetor com o da std
