@@ -43,7 +43,7 @@ void vector<T, A>::push_back(const T& newElem) {
         reserve(1);
     if (_size == _capacity)
         reserve(_capacity * 2);
-    _elements[_size] = newElem;
+    _allocator.construct(&_elements[_size], newElem);
     _size++;
 };
 
