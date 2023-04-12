@@ -20,7 +20,15 @@ run: all
 	./$(NAME)
 
 valgrind: all
-	valgrind --leak-check=full --show-leak-kinds=all --quiet ./$(NAME)
+	valgrind --tool=memcheck \
+		--show-leak-kinds=all \
+		--leak-check=full \
+		--track-origins=yes \
+		--show-reachable=yes \
+		--undef-value-errors=yes \
+		--error-exitcode=42 \
+		--quiet \
+		./$(NAME)
 
 clean:
 	rm -f $(OBJECTS)
