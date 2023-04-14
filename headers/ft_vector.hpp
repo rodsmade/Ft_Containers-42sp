@@ -4,12 +4,13 @@
 #include <iostream>     // printing, etc.
 #include <memory>       // std::allocator
 #include <stdexcept>    // std::out_of_range
+#include <sstream>      // std::ostringstream
 
 #include "colourise_my_prints.hpp"
 
 namespace ft {
 
-template <typename T, typename A = std::allocator<T>>
+template < typename T, typename A = std::allocator<T> >
 class vector {
    public:
 
@@ -17,14 +18,14 @@ class vector {
     ===                ALIASES                  ===
     =============================================*/
     //  Aliases function as an interface for containers to be handled the same. They each will have their size_type, value_type, iterator and etc. const_iterator. This is called Generic Programming.
-    using size_type = unsigned long;
-    using value_type = T;
-    using iterator = T*;
-    using const_iterator = const T*;
-    using reference = T&;
-    using const_reference = const T&;
-    using reverse_iterator = std::reverse_iterator<iterator>;
-    using const_reverse_iterator = std::reverse_iterator<const_iterator>;
+    typedef unsigned long size_type;
+    typedef T value_type;
+    typedef T* iterator;
+    typedef const T* const_iterator;
+    typedef T& reference;
+    typedef const T& const_reference;
+    typedef std::reverse_iterator<iterator> reverse_iterator;
+    typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
     // template<typename C>
     // using Iterator = typename C::iterator;
 

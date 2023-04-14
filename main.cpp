@@ -181,6 +181,9 @@ int main() {
     // TODO: escrever teste de assignment operator e comparar sizes e capacitys com os da std
     //          todos os testes de copy e assignment vale a pena checar o size e capacity contra a std lib
     // TODO: escrever teste de protected value access (at) comparando com a std::vector
+    // TODO: escrever teste de protected value access (at) comparando com a std::vector
+    //          - obs: se não usar bloco de try/catch no teste do at, vai dar leak dentro da out_of_bound. ficar ligado nisso. o leak ñ eh na minha estrutura de dado.
+    //          - obs2: ufa o comportamento tá igual com a std::vector.
 
     return 0;
 }

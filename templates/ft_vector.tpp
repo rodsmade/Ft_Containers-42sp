@@ -124,7 +124,11 @@ const T &vector<T, A>::operator[](size_type index) const {  // for const vectors
 =============================================================================*/
 template <typename T, typename A>
 std::string vector<T, A>::getOutOfRangeErrorMessage(size_type index) const {
-    return ("vector::_M_range_check: __n (which is " + std::to_string((unsigned long int)index) + ") >= this->size() (which is " + std::to_string(_size) + ")");
+    std::ostringstream oss;
+
+    oss << "vector::_M_range_check: __n (which is " << index << ") >= this->size() (which is " << _size << ")";
+
+    return oss.str();
 };
 
 /*=============================================================================

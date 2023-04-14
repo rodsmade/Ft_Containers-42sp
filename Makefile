@@ -1,23 +1,32 @@
-NAME = containers.out
+LIBNAME = libftcontainers.a
 
 CC = c++ -Wall -Wextra -Werror
-INCLUDES = -I./headers -I./map -I./set -I./stack -I./vector
 
-OBJDIR = ./objs
+BINARIES_DIR = bin
+HEADERS_DIR = headers
+TEMPLATES_DIR = templates
+OBJS_DIR = objs
 
-SOURCES = ft_map.tpp ft_set.tpp ft_stack.tpp ft_vector.tpp
-OBJECTS = $(addprefix $(OBJDIR)/,$(SOURCES:.tpp=.o))
+HEADERS = ft_map.hpp ft_set.hpp ft_stack.hpp ft_vector.hpp
+TEMPLATES = ft_map.tpp ft_set.tpp ft_stack.tpp ft_vector.tpp
 
-all: mkdirs $(NAME)
+OBJECTS = $(addprefix $(OBJS_DIR)/,$(HEADERS:.hpp=.o))
+
+all: mkdirs $(LIBNAME)
 
 mkdirs:
-	@mkdir -p $(OBJDIR)
+	@mkdir -p $(BINARIES_DIR)
+	@mkdir -p $(OBJS_DIR)
 
-$(NAME): main.cpp vector/ft_vector.hpp vector/ft_vector.tpp
-	$(CC) $(CFLAGS) main.cpp $(INCLUDES) -o $(NAME)
+$(LIBNAME): $(OBJECTS)
+	ar rcs $(LIBNAME) $(OBJECTS)
+
+$(OBJS_DIR)/%.o: $(HEADERS_DIR)/%.hpp
+	$(CC) $(CFLAGS) -c -I $(TEMPLATES_DIR) $< -o $@
 
 run: all
-	./$(NAME)
+	$(CC) $(CFLAGS) main.cpp -I $(HEADERS_DIR) -I $(TEMPLATES_DIR) -o $(BINARIES_DIR)/main.out
+	./$(BINARIES_DIR)/main.out
 
 valgrind: all
 	valgrind --tool=memcheck \
@@ -28,13 +37,14 @@ valgrind: all
 		--undef-value-errors=yes \
 		--error-exitcode=42 \
 		--quiet \
-		./$(NAME)
+		./$(BINARIES_DIR)/main.out
 
 clean:
 	rm -f $(OBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(BINARIES_DIR)/*
+	rm -f $(LIBNAME)
 
 re: fclean all
 
