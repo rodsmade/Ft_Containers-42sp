@@ -3,8 +3,8 @@ LIBNAME = libftcontainers.a
 CC = c++ -Wall -Wextra -Werror
 
 BINARIES_DIR = bin
-HEADERS_DIR = headers
-TEMPLATES_DIR = templates
+HEADERS_DIR = include
+TEMPLATES_DIR = src
 OBJS_DIR = objs
 
 HEADERS = ft_map.hpp ft_set.hpp ft_stack.hpp ft_vector.hpp
@@ -41,9 +41,11 @@ valgrind: all
 
 clean:
 	rm -f $(OBJECTS)
+	rmdir --ignore-fail-on-non-empty $(OBJS_DIR)
 
 fclean: clean
 	rm -f $(BINARIES_DIR)/*
+	rmdir --ignore-fail-on-non-empty $(BINARIES_DIR)
 	rm -f $(LIBNAME)
 
 re: fclean all
