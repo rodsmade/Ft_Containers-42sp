@@ -86,7 +86,9 @@ vector<T, A>::vector(const vector &other) : _elements(new T[other._size]), _size
 
 template <typename T, typename A>
 vector<T, A>::~vector(void) {
-    delete[] _elements;
+    for (size_type i = 0; i < _size; i++) // Destroy (return back to unitialized state?) old memory
+        _allocator.destroy(&_elements[i]);
+    _allocator.deallocate(_elements, _capacity);
 };
 
 /*=============================================================================
