@@ -1,18 +1,14 @@
-#include <vector>
-
-#include "tests_structures.hpp"
-#include "ft_containers.hpp"
+#include "tests_headers.hpp"
 
 template <typename T, typename U>
 void test_type_equality(std::string typeName) {
-    std::cout << "[ ";
     (is_same<T, U>::value)
         ? (std::cout << TEST_OK)
         : (std::cout << TEST_NOK);
-    std::cout << " ]\t" << typeName << std::endl;
+    std::cout << typeName << std::endl;
 }
 
-int main() {
+void test_typedefs(void) {
     std::cout << "=== Typedefs comparison ===" << std::endl;
     test_type_equality<ft::vector<int>::size_type, std::vector<int>::size_type>("size_type");
     test_type_equality<ft::vector<int>::value_type, std::vector<int>::value_type>("value_type");
@@ -22,5 +18,4 @@ int main() {
     test_type_equality<ft::vector<int>::const_iterator, std::vector<int>::const_iterator>("const_iterator");
     test_type_equality<ft::vector<int>::reverse_iterator, std::vector<int>::reverse_iterator>("reverse_iterator");
     test_type_equality<ft::vector<int>::const_reverse_iterator, std::vector<int>::const_reverse_iterator>("const_reverse_iterator");
-    return 0;
 }

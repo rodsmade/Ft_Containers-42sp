@@ -7,10 +7,35 @@ namespace ft {
 ===  MEMBER FUNCTIONS                                                       ===
 =============================================================================*/
 template <typename T, typename A>
-typename vector<T, A>::size_type vector<T, A>::size(void) const { return _size; };
+T &vector<T, A>::at(size_type index) {
+    if (index < 0 || index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
+    return _elements[index];
+};
+
+template <typename T, typename A>
+const T &vector<T, A>::at(size_type index) const {
+    if (index < 0 || index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
+    return _elements[index];
+};
 
 template <typename T, typename A>
 typename vector<T, A>::size_type vector<T, A>::capacity(void) const { return _capacity; };
+
+template <typename T, typename A>
+bool vector<T, A>::empty() const {
+    if (_size == 0) return true;
+    else return false;
+};
+
+template <typename T, typename A>
+void vector<T, A>::push_back(const T& newElem) {
+    if (!_capacity)
+        reserve(1);
+    if (_size == _capacity)
+        reserve(_capacity * 2);
+    _allocator.construct(&_elements[_size], newElem);
+    _size++;
+};
 
 template <typename T, typename A>
 void vector<T, A>::reserve(size_type newCapacity) {
@@ -38,26 +63,7 @@ void vector<T, A>::resize(size_type newSize) {
 };
 
 template <typename T, typename A>
-void vector<T, A>::push_back(const T& newElem) {
-    if (!_capacity)
-        reserve(1);
-    if (_size == _capacity)
-        reserve(_capacity * 2);
-    _allocator.construct(&_elements[_size], newElem);
-    _size++;
-};
-
-template <typename T, typename A>
-T &vector<T, A>::at(size_type index) {
-    if (index < 0 || index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
-    return _elements[index];
-};
-
-template <typename T, typename A>
-const T &vector<T, A>::at(size_type index) const {
-    if (index < 0 || index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
-    return _elements[index];
-};
+typename vector<T, A>::size_type vector<T, A>::size(void) const { return _size; };
 
 /*=============================================================================
 ===  CONSTRUCTION / DESTRUCTION                                             ===

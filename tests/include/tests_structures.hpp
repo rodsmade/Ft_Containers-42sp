@@ -24,7 +24,7 @@ struct is_same<T, T> {
 };
 
 // Test Output Strings
-#define TEST_OK BOLD GREEN "OK " RESET
-#define TEST_NOK BOLD RED "NOK" RESET
+#define TEST_OK "[ " BOLD GREEN "OK " RESET " ]\t"
+#define TEST_NOK "[ " BOLD RED "NOK" RESET " ]\t"
 
 #endif
