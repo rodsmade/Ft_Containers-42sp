@@ -35,6 +35,8 @@ class vector {
     reference               at(size_type i);
     const_reference         at(size_type i) const;
     size_type               capacity(void) const;
+    void                    clear();
+    bool                    empty() const;
     void                    push_back(const T& newElem);
     void                    reserve(size_type newCapacity);
     void                    resize(size_type newSize);
@@ -48,10 +50,8 @@ class vector {
     const_reference         back() const;
     iterator                begin();
     const_iterator          begin() const;
-    void                    clear();
     T*                      data();
     const T*                data() const;
-    bool                    empty() const;
     iterator                end();
     const_iterator          end() const;
     iterator                erase(iterator pos);

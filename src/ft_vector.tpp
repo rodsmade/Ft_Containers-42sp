@@ -19,6 +19,13 @@ const T &vector<T, A>::at(size_type index) const {
 };
 
 template <typename T, typename A>
+void vector<T, A>::clear() {
+    for (size_type i = 0; i < _capacity; i++) // Destroy (return back to unitialized state?) old memory
+        _allocator.destroy(&_elements[i]);
+    _size = 0;
+};
+
+template <typename T, typename A>
 typename vector<T, A>::size_type vector<T, A>::capacity(void) const { return _capacity; };
 
 template <typename T, typename A>
