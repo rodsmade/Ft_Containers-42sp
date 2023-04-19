@@ -10,7 +10,11 @@ TESTS_DIR = tests
 HEADERS = $(addprefix $(HEADERS_DIR)/,	ft_vector.hpp)
 TEMPLATES = $(addprefix $(TEMPLATES_DIR)/,	ft_vector.tpp)
 
-TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp test_cleanup.cpp test_emptiness.cpp test_typedefs.cpp)
+TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
+											test_cleanup.cpp \
+											test_emptiness.cpp \
+											test_typedefs.cpp \
+											test_vector_creation.cpp)
 
 all: tests
 

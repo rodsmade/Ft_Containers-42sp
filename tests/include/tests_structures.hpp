@@ -7,9 +7,16 @@
 
 // A class that does not have a default constructor.
 struct No_default {
+    int _value;
     No_default(int arg) {
-        (void)arg;
+        _value = arg;
     };  // the only constructor for No_default
+};
+
+// A class that does not have a default constructor.
+struct Has_default {
+    int _defaultValue;
+    Has_default() : _defaultValue(42) {};
 };
 
 // Templated structs to test for types equality:
