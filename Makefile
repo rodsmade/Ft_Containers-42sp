@@ -4,11 +4,9 @@ TEST_BIN = tests.out
 
 BINARIES_DIR = bin
 HEADERS_DIR = include
-TEMPLATES_DIR = src
 TESTS_DIR = tests
 
-HEADERS = $(addprefix $(HEADERS_DIR)/,	ft_vector.hpp)
-TEMPLATES = $(addprefix $(TEMPLATES_DIR)/,	ft_vector.tpp)
+HEADERS = $(addprefix $(HEADERS_DIR)/,	ft_vector.hpp ft_vector.tpp)
 
 TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 											test_cleanup.cpp \
@@ -18,8 +16,8 @@ TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 
 all: tests
 
-tests: $(HEADERS) $(TEMPLATES) $(TEST_FILES)
-	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include -I $(TEMPLATES_DIR) $(TEST_FILES) -o $(TEST_BIN)
+tests: $(HEADERS) $(TEST_FILES)
+	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_FILES) -o $(TEST_BIN)
 	./$(TEST_BIN)
 
 valgrind: all
