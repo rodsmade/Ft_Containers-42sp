@@ -9,6 +9,7 @@ TESTS_DIR = tests
 HEADERS = $(addprefix $(HEADERS_DIR)/,	ft_vector.hpp ft_vector.tpp)
 
 TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
+											assert.cpp \
 											test_cleanup.cpp \
 											test_emptiness.cpp \
 											test_typedefs.cpp \

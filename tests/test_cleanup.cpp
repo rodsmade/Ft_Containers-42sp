@@ -1,4 +1,4 @@
-#include "tests_headers.hpp"
+#include "test_functions_header.hpp"
 
 void test_cleanup(void) {
     std::cout << "=== Tests the cleaning up process of a vector ===" << std::endl;
@@ -14,10 +14,10 @@ void test_cleanup(void) {
     stdVector.clear();
     ftVector.clear();
 
-    if (stdVector.size() == ftVector.size() && stdVector.capacity() && ftVector.capacity())
-        std::cout << TEST_OK;
-    else
-        std::cout << TEST_NOK;
+    assert(ftVector.size() == 0, "Vector size after cleanup");
+    assert(ftVector.capacity() != 0, "Vector capacity after cleanup");
+    assert(ftVector.size() == stdVector.size(), "Check ft::vector size after cleanup against std::vector");
+    assert(ftVector.capacity() == stdVector.capacity(), "Check ft::vector capacity after cleanup against std::vector");
 
     std::cout << "Vector cleanup" << std::endl;
 
