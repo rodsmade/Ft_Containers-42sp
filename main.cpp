@@ -10,14 +10,6 @@ void test_vector_creation() {
     unsigned int intendedSize = 42;
     ft::vector<double> testVector(intendedSize);
 
-    {  // Testing Size on Creation
-        std::cout << "Size on creation: ";
-        if (testVector.size() == intendedSize)
-            std::cout << BOLD LIGHT_GREEN "OK" RESET;
-        else
-            std::cout << BOLD LIGHT_RED "NOK" RESET;
-        std::cout << std::endl;
-    }
     {  // Testing Initialisation of values
         std::cout << "Initialisation values: ";
         for (unsigned int i = 0; i < testVector.size(); i++) {

@@ -1,7 +1,7 @@
 #include "test_functions_header.hpp"
 
 void test_cleanup(void) {
-    std::cout << "=== Tests the cleaning up process of a vector ===" << std::endl;
+    std::cout << "\n=== Tests the cleaning up process of a vector ===" << std::endl;
     std::vector<int> stdVector;
     ft::vector<int> ftVector;
 
@@ -18,7 +18,5 @@ void test_cleanup(void) {
     assert(ftVector.capacity() != 0, "Vector capacity after cleanup");
     assert(ftVector.size() == stdVector.size(), "Check ft::vector size after cleanup against std::vector");
     assert(ftVector.capacity() == stdVector.capacity(), "Check ft::vector capacity after cleanup against std::vector");
-
-    std::cout << "Vector cleanup" << std::endl;
 
 }

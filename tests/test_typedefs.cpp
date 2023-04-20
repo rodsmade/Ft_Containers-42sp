@@ -1,7 +1,7 @@
 #include "test_functions_header.hpp"
 
 void test_typedefs(void) {
-    std::cout << "=== Typedefs comparison ===" << std::endl;
+    std::cout << "\n=== Typedefs comparison ===" << std::endl;
     assert(is_same<ft::vector<int>::size_type, std::vector<int>::size_type>::value, "size_type");
     assert(is_same<ft::vector<int>::value_type, std::vector<int>::value_type>::value, "value_type");
     assert(is_same<ft::vector<int>::reference, std::vector<int>::reference>::value, "reference");

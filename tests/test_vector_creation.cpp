@@ -26,7 +26,7 @@ void test_against_std_empty_vector_creation(std::string typeName) {
 }
 
 void test_vector_creation(void) {
-    std::cout << "=== Vector creation ===" << std::endl;
+    std::cout << "\n=== Vector creation ===" << std::endl;
     std::cout << "Empty vector creation:" << std::endl;
     test_empty_vector_creation<double>("double");
     test_empty_vector_creation<float>("float");
@@ -61,6 +61,7 @@ void test_vector_creation(void) {
         std::stringstream ss;
         ss << "Creating vector of doubles with size " << intendedSize;
         assert(ftVector.size() == intendedSize, ss.str());
-        assert(ftVector.size() == stdVector.size(), ss.str());
+        assert(ftVector.size() == stdVector.size(), "Checking size of ft::vector<double> upon creation against std::vector<double>");
+        assert(ftVector.capacity() == stdVector.capacity(), "Checking capacity of ft::vector<double> upon creation against std::vector<double>");
     }
 }

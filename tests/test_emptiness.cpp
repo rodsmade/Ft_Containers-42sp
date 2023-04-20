@@ -1,7 +1,7 @@
 #include "test_functions_header.hpp"
 
 void test_emptiness(void) {
-    std::cout << "=== Tests for emptiness ===" << std::endl;
+    std::cout << "\n=== Tests for emptiness ===" << std::endl;
     std::vector<double> stdVector;
     ft::vector<double> ftVector;
 
