@@ -35,6 +35,11 @@ bool vector<T, A>::empty() const {
 };
 
 template <typename T, typename A>
+typename vector<T, A>::size_type vector<T, A>::max_size() const {
+    return (LONG_MAX);
+};
+
+template <typename T, typename A>
 void vector<T, A>::push_back(const T& newElem) {
     if (!_capacity)
         reserve(1);

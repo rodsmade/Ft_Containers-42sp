@@ -5,6 +5,7 @@
 #include <memory>       // std::allocator
 #include <stdexcept>    // std::out_of_range
 #include <sstream>      // std::ostringstream
+#include <climits>      // LONG_MAX
 
 #include "colourise_my_prints.hpp"
 
@@ -37,6 +38,7 @@ class vector {
     size_type               capacity(void) const;
     void                    clear();
     bool                    empty() const;
+    size_type               max_size() const;
     void                    push_back(const T& newElem);
     void                    reserve(size_type newCapacity);
     void                    resize(size_type newSize);
@@ -63,7 +65,6 @@ class vector {
     iterator                insert(const_iterator pos, size_type count, const T& value);
     template< class InputIt >
     iterator                insert(const_iterator pos, InputIt first, InputIt last);
-    size_type               max_size() const;
     void                    pop_back();
     reverse_iterator        rbegin();
     const_reverse_iterator  rbegin() const;
