@@ -83,11 +83,14 @@ typename vector<T, A>::size_type vector<T, A>::size(void) const { return _size; 
 template <typename T, typename A>
 vector<T, A>::vector(void) : _elements(NULL), _size(0), _capacity(0){};
 
-// TODO: e se size for < 0
 template <typename T, typename A>
-vector<T, A>::vector(size_type size) : _elements(new T[size]), _size(size), _capacity(size) {
-    for (size_type i = 0; i < _size; i++)
-        _elements[i] = 0;
+vector<T, A>::vector(size_type size) {
+    if (size > this->max_size())
+        throw std::length_error("cannot create std::vector larger than max_size()");
+
+    _elements = new T[size];
+    _size = size;
+    _capacity = size;
 };
 
 template <typename T, typename A>

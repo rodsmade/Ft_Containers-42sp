@@ -13,7 +13,7 @@ TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 											test_cleanup.cpp \
 											test_emptiness.cpp \
 											test_typedefs.cpp \
-											test_vector_creation.cpp)
+											test_vector_construction.cpp)
 
 all: tests
 
