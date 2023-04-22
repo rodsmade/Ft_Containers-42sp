@@ -5,10 +5,7 @@ void test_empty_vector_creation(std::string typeName) {
     try {
         ft::vector<T> ftVector;
 
-        assert(ftVector.size() == 0
-            && ftVector.capacity() == 0
-            && ftVector.empty()
-            , "Empty ft::vector<" + typeName + "> creation");
+        assert(ftVector.size() == 0 && ftVector.capacity() == 0 && ftVector.empty(), "Empty ft::vector<" + typeName + "> creation");
     } catch (const std::exception& e) {
         std::cout << TEST_NOK << e.what() << std::endl;
     }
@@ -20,10 +17,7 @@ void test_against_std_empty_vector_creation(std::string typeName) {
         ft::vector<T> ftVector;
         std::vector<T> stdVector;
 
-        assert(ftVector.size() == stdVector.size()
-            && ftVector.capacity() == stdVector.capacity()
-            && ftVector.empty() == stdVector.empty()
-            , "Empty ft::vector<" + typeName + "> against empty std::vector<" + typeName + "> creation");
+        assert(ftVector.size() == stdVector.size() && ftVector.capacity() == stdVector.capacity() && ftVector.empty() == stdVector.empty(), "Empty ft::vector<" + typeName + "> against empty std::vector<" + typeName + "> creation");
     } catch (const std::exception& e) {
         std::cout << TEST_NOK << e.what() << std::endl;
     }
@@ -104,14 +98,33 @@ void test_size_type_constructor(void) {
 }
 
 void test_copy_constructor() {
-    // TODO
+    std::cout << "  Copy Constructor ==>\tvector(const vector& other):" << std::endl;
+
+    ft::vector<double>::size_type intendedSize = 42;
+    ft::vector<double> testVector(intendedSize);
+    ft::vector<double> copyVector(testVector);
+
+    bool elementsTest = true;
+
+    assert(copyVector.size() == testVector.size(), "Copy constructor size check");
+
+    for (unsigned int i = 0; i < copyVector.size(); i++) {
+        if (copyVector[i] != testVector[i]) {
+            elementsTest = false;
+            break;
+        }
+    }
+    assert(elementsTest, "Copied elements assertion check");
+
+    testVector[0] = 42.0;
+    copyVector[1] = 1.0;
+
+    assert(testVector[0] != copyVector[0] && testVector[1] != copyVector[1], "Test for hard copy");
 };
 
 void test_vector_construction(void) {
     std::cout << "\n=== Vector Construction ===" << std::endl;
     test_default_constructor();
     test_size_type_constructor();
-    // TODO:
     test_copy_constructor();
-
 }
