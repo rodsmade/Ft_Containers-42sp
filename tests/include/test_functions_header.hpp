@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "ft_containers.hpp"
-#include "tests_structures.hpp"
+#include "tests_props.hpp"
 
 // Assertion function
 void    assert(bool condition, const std::string& tagline = "");
