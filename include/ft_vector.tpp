@@ -94,7 +94,7 @@ vector<T, A>::vector(size_type size) {
 };
 
 template <typename T, typename A>
-vector<T, A>::vector(const vector &other) : _elements(new T[other._size]), _size(other._size) {
+vector<T, A>::vector(const vector &other) : _elements(new T[other._size]), _size(other._size), _capacity(other._capacity) {
     for (size_type i = 0; i < _size; i++)
         _elements[i] = other._elements[i];
 };
