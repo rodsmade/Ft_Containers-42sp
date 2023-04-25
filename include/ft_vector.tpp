@@ -36,7 +36,7 @@ bool vector<T, A>::empty() const {
 
 template <typename T, typename A>
 typename vector<T, A>::size_type vector<T, A>::max_size() const {
-    return (LONG_MAX);
+    return (std::numeric_limits<size_type>::max() / sizeof(value_type));
 };
 
 template <typename T, typename A>

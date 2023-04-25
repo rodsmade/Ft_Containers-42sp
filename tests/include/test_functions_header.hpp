@@ -14,5 +14,6 @@ void    test_emptiness(void);
 void    test_typedefs(void);
 void    test_vector_construction(void);
 void    test_assignment_operator(void);
+void    test_max_size(void);
 
 #endif

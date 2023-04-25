@@ -5,7 +5,8 @@
 #include <memory>       // std::allocator
 #include <stdexcept>    // std::out_of_range
 #include <sstream>      // std::ostringstream
-#include <climits>      // LONG_MAX
+// #include <climits>      // LONG_MAX
+#include <limits>      // numeric_limits<>
 
 #include "colourise_my_prints.hpp"
 
