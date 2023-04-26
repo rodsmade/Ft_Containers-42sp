@@ -126,8 +126,8 @@ vector<T, A> &vector<T, A>::operator=(const vector &other) {
 
         delete[] _elements;
         _elements = tempElems;
-        _capacity = _size = other._size;
     }
+    _capacity = _size = other._size;
 
     return (*this);
 };
