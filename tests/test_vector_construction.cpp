@@ -85,7 +85,7 @@ void test_size_type_constructor(void) {
             std::cout << TEST_OK;
             ftExceptionMessage = e.what();
         }
-        std::cout << "Invalid creation size" << std::endl;
+        std::cout << "Invalid creation size (greater than max_size())" << std::endl;
 
         try {
             std::vector<double>::size_type intendedSize = -1;
@@ -93,7 +93,7 @@ void test_size_type_constructor(void) {
         } catch (const std::exception& e) {
             stdExceptionMessage = e.what();
         }
-        assert(ftExceptionMessage == stdExceptionMessage, "Exception message");
+        assert(ftExceptionMessage == stdExceptionMessage, "Invalid creation size exception message check against std::vector");
     }
 }
 
