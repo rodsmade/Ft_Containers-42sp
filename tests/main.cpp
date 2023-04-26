@@ -3,6 +3,7 @@
 int main() {
     test_vector_construction();
     test_max_size();
+    test_size_and_capacity();
     test_assignment_operator();
     test_cleanup();
     test_emptiness();
