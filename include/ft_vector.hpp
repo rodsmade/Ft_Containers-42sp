@@ -40,6 +40,7 @@ class vector {
     void                    clear();
     bool                    empty() const;
     size_type               max_size() const;
+    void                    pop_back();
     void                    push_back(const_reference newElem);
     void                    reserve(size_type newCapacity);
     void                    resize(size_type newSize);
@@ -66,7 +67,6 @@ class vector {
     iterator                insert(const_iterator pos, size_type count, const_reference value);
     template< class InputIt >
     iterator                insert(const_iterator pos, InputIt first, InputIt last);
-    void                    pop_back();
     reverse_iterator        rbegin();
     const_reverse_iterator  rbegin() const;
     reverse_iterator        rend();

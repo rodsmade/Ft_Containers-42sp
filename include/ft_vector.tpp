@@ -40,6 +40,13 @@ typename vector<T, A>::size_type vector<T, A>::max_size() const {
 };
 
 template <typename T, typename A>
+void vector<T, A>::pop_back() {
+    _size--;
+    return;
+};
+
+
+template <typename T, typename A>
 void vector<T, A>::push_back(const_reference newElem) {
     if (!_capacity)
         reserve(1);
