@@ -12,5 +12,6 @@ int main() {
     test_emptiness();
     test_push_back();
     test_access();
+    test_pop_back();
     return 0;
 }
