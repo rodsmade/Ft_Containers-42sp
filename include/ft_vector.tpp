@@ -53,12 +53,9 @@ template <typename T, typename A>
 void vector<T, A>::reserve(size_type newCapacity) {
     if (newCapacity <= _capacity) return;
 
-    // T *temp = new T[_capacity];
     T *temp = _allocator.allocate(newCapacity); // Allocate more (uninitialized) memory
     for (size_type i = 0; i < _size; i++) // Construct (initialize) allocated memory
-        // temp[i] = _elements[i];
         _allocator.construct(&temp[i], _elements[i]);
-    // delete[] _elements;
     for (size_type i = 0; i < _size; i++) // Destroy (return back to unitialized state?) old memory
         _allocator.destroy(&_elements[i]);
     _allocator.deallocate(_elements, _capacity);
@@ -88,15 +85,27 @@ vector<T, A>::vector(size_type size) {
     if (size > this->max_size())
         throw std::length_error("cannot create std::vector larger than max_size()");
 
-    _elements = new T[size];
     _size = size;
     _capacity = size;
+
+    T *temp = _allocator.allocate(_size);
+    for (size_type i = 0; i < _size; i++) {
+        _allocator.construct(&temp[i], value_type());
+    }
+    _elements = temp;
 };
 
 template <typename T, typename A>
-vector<T, A>::vector(const vector &other) : _elements(new T[other._size]), _size(other._size), _capacity(other._capacity) {
-    for (size_type i = 0; i < _size; i++)
-        _elements[i] = other._elements[i];
+vector<T, A>::vector(const vector &other) {
+    _size = other._size;
+    _capacity = other._size;
+
+    T *temp = _allocator.allocate(_size);
+    for (size_type i = 0; i < _size; i++) {
+        _allocator.construct(&temp[i], other._elements[i]);
+    }
+    _elements = temp;
+
 };
 
 template <typename T, typename A>
@@ -119,12 +128,15 @@ vector<T, A> &vector<T, A>::operator=(const vector &other) {
             _size = other._size;
         }
     } else {
-        T *tempElems = new T[other._size];
+        T *tempElems = _allocator.allocate(other._size);
         for (size_type i = 0; i < other._size; i++) {
-            tempElems[i] = other._elements[i];
+            _allocator.construct(&tempElems[i], other._elements[i]);
         }
 
-        delete[] _elements;
+        for (size_type i = 0; i < _size; i++)
+            _allocator.destroy(&_elements[i]);
+        _allocator.deallocate(_elements, _capacity);
+
         _elements = tempElems;
     }
     _capacity = _size = other._size;

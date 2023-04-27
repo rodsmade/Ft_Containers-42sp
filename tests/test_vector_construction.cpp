@@ -40,7 +40,7 @@ void test_default_constructor(void) {
 }
 
 void test_size_type_constructor(void) {
-    std::cout << "  Size_type Constructor ==>\tvector<T, A>(size_type size):" << std::endl;
+    std::cout << "\n  Size_type Constructor ==>\tvector<T, A>(size_type size):" << std::endl;
     {
         ft::vector<double>::size_type intendedSize = 42;
         ft::vector<double> ftVector(intendedSize);
@@ -98,7 +98,7 @@ void test_size_type_constructor(void) {
 }
 
 void test_copy_constructor() {
-    std::cout << "  Copy Constructor ==>\tvector(const vector& other):" << std::endl;
+    std::cout << "\n  Copy Constructor ==>\tvector(const vector& other):" << std::endl;
 
     ft::vector<double>::size_type intendedSize = 42;
     ft::vector<double> testVector(intendedSize);
