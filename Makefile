@@ -14,6 +14,7 @@ TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 											test_cleanup.cpp \
 											test_emptiness.cpp \
 											test_max_size.cpp \
+											test_push_back.cpp \
 											test_reserve.cpp \
 											test_resize.cpp \
 											test_size_and_capacity.cpp \
@@ -26,7 +27,7 @@ tests: $(HEADERS) $(TEST_FILES)
 	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_FILES) -o $(TEST_BIN)
 	./$(TEST_BIN)
 
-valgrind: all
+valgrind: $(HEADERS) $(TEST_FILES)
 	valgrind --tool=memcheck \
 		--show-leak-kinds=all \
 		--leak-check=full \
