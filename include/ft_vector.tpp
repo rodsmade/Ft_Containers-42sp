@@ -145,12 +145,12 @@ vector<T, A> &vector<T, A>::operator=(const vector &other) {
 };
 
 template <typename T, typename A>
-typename vector<T, A>::reference vector<T, A>::operator[](size_type index) {  // for non-const vectors
+typename vector<T, A>::reference vector<T, A>::operator[](size_type index) {
     return _elements[index];
 };
 
 template <typename T, typename A>
-typename vector<T, A>::const_reference vector<T, A>::operator[](size_type index) const {  // for const vectors
+typename vector<T, A>::const_reference vector<T, A>::operator[](size_type index) const {
     return _elements[index];
 };
 

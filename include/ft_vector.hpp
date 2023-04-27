@@ -98,9 +98,9 @@ class vector {
     ===           OPERATOR OVERLOADS            ===
     =============================================*/
     vector&         operator=(const vector& other);
-    reference       operator[](size_type index);
+    reference       operator[](size_type index);  // for non-const vectors
     //  returns a reference, i. e., the object itself, knowing this "address" won't possibly change or be changed, but its contents can.
-    const_reference operator[](size_type index) const;
+    const_reference operator[](size_type index) const;  // for const vectors
     //  returns a *copy* of what is stored in the nth element. it is not the object itself, so its contents can't be assigned something else (not an l-value)
 
    private:
