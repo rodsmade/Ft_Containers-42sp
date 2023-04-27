@@ -1,4 +1,4 @@
-CC = c++ -Wall -Wextra -Werror -std=c++98
+CC = c++ -Wall -Wextra -Werror -std=c++98 -g
 
 TEST_BIN = tests.out
 
@@ -24,11 +24,13 @@ TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 
 all: tests
 
-tests: $(HEADERS) $(TEST_FILES)
+build: $(HEADERS) $(TEST_FILES)
 	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_FILES) -o $(TEST_BIN)
+
+run: build
 	./$(TEST_BIN)
 
-valgrind: $(HEADERS) $(TEST_FILES)
+valgrind: build
 	valgrind --tool=memcheck \
 		--show-leak-kinds=all \
 		--leak-check=full \
@@ -49,4 +51,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re tests valgrind
+.PHONY: all build clean fclean re run valgrind
