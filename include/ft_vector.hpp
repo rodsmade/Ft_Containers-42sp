@@ -36,6 +36,8 @@ class vector {
     =============================================*/
     reference               at(size_type i);
     const_reference         at(size_type i) const;
+    reference               back();
+    const_reference         back() const;
     size_type               capacity(void) const;
     void                    clear();
     bool                    empty() const;
@@ -50,8 +52,6 @@ class vector {
     void                    assign(size_type count, const_reference value);
     template<class InputIt>
     void                    assign(InputIt first, InputIt last);
-    reference               back();
-    const_reference         back() const;
     iterator                begin();
     const_iterator          begin() const;
     T*                      data();

@@ -19,6 +19,16 @@ typename vector<T, A>::const_reference vector<T, A>::at(size_type index) const {
 };
 
 template <typename T, typename A>
+typename vector<T, A>::reference vector<T, A>::back() {
+    return _elements[_size - 1];
+};
+
+template <typename T, typename A>
+typename vector<T, A>::const_reference vector<T, A>::back() const {
+    return _elements[_size - 1];
+};
+
+template <typename T, typename A>
 void vector<T, A>::clear() {
     for (size_type i = 0; i < _capacity; i++) // Destroy (return back to unitialized state?) old memory
         _allocator.destroy(&_elements[i]);

@@ -10,6 +10,7 @@
 void    assert(bool condition, const std::string& tagline = "");
 
 void    test_access(void);
+void    test_back(void);
 void    test_cleanup(void);
 void    test_emptiness(void);
 void    test_typedefs(void);

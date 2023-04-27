@@ -13,5 +13,6 @@ int main() {
     test_push_back();
     test_access();
     test_pop_back();
+    test_back();
     return 0;
 }
