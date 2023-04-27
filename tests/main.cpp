@@ -11,5 +11,6 @@ int main() {
     test_cleanup();
     test_emptiness();
     test_push_back();
+    test_access();
     return 0;
 }

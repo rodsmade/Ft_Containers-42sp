@@ -7,7 +7,7 @@ namespace ft {
 ===  MEMBER FUNCTIONS                                                       ===
 =============================================================================*/
 template <typename T, typename A>
-T &vector<T, A>::at(size_type index) {
+typename vector<T, A>::reference vector<T, A>::at(size_type index) {
     if (index < 0 || index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
     return _elements[index];
 };
@@ -133,7 +133,7 @@ vector<T, A> &vector<T, A>::operator=(const vector &other) {
 };
 
 template <typename T, typename A>
-T &vector<T, A>::operator[](size_type index) {  // for non-const vectors
+typename vector<T, A>::reference vector<T, A>::operator[](size_type index) {  // for non-const vectors
     return _elements[index];
 };
 
