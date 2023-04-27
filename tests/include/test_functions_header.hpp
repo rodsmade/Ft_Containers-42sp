@@ -16,6 +16,7 @@ void    test_vector_construction(void);
 void    test_assignment_operator(void);
 void    test_max_size(void);
 void    test_resize(void);
+void    test_reserve(void);
 void    test_size_and_capacity(void);
 
 #endif
