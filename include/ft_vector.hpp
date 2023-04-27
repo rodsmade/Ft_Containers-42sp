@@ -40,13 +40,13 @@ class vector {
     void                    clear();
     bool                    empty() const;
     size_type               max_size() const;
-    void                    push_back(const T& newElem);
+    void                    push_back(const_reference newElem);
     void                    reserve(size_type newCapacity);
     void                    resize(size_type newSize);
     size_type               size(void) const;
 
     // TODO:
-    void                    assign(size_type count, const T& value);
+    void                    assign(size_type count, const_reference value);
     template<class InputIt>
     void                    assign(InputIt first, InputIt last);
     reference               back();
@@ -62,8 +62,8 @@ class vector {
     reference               front();
     const_reference         front() const;
     // allocator_type          get_allocator() const;
-    iterator                insert(const_iterator pos, const T& value);
-    iterator                insert(const_iterator pos, size_type count, const T& value);
+    iterator                insert(const_iterator pos, const_reference value);
+    iterator                insert(const_iterator pos, size_type count, const_reference value);
     template< class InputIt >
     iterator                insert(const_iterator pos, InputIt first, InputIt last);
     void                    pop_back();
@@ -77,7 +77,7 @@ class vector {
     // TODO: remove before submission:
     static void test(void);
     void printAll(void);
-    void fill(vector<T, A>& vector, const T& value);
+    void fill(vector<T, A>& vector, const_reference value);
 
     /*=============================================
     ===      CONSTRUCTION / DESTRUCTION         ===
@@ -89,7 +89,7 @@ class vector {
     ~vector();
 
     // TODO:
-    // explicit vector(size_type count, const T& value = T(), const Allocator& alloc = Allocator());
+    // explicit vector(size_type count, const_reference value = T(), const Allocator& alloc = Allocator());
     // template<class InputIt>
     // vector(InputIt first, InputIt last, const Allocator& alloc = Allocator());
 

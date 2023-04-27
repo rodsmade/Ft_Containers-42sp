@@ -13,7 +13,7 @@ T &vector<T, A>::at(size_type index) {
 };
 
 template <typename T, typename A>
-const T &vector<T, A>::at(size_type index) const {
+typename vector<T, A>::const_reference vector<T, A>::at(size_type index) const {
     if (index < 0 || index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
     return _elements[index];
 };
@@ -40,7 +40,7 @@ typename vector<T, A>::size_type vector<T, A>::max_size() const {
 };
 
 template <typename T, typename A>
-void vector<T, A>::push_back(const T& newElem) {
+void vector<T, A>::push_back(const_reference newElem) {
     if (!_capacity)
         reserve(1);
     if (_size == _capacity)
@@ -138,7 +138,7 @@ T &vector<T, A>::operator[](size_type index) {  // for non-const vectors
 };
 
 template <typename T, typename A>
-const T &vector<T, A>::operator[](size_type index) const {  // for const vectors
+typename vector<T, A>::const_reference vector<T, A>::operator[](size_type index) const {  // for const vectors
     return _elements[index];
 };
 
@@ -170,7 +170,7 @@ void vector<T, A>::printAll(void) {
 };
 
 template <typename T, typename A>
-void vector<T, A>::fill(vector<T, A> &vector, const T &value) {
+void vector<T, A>::fill(vector<T, A> &vector, const_reference value) {
     for (size_type i = 0; i < vector.size(); i++) {
         vector[i] = value;
     }
