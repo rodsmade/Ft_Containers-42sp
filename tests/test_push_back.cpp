@@ -7,14 +7,17 @@ void test_push_back(void) {
 
     bool sizeCheck = true;
     bool capacityCheck = true;
+    bool integrityCheck = true;
 
     for (int i = 0; i < 42; i++) {
         stdVector.push_back(i);
         ftVector.push_back(i);
         sizeCheck = sizeCheck && (ftVector.size() == stdVector.size());
         capacityCheck = capacityCheck && (ftVector.capacity() == stdVector.capacity());
+        integrityCheck = integrityCheck && (ftVector[i] == i);
     }
 
     assert(sizeCheck, "Size check when gradually incrementing an empty vector");
     assert(capacityCheck, "Capacity check when gradually incrementing an empty vector");
+    assert(integrityCheck, "Integrity of elements when gradually incrementing an empty vector");
 }
