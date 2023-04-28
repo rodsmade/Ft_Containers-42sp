@@ -13,6 +13,7 @@ void    test_access(void);
 void    test_back(void);
 void    test_cleanup(void);
 void    test_emptiness(void);
+void    test_front(void);
 void    test_typedefs(void);
 void    test_vector_construction(void);
 void    test_assignment_operator(void);

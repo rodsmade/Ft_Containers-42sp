@@ -45,6 +45,16 @@ bool vector<T, A>::empty() const {
 };
 
 template <typename T, typename A>
+typename vector<T, A>::reference vector<T, A>::front() {
+    return _elements[0];
+};
+
+template <typename T, typename A>
+typename vector<T, A>::const_reference vector<T, A>::front() const {
+    return _elements[0];
+};
+
+template <typename T, typename A>
 typename vector<T, A>::size_type vector<T, A>::max_size() const {
     return (_allocator.max_size());
 };

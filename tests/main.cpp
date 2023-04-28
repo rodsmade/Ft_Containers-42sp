@@ -14,5 +14,6 @@ int main() {
     test_access();
     test_pop_back();
     test_back();
+    test_front();
     return 0;
 }
