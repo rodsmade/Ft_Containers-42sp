@@ -70,8 +70,6 @@ void test_pop_back(void) {
 
         assert(ftVector.size() == stdVector.size(), "Check size after pop_back agains std::vector");
         assert(ftVector.capacity() == stdVector.capacity(), "Check capacity after pop_back agains std::vector");
-        
-
     }
 
 

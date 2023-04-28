@@ -1,6 +1,6 @@
 #include "test_functions_header.hpp"
 
-void test_protected_read_access(void) {
+static void test_protected_read_access(void) {
     std::vector<int> stdVector(42);
     ft::vector<int> ftVector(42);
 
@@ -34,7 +34,7 @@ void test_protected_read_access(void) {
 
 }
 
-void test_protected_write_access(void) {
+static void test_protected_write_access(void) {
     std::vector<int> stdVector(42);
     ft::vector<int> ftVector(42);
 
@@ -67,7 +67,7 @@ void test_protected_write_access(void) {
     }
 }
 
-void test_out_of_bound_exception_msg (void) {
+static void test_out_of_bound_exception_msg (void) {
     std::vector<int> stdVector(42);
     ft::vector<int> ftVector(42);
     std::string ftExceptionMsg = "";
@@ -90,7 +90,7 @@ void test_out_of_bound_exception_msg (void) {
     assert(ftExceptionMsg == stdExceptionMsg, "Exception message assertion");
 }
 
-void test_unprotected_access() {
+static void test_unprotected_access() {
     std::vector<int> stdVector(42);
     ft::vector<int> ftVector(42);
 
