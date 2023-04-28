@@ -40,7 +40,11 @@ class vector {
     const_reference         back() const;
     size_type               capacity(void) const;
     void                    clear();
+    value_type*             data();
+    const value_type*       data() const;
     bool                    empty() const;
+    reference               front();
+    const_reference         front() const;
     size_type               max_size() const;
     void                    pop_back();
     void                    push_back(const_reference newElem);
@@ -54,14 +58,10 @@ class vector {
     void                    assign(InputIt first, InputIt last);
     iterator                begin();
     const_iterator          begin() const;
-    T*                      data();
-    const T*                data() const;
     iterator                end();
     const_iterator          end() const;
     iterator                erase(iterator pos);
     iterator                erase(iterator first, iterator last);
-    reference               front();
-    const_reference         front() const;
     // allocator_type          get_allocator() const;
     iterator                insert(const_iterator pos, const_reference value);
     iterator                insert(const_iterator pos, size_type count, const_reference value);
@@ -105,7 +105,7 @@ class vector {
 
    private:
     A _allocator;
-    T* _elements;
+    value_type* _elements;
     size_type _size;
     size_type _capacity;
 

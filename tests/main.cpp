@@ -15,5 +15,6 @@ int main() {
     test_pop_back();
     test_back();
     test_front();
+    test_data();
     return 0;
 }

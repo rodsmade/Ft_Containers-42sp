@@ -39,6 +39,16 @@ template <typename T, typename A>
 typename vector<T, A>::size_type vector<T, A>::capacity(void) const { return _capacity; };
 
 template <typename T, typename A>
+typename vector<T, A>::value_type* vector<T, A>::data() {
+    return (&_elements[0]);
+};
+
+template <typename T, typename A>
+const typename vector<T, A>::value_type* vector<T, A>::data() const {
+    return (&_elements[0]);
+};
+
+template <typename T, typename A>
 bool vector<T, A>::empty() const {
     if (_size == 0) return true;
     else return false;
