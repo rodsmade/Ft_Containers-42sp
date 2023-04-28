@@ -75,7 +75,6 @@ void vector<T, A>::pop_back() {
     return;
 };
 
-
 template <typename T, typename A>
 void vector<T, A>::push_back(const_reference newElem) {
     if (!_capacity)
@@ -90,21 +89,38 @@ template <typename T, typename A>
 void vector<T, A>::reserve(size_type newCapacity) {
     if (newCapacity <= _capacity) return;
 
-    T *temp = _allocator.allocate(newCapacity); // Allocate more (uninitialized) memory
+    T *temp;
+
+    if (newCapacity <= 2 * _capacity)
+        temp = _allocator.allocate(2 * _capacity); // Allocate more (uninitialized) memory
+    else
+        temp = _allocator.allocate(newCapacity); // Allocate more (uninitialized) memory
     for (size_type i = 0; i < _size; i++) // Construct (initialize) allocated memory
         _allocator.construct(&temp[i], _elements[i]);
     for (size_type i = 0; i < _size; i++) // Destroy (return back to unitialized state?) old memory
         _allocator.destroy(&_elements[i]);
     _allocator.deallocate(_elements, _capacity);
 
-    _capacity = newCapacity;
+    if (newCapacity <= 2 * _capacity)
+        _capacity *= 2;
+    else
+        _capacity = newCapacity;
     _elements = temp;
 };
 
 template <typename T, typename A>
-void vector<T, A>::resize(size_type newSize) {
-    if (newSize > _size)
+void vector<T, A>::resize(size_type newSize, value_type value) {
+    size_type oldSize = _size;
+
+    if (newSize > oldSize) {
         reserve(newSize);
+        for (size_type i = oldSize; i < newSize; i++)
+            _elements[i] = value;
+    }
+    else {
+        for (size_type i = newSize; i < oldSize; i++)
+            _allocator.destroy(&_elements[i]);
+    }
     _size = newSize;
 };
 

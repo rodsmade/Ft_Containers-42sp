@@ -49,7 +49,7 @@ class vector {
     void                    pop_back();
     void                    push_back(const_reference newElem);
     void                    reserve(size_type newCapacity);
-    void                    resize(size_type newSize);
+    void                    resize(size_type newSize, value_type value = value_type());
     size_type               size(void) const;
 
     // TODO:
@@ -71,7 +71,6 @@ class vector {
     const_reverse_iterator  rbegin() const;
     reverse_iterator        rend();
     const_reverse_iterator  rend() const;
-    void                    resize(size_type count, const value_type& value);
     void                    swap(vector& other);
 
     // TODO: remove before submission:
