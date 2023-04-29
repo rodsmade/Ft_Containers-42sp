@@ -1,7 +1,7 @@
 #include "test_functions_header.hpp"
 
 template <typename T>
-void test_empty_vector_creation(std::string typeName) {
+static void test_empty_vector_creation(std::string typeName) {
     try {
         ft::vector<T> ftVector;
 
@@ -12,7 +12,7 @@ void test_empty_vector_creation(std::string typeName) {
 }
 
 template <typename T>
-void test_against_std_empty_vector_creation(std::string typeName) {
+static void test_against_std_empty_vector_creation(std::string typeName) {
     try {
         ft::vector<T> ftVector;
         std::vector<T> stdVector;
@@ -23,7 +23,7 @@ void test_against_std_empty_vector_creation(std::string typeName) {
     }
 }
 
-void test_default_constructor(void) {
+static void test_default_constructor(void) {
     std::cout << "  Default Constructor ==>\tvector<T, A>(void):" << std::endl;
     test_empty_vector_creation<double>("double");
     test_empty_vector_creation<float>("float");
@@ -39,8 +39,8 @@ void test_default_constructor(void) {
     test_against_std_empty_vector_creation<No_default>("No_default");
 }
 
-void test_size_type_constructor(void) {
-    std::cout << "  Size_type Constructor ==>\tvector<T, A>(size_type size):" << std::endl;
+static void test_size_type_constructor(void) {
+    std::cout << "\n  Size_type Constructor ==>\tvector<T, A>(size_type size):" << std::endl;
     {
         ft::vector<double>::size_type intendedSize = 42;
         ft::vector<double> ftVector(intendedSize);
@@ -85,7 +85,7 @@ void test_size_type_constructor(void) {
             std::cout << TEST_OK;
             ftExceptionMessage = e.what();
         }
-        std::cout << "Invalid creation size" << std::endl;
+        std::cout << "Invalid creation size (greater than max_size())" << std::endl;
 
         try {
             std::vector<double>::size_type intendedSize = -1;
@@ -93,12 +93,12 @@ void test_size_type_constructor(void) {
         } catch (const std::exception& e) {
             stdExceptionMessage = e.what();
         }
-        assert(ftExceptionMessage == stdExceptionMessage, "Exception message");
+        assert(ftExceptionMessage == stdExceptionMessage, "Invalid creation size exception message check against std::vector");
     }
 }
 
-void test_copy_constructor() {
-    std::cout << "  Copy Constructor ==>\tvector(const vector& other):" << std::endl;
+static void test_copy_constructor() {
+    std::cout << "\n  Copy Constructor ==>\tvector(const vector& other):" << std::endl;
 
     ft::vector<double>::size_type intendedSize = 42;
     ft::vector<double> testVector(intendedSize);

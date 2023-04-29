@@ -9,10 +9,20 @@
 // Assertion function
 void    assert(bool condition, const std::string& tagline = "");
 
+void    test_access(void);
+void    test_back(void);
 void    test_cleanup(void);
+void    test_data(void);
 void    test_emptiness(void);
+void    test_front(void);
 void    test_typedefs(void);
 void    test_vector_construction(void);
 void    test_assignment_operator(void);
+void    test_max_size(void);
+void    test_pop_back(void);
+void    test_push_back(void);
+void    test_resize(void);
+void    test_reserve(void);
+void    test_size_and_capacity(void);
 
 #endif

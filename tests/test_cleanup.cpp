@@ -8,7 +8,6 @@ void test_cleanup(void) {
     for (int i = 0; i < 42; i++) {
         stdVector.push_back(i);
         ftVector.push_back(i);
-
     }
 
     stdVector.clear();

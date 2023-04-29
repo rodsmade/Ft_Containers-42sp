@@ -1,4 +1,4 @@
-CC = c++ -Wall -Wextra -Werror -std=c++98
+CC = c++ -Wall -Wextra -Werror -std=c++98 -g
 
 TEST_BIN = tests.out
 
@@ -10,19 +10,31 @@ HEADERS = $(addprefix $(HEADERS_DIR)/,	ft_vector.hpp ft_vector.tpp)
 
 TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 											assert.cpp \
+											test_access.cpp \
+											test_back.cpp \
 											test_assignment_operator.cpp \
 											test_cleanup.cpp \
+											test_data.cpp \
 											test_emptiness.cpp \
+											test_front.cpp \
+											test_max_size.cpp \
+											test_pop_back.cpp \
+											test_push_back.cpp \
+											test_reserve.cpp \
+											test_resize.cpp \
+											test_size_and_capacity.cpp \
 											test_typedefs.cpp \
 											test_vector_construction.cpp)
 
 all: tests
 
-tests: $(HEADERS) $(TEST_FILES)
+build: $(HEADERS) $(TEST_FILES)
 	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_FILES) -o $(TEST_BIN)
+
+run: build
 	./$(TEST_BIN)
 
-valgrind: all
+valgrind: build
 	valgrind --tool=memcheck \
 		--show-leak-kinds=all \
 		--leak-check=full \
@@ -43,4 +55,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re tests valgrind
+.PHONY: all build clean fclean re run valgrind

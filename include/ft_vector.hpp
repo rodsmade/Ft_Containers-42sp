@@ -5,7 +5,8 @@
 #include <memory>       // std::allocator
 #include <stdexcept>    // std::out_of_range
 #include <sstream>      // std::ostringstream
-#include <climits>      // LONG_MAX
+// #include <climits>      // LONG_MAX
+#include <limits>      // numeric_limits<>
 
 #include "colourise_my_prints.hpp"
 
@@ -35,48 +36,47 @@ class vector {
     =============================================*/
     reference               at(size_type i);
     const_reference         at(size_type i) const;
+    reference               back();
+    const_reference         back() const;
     size_type               capacity(void) const;
     void                    clear();
+    value_type*             data();
+    const value_type*       data() const;
     bool                    empty() const;
+    reference               front();
+    const_reference         front() const;
     size_type               max_size() const;
-    void                    push_back(const T& newElem);
+    void                    pop_back();
+    void                    push_back(const_reference newElem);
     void                    reserve(size_type newCapacity);
-    void                    resize(size_type newSize);
+    void                    resize(size_type newSize, value_type value = value_type());
     size_type               size(void) const;
 
     // TODO:
-    void                    assign(size_type count, const T& value);
+    void                    assign(size_type count, const_reference value);
     template<class InputIt>
     void                    assign(InputIt first, InputIt last);
-    reference               back();
-    const_reference         back() const;
     iterator                begin();
     const_iterator          begin() const;
-    T*                      data();
-    const T*                data() const;
     iterator                end();
     const_iterator          end() const;
     iterator                erase(iterator pos);
     iterator                erase(iterator first, iterator last);
-    reference               front();
-    const_reference         front() const;
     // allocator_type          get_allocator() const;
-    iterator                insert(const_iterator pos, const T& value);
-    iterator                insert(const_iterator pos, size_type count, const T& value);
+    iterator                insert(const_iterator pos, const_reference value);
+    iterator                insert(const_iterator pos, size_type count, const_reference value);
     template< class InputIt >
     iterator                insert(const_iterator pos, InputIt first, InputIt last);
-    void                    pop_back();
     reverse_iterator        rbegin();
     const_reverse_iterator  rbegin() const;
     reverse_iterator        rend();
     const_reverse_iterator  rend() const;
-    void                    resize(size_type count, const value_type& value);
     void                    swap(vector& other);
 
     // TODO: remove before submission:
     static void test(void);
     void printAll(void);
-    void fill(vector<T, A>& vector, const T& value);
+    void fill(vector<T, A>& vector, const_reference value);
 
     /*=============================================
     ===      CONSTRUCTION / DESTRUCTION         ===
@@ -88,7 +88,7 @@ class vector {
     ~vector();
 
     // TODO:
-    // explicit vector(size_type count, const T& value = T(), const Allocator& alloc = Allocator());
+    // explicit vector(size_type count, const_reference value = T(), const Allocator& alloc = Allocator());
     // template<class InputIt>
     // vector(InputIt first, InputIt last, const Allocator& alloc = Allocator());
 
@@ -97,14 +97,14 @@ class vector {
     ===           OPERATOR OVERLOADS            ===
     =============================================*/
     vector&         operator=(const vector& other);
-    reference       operator[](size_type index);
+    reference       operator[](size_type index);  // for non-const vectors
     //  returns a reference, i. e., the object itself, knowing this "address" won't possibly change or be changed, but its contents can.
-    const_reference operator[](size_type index) const;
+    const_reference operator[](size_type index) const;  // for const vectors
     //  returns a *copy* of what is stored in the nth element. it is not the object itself, so its contents can't be assigned something else (not an l-value)
 
    private:
     A _allocator;
-    T* _elements;
+    value_type* _elements;
     size_type _size;
     size_type _capacity;
 
