@@ -23,6 +23,7 @@ TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 											test_reserve.cpp \
 											test_resize.cpp \
 											test_size_and_capacity.cpp \
+											test_swap.cpp \
 											test_typedefs.cpp \
 											test_vector_construction.cpp)
 

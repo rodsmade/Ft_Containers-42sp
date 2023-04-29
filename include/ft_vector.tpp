@@ -127,6 +127,25 @@ void vector<T, A>::resize(size_type newSize, value_type value) {
 template <typename T, typename A>
 typename vector<T, A>::size_type vector<T, A>::size(void) const { return _size; };
 
+template <typename T, typename A>
+void vector<T, A>::swap(vector& other){
+    if (this == &other) { return; };
+
+    value_type* temp = _elements;
+    size_type temp_size = _size;
+    size_type temp_capacity = _capacity;
+
+    _elements = other._elements;
+    _size = other._size;
+    _capacity = other._capacity;
+
+    other._elements = temp;
+    other._size = temp_size;
+    other._capacity = temp_capacity;
+
+    return ;
+};
+
 /*=============================================================================
 ===  CONSTRUCTION / DESTRUCTION                                             ===
 =============================================================================*/

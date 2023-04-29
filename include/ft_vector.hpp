@@ -51,6 +51,7 @@ class vector {
     void                    reserve(size_type newCapacity);
     void                    resize(size_type newSize, value_type value = value_type());
     size_type               size(void) const;
+    void                    swap(vector& other);
 
     // TODO:
     void                    assign(size_type count, const_reference value);
@@ -71,7 +72,6 @@ class vector {
     const_reverse_iterator  rbegin() const;
     reverse_iterator        rend();
     const_reverse_iterator  rend() const;
-    void                    swap(vector& other);
 
     // TODO: remove before submission:
     static void test(void);

@@ -16,5 +16,6 @@ int main() {
     test_back();
     test_front();
     test_data();
+    test_swap();
     return 0;
 }

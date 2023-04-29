@@ -1,5 +1,6 @@
-# VSC
+# Custom
 .vscode
+POCs/
 
 # Prerequisites
 *.d
