@@ -107,6 +107,7 @@ static void test_copy_constructor() {
     bool elementsTest = true;
 
     assert(copyVector.size() == testVector.size(), "Copy constructor size check");
+    assert(copyVector.capacity() == testVector.capacity(), "Copy constructor capacity check");
 
     for (unsigned int i = 0; i < copyVector.size(); i++) {
         if (copyVector[i] != testVector[i]) {
