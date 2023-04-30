@@ -111,20 +111,14 @@ void vector<T, A>::reserve(size_type newCapacity) {
 
     T *temp;
 
-    if (newCapacity <= 2 * _capacity)
-        temp = _allocator.allocate(2 * _capacity); // Allocate more (uninitialized) memory
-    else
-        temp = _allocator.allocate(newCapacity); // Allocate more (uninitialized) memory
+    temp = _allocator.allocate(newCapacity); // Allocate more (uninitialized) memory
     for (size_type i = 0; i < _size; i++) // Construct (initialize) allocated memory
         _allocator.construct(&temp[i], _elements[i]);
     for (size_type i = 0; i < _size; i++) // Destroy (return back to unitialized state?) old memory
         _allocator.destroy(&_elements[i]);
     _allocator.deallocate(_elements, _capacity);
 
-    if (newCapacity <= 2 * _capacity)
-        _capacity *= 2;
-    else
-        _capacity = newCapacity;
+    _capacity = newCapacity;
     _elements = temp;
 };
 
