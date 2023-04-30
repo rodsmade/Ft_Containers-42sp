@@ -85,6 +85,11 @@ typename vector<T, A>::const_reference vector<T, A>::front() const {
 };
 
 template <typename T, typename A>
+typename vector<T, A>::allocator_type vector<T, A>::get_allocator() const {
+    return (_allocator);
+};
+
+template <typename T, typename A>
 typename vector<T, A>::size_type vector<T, A>::max_size() const {
     return (_allocator.max_size());
 };

@@ -17,5 +17,6 @@ int main() {
     test_front();
     test_data();
     test_assign();
+    test_allocator();
     return 0;
 }

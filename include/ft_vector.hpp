@@ -50,6 +50,7 @@ class vector {
     bool                    empty() const;
     reference               front();
     const_reference         front() const;
+    allocator_type          get_allocator() const;
     size_type               max_size() const;
     void                    pop_back();
     void                    push_back(const_reference newElem);
@@ -66,7 +67,6 @@ class vector {
     const_iterator          end() const;
     iterator                erase(iterator pos);
     iterator                erase(iterator first, iterator last);
-    // allocator_type          get_allocator() const;
     iterator                insert(const_iterator pos, const_reference value);
     iterator                insert(const_iterator pos, size_type count, const_reference value);
     template< class InputIt >
@@ -102,12 +102,18 @@ class vector {
     //  returns a *copy* of what is stored in the nth element. it is not the object itself, so its contents can't be assigned something else (not an l-value)
 
    private:
-    A _allocator;
-    value_type* _elements;
-    size_type _size;
-    size_type _capacity;
+    /*=============================================
+    ===              ATTRIBUTES                 ===
+    =============================================*/
+    A               _allocator;
+    value_type*     _elements;
+    size_type       _size;
+    size_type       _capacity;
 
-    std::string getOutOfRangeErrorMessage(size_type index) const;
+    /*=============================================
+    ===        PRIVATE MEMBER FUNCTIONS         ===
+    =============================================*/
+    std::string     getOutOfRangeErrorMessage(size_type index) const;
 };
 
 /*=============================================
