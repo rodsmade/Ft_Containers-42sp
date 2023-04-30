@@ -81,13 +81,12 @@ class vector {
     ===      CONSTRUCTION / DESTRUCTION         ===
     =============================================*/
     vector();
+    explicit vector(const allocator_type& alloc); //  the explicit keyword forbids implicit conversion of any type into a vector, which avoids bugs and makes code clearer and explicit.
     explicit vector(size_type size, const_reference value = T(), const allocator_type& allocator = A());
-    //  the explicit keyword forbids implicit conversion of any type into a vector, which avoids bugs and makes code clearer and explicit.
     vector(const vector& other);
     ~vector();
 
     // TODO:
-    // explicit vector( const Allocator& alloc );
     // template<class InputIt>
     // vector(InputIt first, InputIt last, const Allocator& alloc = Allocator());
 

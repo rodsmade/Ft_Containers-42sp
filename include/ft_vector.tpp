@@ -150,7 +150,10 @@ typename vector<T, A>::size_type vector<T, A>::size(void) const { return _size; 
 ===  CONSTRUCTION / DESTRUCTION                                             ===
 =============================================================================*/
 template <typename T, typename A>
-vector<T, A>::vector(void) : _elements(NULL), _size(0), _capacity(0){};
+vector<T, A>::vector(void) : _allocator(A()), _elements(NULL), _size(0), _capacity(0){};
+
+template <typename T, typename A>
+vector<T, A>::vector(const allocator_type& alloc) : _allocator(alloc), _elements(NULL), _size(0), _capacity(0) {};
 
 template <typename T, typename A>
 vector<T, A>::vector(size_type size, const_reference value, const allocator_type& allocator) {

@@ -11,6 +11,9 @@ struct No_default {
     No_default(int arg) {
         _value = arg;
     };  // the only constructor for No_default
+    bool operator==(const No_default& other) {
+        return (_value == other._value);
+    };
 };
 
 // A class that does not have a default constructor.
