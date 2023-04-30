@@ -7,6 +7,26 @@ namespace ft {
 ===  MEMBER FUNCTIONS                                                       ===
 =============================================================================*/
 template <typename T, typename A>
+void vector<T, A>::assign(size_type count, const_reference value) {
+    if (count <= _capacity) {
+        for (size_type i = 0; i < _size; i++)
+            _allocator.destroy(&_elements[i]);
+        for (size_type i = 0; i < count; i++)
+            _allocator.construct(&_elements[i], value);
+        _size = count;
+    } else {
+        for (size_type i = 0; i < _size; i++)
+            _allocator.destroy(&_elements[i]);
+        _allocator.deallocate(_elements, _capacity);
+        _elements = _allocator.allocate(count);
+        for (size_type i = 0; i < count; i++)
+            _allocator.construct(&_elements[i], value);
+        _size = _capacity = count;
+    }
+    return ;
+};
+
+template <typename T, typename A>
 typename vector<T, A>::reference vector<T, A>::at(size_type index) {
     if (index < 0 || index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
     return _elements[index];

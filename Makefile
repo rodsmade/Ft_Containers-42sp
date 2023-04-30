@@ -11,6 +11,7 @@ HEADERS = $(addprefix $(HEADERS_DIR)/,	ft_vector.hpp ft_vector.tpp)
 TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 											assert.cpp \
 											test_access.cpp \
+											test_assign.cpp \
 											test_back.cpp \
 											test_assignment_operator.cpp \
 											test_cleanup.cpp \
