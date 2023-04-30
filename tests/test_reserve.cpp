@@ -3,7 +3,7 @@
 void test_reserve(void) {
     std::cout << "\n=== Test reserve ===" << std::endl;
 
-    std::vector<int> ftVector(42);
+    ft::vector<int> ftVector(42);
     std::vector<int> stdVector(42);
 
     ftVector.reserve(50);

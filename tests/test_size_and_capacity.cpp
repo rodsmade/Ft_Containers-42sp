@@ -3,8 +3,8 @@
 void test_size_and_capacity(void) {
     std::cout << "\n=== Test size and capacity ===" << std::endl;
 
-    std::vector<int>::size_type intendedSize = 42;
-    std::vector<int> ftVector(intendedSize);
+    ft::vector<int>::size_type intendedSize = 42;
+    ft::vector<int> ftVector(intendedSize);
     std::vector<int> stdVector(intendedSize);
 
     assert(ftVector.size() == intendedSize, "Size upon creation");
