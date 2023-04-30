@@ -134,16 +134,17 @@ template <typename T, typename A>
 vector<T, A>::vector(void) : _elements(NULL), _size(0), _capacity(0){};
 
 template <typename T, typename A>
-vector<T, A>::vector(size_type size) {
+vector<T, A>::vector(size_type size, const_reference value, const allocator_type& allocator) {
     if (size > this->max_size())
         throw std::length_error("cannot create std::vector larger than max_size()");
 
     _size = size;
     _capacity = size;
+    _allocator = allocator;
 
     T *temp = _allocator.allocate(_size);
     for (size_type i = 0; i < _size; i++) {
-        _allocator.construct(&temp[i], value_type());
+        _allocator.construct(&temp[i], value);
     }
     _elements = temp;
 };
@@ -218,29 +219,6 @@ std::string vector<T, A>::getOutOfRangeErrorMessage(size_type index) const {
 
     return oss.str();
 };
-
-/*=============================================================================
-===  EXTRA FUNCTIONS                                                        ===
-===  TODO: REMOVE BEFORE SUBMISSION                                         ===
-=============================================================================*/
-template <typename T, typename A>
-void vector<T, A>::test(void) {
-    std::cout << "calling Map member function, test " << BOLD LIGHT_GREEN "OK" RESET << std::endl;
-};
-
-template <typename T, typename A>
-void vector<T, A>::printAll(void) {
-    for (size_type i = 0; i < _size; i++)
-        std::cout << _elements[i] << std::endl;
-};
-
-template <typename T, typename A>
-void vector<T, A>::fill(vector<T, A> &vector, const_reference value) {
-    for (size_type i = 0; i < vector.size(); i++) {
-        vector[i] = value;
-    }
-};
-
 }  // namespace ft
 
 #endif
