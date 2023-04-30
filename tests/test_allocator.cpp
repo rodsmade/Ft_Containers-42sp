@@ -18,7 +18,8 @@ void test_allocator(void) {
 
     // construct values in-place on the array:
     try {
-        for (i=0; i<5; i++) myvector.get_allocator().construct(&p[i],i);
+        for (i = 0; i < 5; i++)
+            myvector.get_allocator().construct(&p[i], i);
         assert(true, "Construction using get_allocator()");
     } catch(const std::exception& e) {
         assert(false, "Construction using get_allocator()");
@@ -27,13 +28,14 @@ void test_allocator(void) {
 
     // integrity check:
     bool integrityCheck = true;
-    for (i=0; i<5; i++)
+    for (i = 0; i < 5; i++)
         integrityCheck = integrityCheck && (p[i] == i);
     assert(integrityCheck, "Integrity check of elements created using get_allocator()");
 
     // destroy:
     try {
-        for (i=0; i<5; i++) myvector.get_allocator().destroy(&p[i]);
+        for (i = 0; i < 5; i++)
+            myvector.get_allocator().destroy(&p[i]);
         assert(true, "Destruction using get_allocator()");
     } catch(const std::exception& e) {
         assert(false, "Destruction using get_allocator()");
@@ -42,7 +44,7 @@ void test_allocator(void) {
 
     // deallocate:
     try {
-        myvector.get_allocator().deallocate(p,5);
+        myvector.get_allocator().deallocate(p, 5);
         assert(true, "Deallocation using get_allocator()");
     } catch(const std::exception& e) {
         assert(false, "Deallocation using get_allocator()");
