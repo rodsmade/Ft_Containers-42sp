@@ -74,9 +74,4 @@ void test_resize(void) {
         assert(initialisationCheck, "Initialization of values past new vector size, passing value to resize");
 
     }
-
-
-    // TODO:
-    // - resize passando value (podia usar o NoDefualt se pá)
-
 }

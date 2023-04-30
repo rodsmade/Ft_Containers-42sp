@@ -5,7 +5,6 @@
 #include <memory>       // std::allocator
 #include <stdexcept>    // std::out_of_range
 #include <sstream>      // std::ostringstream
-// #include <climits>      // LONG_MAX
 #include <limits>      // numeric_limits<>
 
 #include "colourise_my_prints.hpp"
@@ -20,20 +19,26 @@ class vector {
     ===                ALIASES                  ===
     =============================================*/
     //  Aliases function as an interface for containers to be handled the same. They each will have their size_type, value_type, iterator and etc. const_iterator. This is called Generic Programming.
-    typedef unsigned long size_type;
     typedef T value_type;
-    typedef T* iterator;
-    typedef const T* const_iterator;
+    typedef A allocator_type;
+    typedef std::size_t size_type;
+    typedef std::ptrdiff_t difference_type;
     typedef T& reference;
     typedef const T& const_reference;
+    typedef typename A::pointer pointer;
+    typedef typename A::const_pointer const_pointer;
+    typedef T* iterator;
+    typedef const T* const_iterator;
     typedef std::reverse_iterator<iterator> reverse_iterator;
     typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+
     // template<typename C>
     // using Iterator = typename C::iterator;
 
     /*=============================================
     ===            MEMBER FUNCTIONS             ===
     =============================================*/
+    void                    assign(size_type count, const_reference value);
     reference               at(size_type i);
     const_reference         at(size_type i) const;
     reference               back();
@@ -53,7 +58,6 @@ class vector {
     size_type               size(void) const;
 
     // TODO:
-    void                    assign(size_type count, const_reference value);
     template<class InputIt>
     void                    assign(InputIt first, InputIt last);
     iterator                begin();
