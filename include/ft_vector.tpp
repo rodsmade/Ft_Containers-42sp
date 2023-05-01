@@ -281,6 +281,20 @@ bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
     return (true);
 };
 
+template< class T, class Alloc >
+bool operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs){
+    if (lhs.empty() && rhs.empty()) return (false);
+
+    if (lhs.size() != rhs.size() || lhs.capacity() != rhs.capacity()) return (true);
+
+    for (typename vector<T, Alloc>::size_type i = 0; i < lhs.size(); i++) {
+        if (lhs.at(i) != rhs.at(i))
+            return (true);
+    }
+
+    return (false);
+};
+
 }  // namespace ft
 
 #endif
