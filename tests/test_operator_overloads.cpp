@@ -71,9 +71,30 @@ void test_operator_not_equal_to(void) {
     assert((a != b) == true, "Totally different vectors comparison");
 };
 
+void test_operator_less_than(void) {
+    std::cout << "\n  operator<:" << std::endl;
+    {
+        ft::vector<int> a;
+        ft::vector<int> b;
+
+        assert((a < b) == false, "Comparing empty vectors");
+    }
+    ft::vector<int> a(42, 42);
+    ft::vector<int> b(42, 42);
+
+    assert((a < b) == false, "Equal vectors comparison");
+
+    a.at(41) = 41;
+    assert((a < b) == true, "Same size, one element in a is smaller than b");
+
+    a.resize(41);
+    assert((a < b) == true, "A is smaller in size than b");
+    assert((b < a) == false, "B is not smaller in size than a");
+};
+
 void test_operator_overloads(void) {
     std::cout << "\n=== Test operator overloads ===" << std::endl;
     test_operator_equal_to();
     test_operator_not_equal_to();
-
+    test_operator_less_than();
 }

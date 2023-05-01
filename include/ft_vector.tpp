@@ -269,6 +269,7 @@ std::string vector<T, A>::getOutOfRangeErrorMessage(size_type index) const {
 /*********************************************/
 template< class T, class Alloc >
 bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+    // lexicographical comparison means comparing elements one by one.
     for (typename vector<T, Alloc>::size_type i = 0; i < lhs.size(); i++) {
         if (i == rhs.size())
             break ;
@@ -276,7 +277,8 @@ bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
             return (false);
     }
 
-    return (lhs.size() == rhs.size());  // all comparable elements are the same.
+    // if all comparable elements are the same, resolve comparison by size.
+    return (lhs.size() == rhs.size()); // capacity is irrelevant to this comparison.
 };
 
 template< class T, class Alloc >
@@ -284,12 +286,18 @@ bool operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs){
     return (!(lhs == rhs));
 };
 
+template< class T, class Alloc >
+bool operator<(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
     for (typename vector<T, Alloc>::size_type i = 0; i < lhs.size(); i++) {
-        if (lhs.at(i) != rhs.at(i))
+        if (i == rhs.size())
+            break ;
+        if (lhs.at(i) < rhs.at(i))
             return (true);
+        else if (lhs.at(i) > rhs.at(i))
+            return (false);
     }
 
-    return (false);
+    return (lhs.size() < rhs.size());
 };
 
 }  // namespace ft
