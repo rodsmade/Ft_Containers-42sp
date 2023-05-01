@@ -269,16 +269,16 @@ std::string vector<T, A>::getOutOfRangeErrorMessage(size_type index) const {
 /*********************************************/
 template< class T, class Alloc >
 bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
-    if (lhs.empty() && rhs.empty()) return true;
+    if (lhs.empty() && rhs.empty()) return (true);
 
-    if (lhs.size() != rhs.size() || lhs.capacity() != rhs.capacity()) return false;
+    if (lhs.size() != rhs.size() || lhs.capacity() != rhs.capacity()) return (false);
 
     for (typename vector<T, Alloc>::size_type i = 0; i < lhs.size(); i++) {
         if (lhs.at(i) != rhs.at(i))
-            return false;
+            return (false);
     }
 
-    return true;
+    return (true);
 };
 
 }  // namespace ft
