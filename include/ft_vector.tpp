@@ -49,6 +49,16 @@ typename vector<T, A>::const_reference vector<T, A>::back() const {
 };
 
 template <typename T, typename A>
+typename vector<T, A>::iterator vector<T, A>::begin() {
+    return (_elements);
+};
+
+template <typename T, typename A>
+typename vector<T, A>::const_iterator vector<T, A>::begin() const {
+    return (_elements);
+};
+
+template <typename T, typename A>
 void vector<T, A>::clear() {
     for (size_type i = 0; i < _capacity; i++) // Destroy (return back to unitialized state?) old memory
         _allocator.destroy(&_elements[i]);

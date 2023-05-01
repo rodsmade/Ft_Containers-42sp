@@ -1,11 +1,11 @@
 #ifndef FT_VECTOR_HPP
 #define FT_VECTOR_HPP
 
+#include <cstddef>      // std::size_t, std::ptrdiff_t
 #include <iostream>     // printing, etc.
 #include <memory>       // std::allocator
-#include <stdexcept>    // std::out_of_range
 #include <sstream>      // std::ostringstream
-#include <limits>       // numeric_limits<>
+#include <stdexcept>    // std::out_of_range
 
 #include "colourise_my_prints.hpp"
 
@@ -43,6 +43,8 @@ class vector {
     const_reference         at(size_type i) const;
     reference               back();
     const_reference         back() const;
+    iterator                begin();
+    const_iterator          begin() const;
     size_type               capacity(void) const;
     void                    clear();
     value_type*             data();
@@ -62,8 +64,6 @@ class vector {
     // TODO:
     template<class InputIt>
     void                    assign(InputIt first, InputIt last);
-    iterator                begin();
-    const_iterator          begin() const;
     iterator                end();
     const_iterator          end() const;
     iterator                erase(iterator pos);

@@ -20,5 +20,6 @@ int main() {
     test_assign();
     test_allocator();
     test_operator_overloads();
+    test_begin();
     return 0;
 }

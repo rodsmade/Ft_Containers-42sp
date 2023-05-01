@@ -14,6 +14,7 @@ TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 											test_allocator.cpp \
 											test_assign.cpp \
 											test_back.cpp \
+											test_begin.cpp \
 											test_assignment_operator.cpp \
 											test_cleanup.cpp \
 											test_data.cpp \

@@ -14,6 +14,7 @@ void    test_allocator(void);
 void    test_assign(void);
 void    test_assignment_operator(void);
 void    test_back(void);
+void    test_begin(void);
 void    test_cleanup(void);
 void    test_data(void);
 void    test_emptiness(void);
