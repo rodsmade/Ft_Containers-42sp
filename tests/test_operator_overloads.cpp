@@ -2,6 +2,12 @@
 
 void test_operator_equal_to(void) {
     std::cout << "  operator==:" << std::endl;
+    {
+        ft::vector<double> a;
+        ft::vector<double> b;
+
+        assert((a == b) == true, "Comparing empty vectors");
+    }
     ft::vector<double> a(42, 42.0);
     ft::vector<double> b(42, 42.0);
 
@@ -23,7 +29,7 @@ void test_operator_equal_to(void) {
     b.clear();  // here size goes to 0, capacity stays the same
     b.assign(42, 42.0);  // here vector goes back to having 42 42.0s
 
-    assert((a == b) == false, "Same size and contents, different capacity vectors comparison");
+    assert((a == b) == true, "Same size and contents, different capacity vectors comparison");
 
     b.clear();
 
@@ -32,6 +38,12 @@ void test_operator_equal_to(void) {
 
 void test_operator_not_equal_to(void) {
     std::cout << "\n  operator!=:" << std::endl;
+    {
+        ft::vector<double> a;
+        ft::vector<double> b;
+
+        assert((a != b) == false, "Comparing empty vectors");
+    }
     ft::vector<double> a(42, 42.0);
     ft::vector<double> b(42, 42.0);
 
@@ -53,10 +65,9 @@ void test_operator_not_equal_to(void) {
     b.clear();  // here size goes to 0, capacity stays the same
     b.assign(42, 42.0);  // here vector goes back to having 42 42.0s
 
-    assert((a != b) == true, "Same size and contents, different capacity vectors comparison");
+    assert((a != b) == false, "Same size and contents, different capacity vectors comparison");
 
     b.clear();
-
     assert((a != b) == true, "Totally different vectors comparison");
 };
 
@@ -64,5 +75,5 @@ void test_operator_overloads(void) {
     std::cout << "\n=== Test operator overloads ===" << std::endl;
     test_operator_equal_to();
     test_operator_not_equal_to();
-    
+
 }
