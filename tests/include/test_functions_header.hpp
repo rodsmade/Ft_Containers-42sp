@@ -26,5 +26,6 @@ void    test_push_back(void);
 void    test_resize(void);
 void    test_reserve(void);
 void    test_size_and_capacity(void);
+void    test_operator_overloads(void);
 
 #endif

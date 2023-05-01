@@ -5,7 +5,7 @@
 #include <memory>       // std::allocator
 #include <stdexcept>    // std::out_of_range
 #include <sstream>      // std::ostringstream
-#include <limits>      // numeric_limits<>
+#include <limits>       // numeric_limits<>
 
 #include "colourise_my_prints.hpp"
 
@@ -118,20 +118,26 @@ class vector {
 /*=============================================
 ===          NON-MEMBER FUNCTIONS           ===
 =============================================*/
+/*********************************************/
+/*           OPERATOR OVERLOADS              */
+/*********************************************/
 // TODO:
-// template< class T, class Alloc >
-// bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-// template< class T, class Alloc >
-// bool operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-// template< class T, class Alloc >
-// bool operator<(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-// template< class T, class Alloc >
-// bool operator<=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-// template< class T, class Alloc >
-// bool operator>(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-// template< class T, class Alloc >
-// bool operator>=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator<(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator<=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator>(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator>=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
 
+/*********************************************/
+/*                  OTHER                    */
+/*********************************************/
 // template< class T, class Alloc >
 // void swap(vector<T, Alloc>& lhs, vector<T, Alloc>& rhs);
 
