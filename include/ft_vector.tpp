@@ -300,6 +300,20 @@ bool operator<(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
     return (lhs.size() < rhs.size());
 };
 
+template< class T, class Alloc >
+bool operator<=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
+    for (typename vector<T, Alloc>::size_type i = 0; i < lhs.size(); i++) {
+        if (i == rhs.size())
+            break ;
+        if (lhs.at(i) < rhs.at(i))
+            return (true);
+        else if (lhs.at(i) > rhs.at(i))
+            return (false);
+    }
+
+    return (lhs.size() <= rhs.size());
+};
+
 }  // namespace ft
 
 #endif
