@@ -5,8 +5,7 @@
 #include <memory>       // std::allocator
 #include <stdexcept>    // std::out_of_range
 #include <sstream>      // std::ostringstream
-// #include <climits>      // LONG_MAX
-#include <limits>      // numeric_limits<>
+#include <limits>       // numeric_limits<>
 
 #include "colourise_my_prints.hpp"
 
@@ -20,20 +19,26 @@ class vector {
     ===                ALIASES                  ===
     =============================================*/
     //  Aliases function as an interface for containers to be handled the same. They each will have their size_type, value_type, iterator and etc. const_iterator. This is called Generic Programming.
-    typedef unsigned long size_type;
     typedef T value_type;
-    typedef T* iterator;
-    typedef const T* const_iterator;
+    typedef A allocator_type;
+    typedef std::size_t size_type;
+    typedef std::ptrdiff_t difference_type;
     typedef T& reference;
     typedef const T& const_reference;
+    typedef typename A::pointer pointer;
+    typedef typename A::const_pointer const_pointer;
+    typedef T* iterator;
+    typedef const T* const_iterator;
     typedef std::reverse_iterator<iterator> reverse_iterator;
     typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+
     // template<typename C>
     // using Iterator = typename C::iterator;
 
     /*=============================================
     ===            MEMBER FUNCTIONS             ===
     =============================================*/
+    void                    assign(size_type count, const_reference value);
     reference               at(size_type i);
     const_reference         at(size_type i) const;
     reference               back();
@@ -45,6 +50,7 @@ class vector {
     bool                    empty() const;
     reference               front();
     const_reference         front() const;
+    allocator_type          get_allocator() const;
     size_type               max_size() const;
     void                    pop_back();
     void                    push_back(const_reference newElem);
@@ -54,7 +60,6 @@ class vector {
     void                    swap(vector& other);
 
     // TODO:
-    void                    assign(size_type count, const_reference value);
     template<class InputIt>
     void                    assign(InputIt first, InputIt last);
     iterator                begin();
@@ -63,7 +68,6 @@ class vector {
     const_iterator          end() const;
     iterator                erase(iterator pos);
     iterator                erase(iterator first, iterator last);
-    // allocator_type          get_allocator() const;
     iterator                insert(const_iterator pos, const_reference value);
     iterator                insert(const_iterator pos, size_type count, const_reference value);
     template< class InputIt >
@@ -73,22 +77,16 @@ class vector {
     reverse_iterator        rend();
     const_reverse_iterator  rend() const;
 
-    // TODO: remove before submission:
-    static void test(void);
-    void printAll(void);
-    void fill(vector<T, A>& vector, const_reference value);
-
     /*=============================================
     ===      CONSTRUCTION / DESTRUCTION         ===
     =============================================*/
     vector();
-    explicit vector(size_type size);
-    //  the explicit keyword forbids implicit conversion of any type into a vector, which avoids bugs and makes code clearer and explicit.
+    explicit vector(const allocator_type& alloc); //  the explicit keyword forbids implicit conversion of any type into a vector, which avoids bugs and makes code clearer and explicit.
+    explicit vector(size_type size, const_reference value = T(), const allocator_type& allocator = A());
     vector(const vector& other);
     ~vector();
 
     // TODO:
-    // explicit vector(size_type count, const_reference value = T(), const Allocator& alloc = Allocator());
     // template<class InputIt>
     // vector(InputIt first, InputIt last, const Allocator& alloc = Allocator());
 
@@ -103,31 +101,43 @@ class vector {
     //  returns a *copy* of what is stored in the nth element. it is not the object itself, so its contents can't be assigned something else (not an l-value)
 
    private:
-    A _allocator;
-    value_type* _elements;
-    size_type _size;
-    size_type _capacity;
+    /*=============================================
+    ===              ATTRIBUTES                 ===
+    =============================================*/
+    A               _allocator;
+    value_type*     _elements;
+    size_type       _size;
+    size_type       _capacity;
 
-    std::string getOutOfRangeErrorMessage(size_type index) const;
+    /*=============================================
+    ===        PRIVATE MEMBER FUNCTIONS         ===
+    =============================================*/
+    std::string     getOutOfRangeErrorMessage(size_type index) const;
 };
 
 /*=============================================
 ===          NON-MEMBER FUNCTIONS           ===
 =============================================*/
+/*********************************************/
+/*           OPERATOR OVERLOADS              */
+/*********************************************/
 // TODO:
-// template< class T, class Alloc >
-// bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-// template< class T, class Alloc >
-// bool operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-// template< class T, class Alloc >
-// bool operator<(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-// template< class T, class Alloc >
-// bool operator<=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-// template< class T, class Alloc >
-// bool operator>(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-// template< class T, class Alloc >
-// bool operator>=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator<(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator<=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator>(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
+template< class T, class Alloc >
+bool operator>=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
 
+/*********************************************/
+/*                  OTHER                    */
+/*********************************************/
 // template< class T, class Alloc >
 // void swap(vector<T, Alloc>& lhs, vector<T, Alloc>& rhs);
 

@@ -17,5 +17,8 @@ int main() {
     test_front();
     test_data();
     test_swap();
+    test_assign();
+    test_allocator();
+    test_operator_overloads();
     return 0;
 }

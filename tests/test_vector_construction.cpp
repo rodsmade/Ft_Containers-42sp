@@ -97,6 +97,83 @@ static void test_size_type_constructor(void) {
     }
 }
 
+static void test_initialisation_value_constructor(void) {
+    std::cout << "\n  Initialization value Constructor ==>\tvector(size_type size, const_reference value):" << std::endl;
+    {
+        ft::vector<double>::size_type intendedSize = 42;
+        double value = 42.0;
+        ft::vector<double> ftVector(intendedSize, value);
+
+        bool integrityCheck = true;
+
+        for (ft::vector<double>::size_type i = 0; i < intendedSize; i++)
+            integrityCheck = integrityCheck && (ftVector.at(i) == value);
+
+        assert(integrityCheck, "Integrity check for vector<double> constructor that receives initialisation value as arg");
+    }
+    {
+        ft::vector<No_default>::size_type intendedSize = 42;
+        No_default value(10);
+        ft::vector<No_default> ftVector(intendedSize, value);
+
+        bool integrityCheck = true;
+
+        for (ft::vector<No_default>::size_type i = 0; i < intendedSize; i++)
+            integrityCheck = integrityCheck && (ftVector.at(i) == value);
+
+        assert(integrityCheck, "Integrity check for vector<No_default> constructor that receives initialisation value as arg");
+    }
+};
+
+static void test_allocator_arg_constructor(void) {
+    std::cout << "\n  Allocator Constructor ==>\tvector(const allocator_type& alloc):" << std::endl;
+    
+    ft::vector<int> intVector;
+
+    ft::vector<char> charVector(intVector.get_allocator());
+
+    charVector.push_back('H');
+    charVector.push_back('E');
+    charVector.push_back('N');
+    charVector.push_back('L');
+    charVector.push_back('O');
+
+    charVector.resize(11);
+
+    charVector.at(5) = ' ';
+    charVector.at(6) = 'w';
+    charVector.at(7) = 'o';
+    charVector.at(8) = 'r';
+    charVector.at(9) = 'l';
+    charVector.at(10) = 'd';
+
+    std::string msg("HENLO world");
+
+    bool integrityCheck = true;
+
+    for (int i = 0; i < 11; i++)
+        integrityCheck = integrityCheck && (charVector.at((ft::vector<char>::size_type) i) == msg[i]);
+
+    assert(integrityCheck, "Manipulation of vector of chars created passing an int allocator as argument");
+}
+
+static void test_triple_args_constructor(void) {
+    std::cout << "\n  Triple args Constructor ==>\tvector(size_type size, const_reference value, const allocator_type& allocator):" << std::endl;
+    {
+        ft::vector<int> intVector;
+        ft::vector<char>::size_type intendedSize = 42;
+        char value = 42;
+        ft::vector<char> ftVector(intendedSize, value, intVector.get_allocator());
+
+        bool integrityCheck = true;
+
+        for (ft::vector<double>::size_type i = 0; i < intendedSize; i++)
+            integrityCheck = integrityCheck && (ftVector.at(i) == value);
+
+        assert(integrityCheck, "Integrity check for vector<char> constructor that receives initialisation value as arg and allocator of a vector<int>");
+    }
+}
+
 static void test_copy_constructor() {
     std::cout << "\n  Copy Constructor ==>\tvector(const vector& other):" << std::endl;
 
@@ -127,5 +204,8 @@ void test_vector_construction(void) {
     std::cout << "\n=== Vector Construction ===" << std::endl;
     test_default_constructor();
     test_size_type_constructor();
+    test_initialisation_value_constructor();
+    test_allocator_arg_constructor();
+    test_triple_args_constructor();
     test_copy_constructor();
 }
