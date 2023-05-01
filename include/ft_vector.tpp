@@ -85,6 +85,16 @@ bool vector<T, A>::empty() const {
 };
 
 template <typename T, typename A>
+typename vector<T, A>::iterator vector<T, A>::end() {
+    return (_elements + _size);
+};
+
+template <typename T, typename A>
+typename vector<T, A>::const_iterator vector<T, A>::end() const {
+    return (_elements + _size);
+};
+
+template <typename T, typename A>
 typename vector<T, A>::reference vector<T, A>::front() {
     return _elements[0];
 };

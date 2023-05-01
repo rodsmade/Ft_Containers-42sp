@@ -19,6 +19,7 @@ TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 											test_cleanup.cpp \
 											test_data.cpp \
 											test_emptiness.cpp \
+											test_end.cpp \
 											test_front.cpp \
 											test_max_size.cpp \
 											test_operator_overloads.cpp \

@@ -50,6 +50,8 @@ class vector {
     value_type*             data();
     const value_type*       data() const;
     bool                    empty() const;
+    iterator                end();
+    const_iterator          end() const;
     reference               front();
     const_reference         front() const;
     allocator_type          get_allocator() const;
@@ -64,8 +66,6 @@ class vector {
     // TODO:
     template<class InputIt>
     void                    assign(InputIt first, InputIt last);
-    iterator                end();
-    const_iterator          end() const;
     iterator                erase(iterator pos);
     iterator                erase(iterator first, iterator last);
     iterator                insert(const_iterator pos, const_reference value);

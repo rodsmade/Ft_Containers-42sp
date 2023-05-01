@@ -18,6 +18,7 @@ void    test_begin(void);
 void    test_cleanup(void);
 void    test_data(void);
 void    test_emptiness(void);
+void    test_end(void);
 void    test_front(void);
 void    test_max_size(void);
 void    test_operator_overloads(void);
