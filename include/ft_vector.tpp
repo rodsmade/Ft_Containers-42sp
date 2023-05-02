@@ -3,9 +3,9 @@
 
 namespace ft {
 
-/*=============================================================================
-===  MEMBER FUNCTIONS                                                       ===
-=============================================================================*/
+/*==============================================================================
+===  MEMBER FUNCTIONS                                                        ===
+==============================================================================*/
 template <typename T, typename A>
 template <class InputIt>
 void vector<T, A>::assign(InputIt first, InputIt last) {
@@ -194,9 +194,9 @@ void vector<T, A>::swap(vector& other){
     return ;
 };
 
-/*=============================================================================
-===  CONSTRUCTION / DESTRUCTION                                             ===
-=============================================================================*/
+/*==============================================================================
+===  CONSTRUCTION / DESTRUCTION                                              ===
+==============================================================================*/
 template <typename T, typename A>
 vector<T, A>::vector(void) : _allocator(A()), _elements(NULL), _size(0), _capacity(0){};
 
@@ -239,9 +239,9 @@ vector<T, A>::~vector(void) {
     _allocator.deallocate(_elements, _capacity);
 };
 
-/*=============================================================================
-===  OPERATOR OVERLOADS                                                     ===
-=============================================================================*/
+/*==============================================================================
+===  OPERATOR OVERLOADS                                                      ===
+==============================================================================*/
 template <typename T, typename A>
 vector<T, A> &vector<T, A>::operator=(const vector &other) {
     if (this == &other) return (*this);
@@ -278,9 +278,9 @@ typename vector<T, A>::const_reference vector<T, A>::operator[](size_type index)
     return _elements[index];
 };
 
-/*=============================================================================
-===  PRIVATE FUNCTIONS                                                      ===
-=============================================================================*/
+/*==============================================================================
+===  PRIVATE FUNCTIONS                                                       ===
+==============================================================================*/
 template <typename T, typename A>
 std::string vector<T, A>::getOutOfRangeErrorMessage(size_type index) const {
     std::ostringstream oss;
@@ -290,12 +290,12 @@ std::string vector<T, A>::getOutOfRangeErrorMessage(size_type index) const {
     return oss.str();
 };
 
-/*=============================================
-===          NON-MEMBER FUNCTIONS           ===
-=============================================*/
-/*********************************************/
-/*           OPERATOR OVERLOADS              */
-/*********************************************/
+/*=============================================================================
+===  NON-MEMBER FUNCTIONS                                                   ===
+=============================================================================*/
+/*****************************************************************************/
+/*   OPERATOR OVERLOADS                                                      */
+/*****************************************************************************/
 template< class T, class Alloc >
 bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
     // lexicographical comparison means comparing elements one by one.
