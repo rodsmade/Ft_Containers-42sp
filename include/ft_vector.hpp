@@ -38,6 +38,8 @@ class vector {
     /*=============================================
     ===            MEMBER FUNCTIONS             ===
     =============================================*/
+    template <class InputIt>
+    void                    assign(InputIt first, InputIt last);
     void                    assign(size_type count, const_reference value);
     reference               at(size_type i);
     const_reference         at(size_type i) const;
@@ -64,8 +66,6 @@ class vector {
     void                    swap(vector& other);
 
     // TODO:
-    template<class InputIt>
-    void                    assign(InputIt first, InputIt last);
     iterator                erase(iterator pos);
     iterator                erase(iterator first, iterator last);
     iterator                insert(const_iterator pos, const_reference value);

@@ -7,6 +7,15 @@ namespace ft {
 ===  MEMBER FUNCTIONS                                                       ===
 =============================================================================*/
 template <typename T, typename A>
+template <class InputIt>
+void vector<T, A>::assign(InputIt first, InputIt last) {
+    this->clear();
+    for (InputIt it = first; it != last; it++) {
+        this->push_back(*it);
+    }
+};
+
+template <typename T, typename A>
 void vector<T, A>::assign(size_type count, const_reference value) {
     if (count <= _capacity) {
         for (size_type i = 0; i < _size; i++)

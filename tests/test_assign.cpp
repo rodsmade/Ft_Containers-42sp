@@ -2,7 +2,8 @@
 
 void test_assign(void) {
     std::cout << "\n=== Testing vector assignment ===" << std::endl;
-    {  // assign by fill version ( assign (size_type n, const value_type& val) )
+    std::cout << "\n  assignment by fill ( assign (size_type n, const value_type& val) )" << std::endl;
+    {  // assign by fill version ( assign (size_type n, const value_type& val) ) - Case 0 - new size equal to current capacity
         std::cout << "  Case 0 - new size equal to current capacity" << std::endl;
 
         double initialValue = 42.0;
@@ -27,7 +28,7 @@ void test_assign(void) {
         assert(integrityCheck, "Reassignment of vector's contents, no change in size/capacity");
         assert(ftVector.size() == stdVector.size() && ftVector.capacity() == stdVector.capacity(), "Size and capacity check against std::vector");
     }
-    {  // assign by fill version ( assign (size_type n, const value_type& val) )
+    {  // assign by fill version ( assign (size_type n, const value_type& val) ) - Case 1 - new size less than current capacity
         std::cout << "\n  Case 1 - new size less than current capacity" << std::endl;
         double initialValue = 42.0;
         double newValue = 21.0;
@@ -52,7 +53,7 @@ void test_assign(void) {
         assert(integrityCheck, "Reassignment of vector's contents, new vector smaller in size than original");
         assert(ftVector.size() == stdVector.size() && ftVector.capacity() == stdVector.capacity(), "Size and capacity check against std::vector");
     }
-    {  // assign by fill version ( assign (size_type n, const value_type& val) )
+    {  // assign by fill version ( assign (size_type n, const value_type& val) ) - Case 2 - new size greater than current capacity
         std::cout << "\n  Case 2 - new size greater than current capacity" << std::endl;
         double initialValue = 42.0;
         double newValue = 21.0;
@@ -75,6 +76,27 @@ void test_assign(void) {
 
         assert(integrityCheck, "Reassignment of vector's contents, new vector bigger in size than original");
         assert(ftVector.size() == stdVector.size() && ftVector.capacity() == stdVector.capacity(), "Size and capacity check against std::vector");
+    }
+    std::cout << "\n  assignment by range ( assign(InputIt first, InputIt last) )" << std::endl;
+    {  // assign by range version ( assign(InputIt first, InputIt last) ) - Case 0 - new size equal to current capacity
+        ft::vector<int> source;
+        ft::vector<int> destination(15, 42);
+
+        for (int i = 0; i < 50; i++)
+            source.push_back(i + 1);
+
+        destination.assign(source.begin(), source.end());
+
+        assert(destination.size() == source.size(), "Size check");
+
+        bool integrityCheck = true;
+
+        ft::vector<int>::iterator itDest = destination.begin();
+        ft::vector<int>::iterator itSrc = source.begin();
+        while (itDest != destination.end())
+            integrityCheck = integrityCheck && (*(itDest++) == *(itSrc++));
+
+        assert(integrityCheck, "Integrity check of elements after assignment");
     }
     return ;
 }
