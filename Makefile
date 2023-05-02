@@ -14,13 +14,12 @@ TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 											test_allocator.cpp \
 											test_assign.cpp \
 											test_back.cpp \
-											test_begin.cpp \
 											test_assignment_operator.cpp \
 											test_cleanup.cpp \
 											test_data.cpp \
 											test_emptiness.cpp \
-											test_end.cpp \
 											test_front.cpp \
+											test_iterators.cpp \
 											test_max_size.cpp \
 											test_operator_overloads.cpp \
 											test_pop_back.cpp \
