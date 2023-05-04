@@ -60,6 +60,10 @@ class vector {
     size_type               max_size() const;
     void                    pop_back();
     void                    push_back(const_reference newElem);
+    reverse_iterator        rbegin();
+    const_reverse_iterator  rbegin() const;
+    reverse_iterator        rend();
+    const_reverse_iterator  rend() const;
     void                    reserve(size_type newCapacity);
     void                    resize(size_type newSize, value_type value = value_type());
     size_type               size(void) const;
@@ -72,10 +76,6 @@ class vector {
     iterator                insert(const_iterator pos, size_type count, const_reference value);
     template< class InputIt >
     iterator                insert(const_iterator pos, InputIt first, InputIt last);
-    reverse_iterator        rbegin();
-    const_reverse_iterator  rbegin() const;
-    reverse_iterator        rend();
-    const_reverse_iterator  rend() const;
 
     /*=============================================
     ===      CONSTRUCTION / DESTRUCTION         ===
@@ -121,7 +121,6 @@ class vector {
 /*********************************************/
 /*           OPERATOR OVERLOADS              */
 /*********************************************/
-// TODO:
 template< class T, class Alloc >
 bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
 template< class T, class Alloc >
@@ -138,6 +137,7 @@ bool operator>=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
 /*********************************************/
 /*                  OTHER                    */
 /*********************************************/
+// TODO:
 // template< class T, class Alloc >
 // void swap(vector<T, Alloc>& lhs, vector<T, Alloc>& rhs);
 

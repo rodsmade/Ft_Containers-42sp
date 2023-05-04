@@ -140,6 +140,30 @@ void vector<T, A>::push_back(const_reference newElem) {
 };
 
 template <typename T, typename A>
+typename vector<T, A>::reverse_iterator vector<T, A>::rbegin() {
+    reverse_iterator it(_elements + _size);
+    return (it);
+};
+
+template <typename T, typename A>
+typename vector<T, A>::const_reverse_iterator vector<T, A>::rbegin() const {
+    const_reverse_iterator it(_elements + _size);
+    return (it);
+};
+
+template <typename T, typename A>
+typename vector<T, A>::reverse_iterator vector<T, A>::rend() {
+    reverse_iterator it(_elements);
+    return (it);
+};
+
+template <typename T, typename A>
+typename vector<T, A>::const_reverse_iterator vector<T, A>::rend() const {
+    const_reverse_iterator it(_elements);
+    return (it);
+};
+
+template <typename T, typename A>
 void vector<T, A>::reserve(size_type newCapacity) {
     if (newCapacity <= _capacity) return;
 
