@@ -104,6 +104,23 @@ typename vector<T, A>::const_iterator vector<T, A>::end() const {
 };
 
 template <typename T, typename A>
+typename vector<T, A>::iterator vector<T, A>::erase(iterator pos) {
+    // conclusão: não rola realloc, apenas um resize e redistribuição dos elementos.
+    iterator nextInLine = ++pos;
+
+    while()
+
+    return (re)
+};
+
+template <typename T, typename A>
+typename vector<T, A>::iterator vector<T, A>::erase(iterator first, iterator last) {
+    if (first == last) return (last);
+
+
+};
+
+template <typename T, typename A>
 typename vector<T, A>::reference vector<T, A>::front() {
     return _elements[0];
 };

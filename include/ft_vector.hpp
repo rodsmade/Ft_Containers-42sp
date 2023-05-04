@@ -28,9 +28,9 @@ class vector {
     typedef typename A::pointer pointer;
     typedef typename A::const_pointer const_pointer;
     typedef T* iterator;
-    typedef const T* const_iterator;
+    typedef const iterator const_iterator;
     typedef std::reverse_iterator<iterator> reverse_iterator;
-    typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+    typedef const reverse_iterator const_reverse_iterator;
 
     // template<typename C>
     // using Iterator = typename C::iterator;
@@ -54,6 +54,8 @@ class vector {
     bool                    empty() const;
     iterator                end();
     const_iterator          end() const;
+    iterator                erase(iterator pos);
+    iterator                erase(iterator first, iterator last);
     reference               front();
     const_reference         front() const;
     allocator_type          get_allocator() const;
@@ -70,8 +72,6 @@ class vector {
     void                    swap(vector& other);
 
     // TODO:
-    iterator                erase(iterator pos);
-    iterator                erase(iterator first, iterator last);
     iterator                insert(const_iterator pos, const_reference value);
     iterator                insert(const_iterator pos, size_type count, const_reference value);
     template< class InputIt >
