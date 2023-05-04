@@ -21,5 +21,6 @@ int main() {
     test_allocator();
     test_operator_overloads();
     test_iterators();
+    test_erase();
     return 0;
 }
