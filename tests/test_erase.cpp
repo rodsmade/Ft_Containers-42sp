@@ -1,8 +1,6 @@
 #include "test_functions_header.hpp"
 
 static void test_positional_erase_returns(void) {
-    std::cout << "\n  Single instance erase ( erase(iterator pos) ) ===" << std::endl;
-
     ft::vector<int> ftVector;
 
     for (int i = 1; i <= 10; i++) {
@@ -86,15 +84,36 @@ static void test_positional_erase(void) {
     assert(ftVector.size() == 0, "Size check when emptying vector");
 }
 
-// static void test_range_erase(void) {
+static void test_range_erase(void) {
+    std::cout << "\n  Range instance erase ( erase(iterator first, iterator last) ) ===" << std::endl;
+    ft::vector<int> ftVector;
+    ft::vector<int>::iterator returnIt;
 
-// }
+    for (int i = 1; i <= 10; i++) {
+        ftVector.push_back(i);
+    }
+
+    ft::vector<int>::size_type sizeBefore = ftVector.size();
+    returnIt = ftVector.erase(ftVector.begin() + 2, ftVector.begin() + 7);
+    ft::vector<int>::size_type sizeAfter = ftVector.size();
+
+    assert(returnIt == ftVector.begin() + 2, "Return iterator check for range erase");
+    assert(sizeAfter == sizeBefore - 5 &&
+            ftVector.at(0) == 1 &&
+            ftVector.at(1) == 2 &&
+            ftVector.at(2) == 8 &&
+            ftVector.at(3) == 9 &&
+            ftVector.at(4) == 10
+            ,"Consistency check for range erase");
+
+
+}
 
 void test_erase(void) {
     std::cout << "\n=== Tests for erase() ===";
     test_positional_erase();
     test_positional_erase_returns();
-    // test_range_erase();
+    test_range_erase();
 }
 
 // void print_container(const std::vector<int>& c) 

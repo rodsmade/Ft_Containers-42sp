@@ -127,12 +127,30 @@ typename vector<T, A>::iterator vector<T, A>::erase(iterator pos) {
     return (returningIt);
 };
 
-// template <typename T, typename A>
-// typename vector<T, A>::iterator vector<T, A>::erase(iterator first, iterator last) {
-//     if (first == last) return (last);
+template <typename T, typename A>
+typename vector<T, A>::iterator vector<T, A>::erase(iterator first, iterator last) {
+    iterator returningIt;
 
+    returningIt = first;
+    iterator pivot = first;
+    iterator pivotPastRange = last;
+    size_type oldSize = _size;
 
-// };
+    while (pivot != last) {
+        _allocator.destroy(pivot);
+        oldSize--;
+        _allocator.construct(pivot, *pivotPastRange);
+        pivot++;
+        pivotPastRange++;
+    }
+    while (pivot != this->end()) {
+        _allocator.destroy(pivot);
+        pivot++;
+    }
+
+    _size = oldSize;
+    return (returningIt);
+};
 
 template <typename T, typename A>
 typename vector<T, A>::reference vector<T, A>::front() {
