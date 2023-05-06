@@ -186,10 +186,27 @@ typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, const_r
     return (pivot);
 };
 
-// template <typename T, typename A>
-// typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_type count, const_reference value) {
+template <typename T, typename A>
+typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_type count, const_reference value) {
 
-// };
+    if (_size + count > _capacity)
+        this->reserve(_size + count);
+
+    iterator pivot = this->end() + count;
+    for (; pivot - count + 1 != pos; pivot--) {
+        _allocator.destroy(pivot);
+        _allocator.construct(pivot, *(pivot - count));
+    }
+    for (size_type i = count; i > 0; i--) {
+        _allocator.destroy(pivot);
+        _allocator.construct(pivot, value);
+        pivot--;
+    }
+
+    _size += count;
+
+    return (pivot);
+};
 
 // template <typename T, typename A>
 // template< class InputIt >
