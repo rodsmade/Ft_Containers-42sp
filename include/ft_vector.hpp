@@ -28,7 +28,7 @@ class vector {
     typedef typename A::pointer pointer;
     typedef typename A::const_pointer const_pointer;
     typedef T* iterator;
-    typedef const iterator const_iterator;
+    typedef const T* const_iterator;
     typedef std::reverse_iterator<iterator> reverse_iterator;
     typedef const reverse_iterator const_reverse_iterator;
 

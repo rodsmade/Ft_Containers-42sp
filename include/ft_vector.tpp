@@ -170,11 +170,13 @@ typename vector<T, A>::allocator_type vector<T, A>::get_allocator() const {
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, const_reference value) {
 
+    difference_type offset = pos - begin(); // keeps the relative distance between pos and the beginning of this vector
+
     if (_size == _capacity)
         this->reserve(_capacity * 2);
 
     iterator pivot = this->end();
-    for (; pivot != pos; pivot--) {
+    for (; pivot != (begin() + offset); pivot--) {
         _allocator.destroy(pivot);
         _allocator.construct(pivot, *(pivot - 1));
     }
@@ -189,21 +191,22 @@ typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, const_r
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_type count, const_reference value) {
 
+    difference_type offset = pos - begin(); // keeps the relative distance between pos and the beginning of this vector
+
     if (_size + count > _capacity)
         this->reserve(_size + count);
 
-    iterator pivot = this->end() + count;
-    for (; pivot - count + 1 != pos; pivot--) {
+    iterator pivot = this->end() + count - 1;
+    for (; pivot >= (begin() + offset + count); pivot--) {
         _allocator.destroy(pivot);
         _allocator.construct(pivot, *(pivot - count));
     }
+    _size += count;
     for (size_type i = count; i > 0; i--) {
         _allocator.destroy(pivot);
         _allocator.construct(pivot, value);
         pivot--;
     }
-
-    _size += count;
 
     return (pivot);
 };
@@ -266,10 +269,10 @@ void vector<T, A>::reserve(size_type newCapacity) {
     T *temp;
 
     temp = _allocator.allocate(newCapacity); // Allocate more (uninitialized) memory
-    for (size_type i = 0; i < _size; i++) // Construct (initialize) allocated memory
-        _allocator.construct(&temp[i], _elements[i]);
-    for (size_type i = 0; i < _size; i++) // Destroy (return back to unitialized state?) old memory
-        _allocator.destroy(&_elements[i]);
+    for (size_type i = 0; i < _size; i++) {
+        _allocator.construct(&temp[i], _elements[i]); // Construct (initialize) allocated memory
+        _allocator.destroy(&_elements[i]); // Destroy (return back to unitialized state?) old memory
+    }
     _allocator.deallocate(_elements, _capacity);
 
     _capacity = newCapacity;
