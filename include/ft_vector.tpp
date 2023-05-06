@@ -168,6 +168,36 @@ typename vector<T, A>::allocator_type vector<T, A>::get_allocator() const {
 };
 
 template <typename T, typename A>
+typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, const_reference value) {
+
+    if (_size == _capacity)
+        this->reserve(_capacity * 2);
+
+    iterator pivot = this->end();
+    for (; pivot != pos; pivot--) {
+        _allocator.destroy(pivot);
+        _allocator.construct(pivot, *(pivot - 1));
+    }
+    _allocator.destroy(pivot);
+    _allocator.construct(pivot, value);
+
+    _size++;
+
+    return (pivot);
+};
+
+// template <typename T, typename A>
+// typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_type count, const_reference value) {
+
+// };
+
+// template <typename T, typename A>
+// template< class InputIt >
+// typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, InputIt first, InputIt last) {
+
+// };
+
+template <typename T, typename A>
 typename vector<T, A>::size_type vector<T, A>::max_size() const {
     return (_allocator.max_size());
 };

@@ -20,6 +20,7 @@ void    test_emptiness(void);
 void    test_erase(void);
 void    test_front(void);
 void    test_iterators(void);
+void    test_insertion(void);
 void    test_max_size(void);
 void    test_operator_overloads(void);
 void    test_pop_back(void);

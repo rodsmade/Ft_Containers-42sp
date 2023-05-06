@@ -22,5 +22,6 @@ int main() {
     test_operator_overloads();
     test_iterators();
     test_erase();
+    test_insertion();
     return 0;
 }

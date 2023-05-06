@@ -28,7 +28,7 @@ class vector {
     typedef typename A::pointer pointer;
     typedef typename A::const_pointer const_pointer;
     typedef T* iterator;
-    typedef const iterator const_iterator;
+    typedef const T* const_iterator;
     typedef std::reverse_iterator<iterator> reverse_iterator;
     typedef const reverse_iterator const_reverse_iterator;
 
@@ -59,6 +59,10 @@ class vector {
     reference               front();
     const_reference         front() const;
     allocator_type          get_allocator() const;
+    iterator                insert(const_iterator pos, const_reference value);
+    // iterator                insert(const_iterator pos, size_type count, const_reference value);
+    // template< class InputIt >
+    // iterator                insert(const_iterator pos, InputIt first, InputIt last);
     size_type               max_size() const;
     void                    pop_back();
     void                    push_back(const_reference newElem);
@@ -70,12 +74,6 @@ class vector {
     void                    resize(size_type newSize, value_type value = value_type());
     size_type               size(void) const;
     void                    swap(vector& other);
-
-    // TODO:
-    iterator                insert(const_iterator pos, const_reference value);
-    iterator                insert(const_iterator pos, size_type count, const_reference value);
-    template< class InputIt >
-    iterator                insert(const_iterator pos, InputIt first, InputIt last);
 
     /*=============================================
     ===      CONSTRUCTION / DESTRUCTION         ===
