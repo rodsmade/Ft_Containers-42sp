@@ -320,12 +320,11 @@ void vector<T, A>::swap(vector& other){
 /*==============================================================================
 ===  CONSTRUCTION / DESTRUCTION                                              ===
 ==============================================================================*/
-template <typename T, typename A>
-vector<T, A>::vector(void) : _allocator(A()), _elements(NULL), _size(0), _capacity(0){};
-
+// Default
 template <typename T, typename A>
 vector<T, A>::vector(const allocator_type& alloc) : _allocator(alloc), _elements(NULL), _size(0), _capacity(0) {};
 
+// Fill
 template <typename T, typename A>
 vector<T, A>::vector(size_type size, const_reference value, const allocator_type& allocator) {
     if (size > this->max_size())
@@ -342,6 +341,17 @@ vector<T, A>::vector(size_type size, const_reference value, const allocator_type
     _elements = temp;
 };
 
+// Range
+// template <typename T, typename A>
+// template<class InputIt>
+// ft::vector<T, A>::vector(InputIt first, InputIt last, const allocator_type& allocator) {
+//     (void) first;
+//     (void) last;
+//     (void) allocator;
+//     return;
+// };
+
+// Copy
 template <typename T, typename A>
 vector<T, A>::vector(const vector &other) {
     _size = other._size;

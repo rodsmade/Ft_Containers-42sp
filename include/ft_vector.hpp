@@ -78,16 +78,17 @@ class vector {
     /*=============================================
     ===      CONSTRUCTION / DESTRUCTION         ===
     =============================================*/
-    vector();
-    explicit vector(const allocator_type& alloc); //  the explicit keyword forbids implicit conversion of any type into a vector, which avoids bugs and makes code clearer and explicit.
-    explicit vector(size_type size, const_reference value = T(), const allocator_type& allocator = A());
-    vector(const vector& other);
-    ~vector();
-
-    // TODO:
+    // Default Constructor
+    explicit vector(const allocator_type& alloc = allocator_type()); //  the explicit keyword forbids implicit conversion of any type into a vector, which avoids bugs and makes code clearer and explicit.
+    // Fill Constructor
+    explicit vector(size_type size, const_reference value = T(), const allocator_type& allocator = allocator_type());
+    // Range Constructor
     // template<class InputIt>
-    // vector(InputIt first, InputIt last, const Allocator& alloc = Allocator());
-
+    // vector(InputIt first, InputIt last, const allocator_type& allocator = allocator_type());
+    // Copy Constructor
+    vector(const vector& other);
+    // Destructor
+    ~vector();
 
     /*=============================================
     ===           OPERATOR OVERLOADS            ===
@@ -102,7 +103,7 @@ class vector {
     /*=============================================
     ===              ATTRIBUTES                 ===
     =============================================*/
-    A               _allocator;
+    allocator_type  _allocator;
     value_type*     _elements;
     size_type       _size;
     size_type       _capacity;
