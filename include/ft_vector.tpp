@@ -190,8 +190,10 @@ typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, const_r
 
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_type count, const_reference value) {
-
     difference_type offset = pos - begin(); // keeps the relative distance between pos and the beginning of this vector
+
+    if (count == 0)
+        return this->begin() + offset;
 
     if (_size + count > _capacity)
         this->reserve(_size + count);
@@ -201,7 +203,9 @@ typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_ty
         _allocator.destroy(pivot);
         _allocator.construct(pivot, *(pivot - count));
     }
+
     _size += count;
+
     for (size_type i = count; i > 0; i--) {
         _allocator.destroy(pivot);
         _allocator.construct(pivot, value);
@@ -211,11 +215,36 @@ typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_ty
     return (pivot);
 };
 
-// template <typename T, typename A>
-// template< class InputIt >
-// typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, InputIt first, InputIt last) {
+template <typename T, typename A>
+template< class InputIt >
+typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, InputIt first, InputIt last) {
+    difference_type offset = pos - this->begin();
 
-// };
+    if (first == last)
+        return this->begin() + offset;
+
+    difference_type count = last - first;
+
+    if (_size + count > _capacity)
+        this->reserve(_size + count);
+
+    iterator pivot = this->end() + count - 1;
+    for (; pivot >= (begin() + offset + count); pivot--) {
+        _allocator.destroy(pivot);
+        _allocator.construct(pivot, *(pivot - count));
+    }
+
+    _size += count;
+
+    for (size_type i = count; i > 0; i--) {
+        _allocator.destroy(pivot);
+        _allocator.construct(pivot, *(first + i - 1));
+        pivot--;
+    }
+
+    return (pivot);
+
+};
 
 template <typename T, typename A>
 typename vector<T, A>::size_type vector<T, A>::max_size() const {

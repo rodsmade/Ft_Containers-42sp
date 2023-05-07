@@ -61,8 +61,8 @@ class vector {
     allocator_type          get_allocator() const;
     iterator                insert(const_iterator pos, const_reference value);
     iterator                insert(const_iterator pos, size_type count, const_reference value);
-    // template < class InputIt >
-    // iterator                insert(const_iterator pos, InputIt first, InputIt last);
+    template < class InputIt >
+    iterator                insert(const_iterator pos, InputIt first, InputIt last);
     size_type               max_size() const;
     void                    pop_back();
     void                    push_back(const_reference newElem);
@@ -94,10 +94,10 @@ class vector {
     ===           OPERATOR OVERLOADS            ===
     =============================================*/
     vector&         operator=(const vector& other);
-    reference       operator[](size_type index);  // for non-const vectors
-    //  returns a reference, i. e., the object itself, knowing this "address" won't possibly change or be changed, but its contents can.
-    const_reference operator[](size_type index) const;  // for const vectors
-    //  returns a *copy* of what is stored in the nth element. it is not the object itself, so its contents can't be assigned something else (not an l-value)
+    // for non-const vectors:
+    reference       operator[](size_type index);  //  returns a reference, i. e., the object itself, knowing this "address" won't possibly change or be changed, but its contents can.
+    // for const vectors:
+    const_reference operator[](size_type index) const;  //  returns a *copy* of what is stored in the nth element. it is not the object itself, so its contents can't be assigned something else (not an l-value)
 
    private:
     /*=============================================
