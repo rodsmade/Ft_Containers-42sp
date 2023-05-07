@@ -74,13 +74,13 @@ static void test_operator_not_equal_to(void) {
 static void test_operator_less_than(void) {
     std::cout << "\n  operator<:" << std::endl;
     {
-        ft::vector<int> a;
-        ft::vector<int> b;
+        ft::vector<double> a;
+        ft::vector<double> b;
 
         assert((a < b) == false, "Comparing empty vectors");
     }
-    ft::vector<int> a(42, 42);
-    ft::vector<int> b(42, 42);
+    ft::vector<double> a(42, 42.0);
+    ft::vector<double> b(42, 42.0);
 
     assert((a < b) == false, "Equal vectors comparison");
 
@@ -95,13 +95,13 @@ static void test_operator_less_than(void) {
 static void test_operator_less_than_or_equal_to(void) {
     std::cout << "\n  operator<=:" << std::endl;
     {
-        ft::vector<int> a;
-        ft::vector<int> b;
+        ft::vector<double> a;
+        ft::vector<double> b;
 
         assert((a <= b) == true, "Comparing empty vectors");
     }
-    ft::vector<int> a(42, 42);
-    ft::vector<int> b(42, 42);
+    ft::vector<double> a(42, 42.0);
+    ft::vector<double> b(42, 42.0);
 
     assert((a <= b) == true, "Equal vectors comparison");
 
@@ -116,13 +116,13 @@ static void test_operator_less_than_or_equal_to(void) {
 static void test_operator_greater_than(void) {
     std::cout << "\n  operator>:" << std::endl;
     {
-        ft::vector<int> a;
-        ft::vector<int> b;
+        ft::vector<double> a;
+        ft::vector<double> b;
 
         assert((a > b) == false, "Comparing empty vectors");
     }
-    ft::vector<int> a(42, 42);
-    ft::vector<int> b(42, 42);
+    ft::vector<double> a(42, 42.0);
+    ft::vector<double> b(42, 42.0);
 
     assert((a > b) == false, "Equal vectors comparison");
 
@@ -137,13 +137,13 @@ static void test_operator_greater_than(void) {
 static void test_operator_greater_than_or_equal_to(void) {
     std::cout << "\n  operator>=:" << std::endl;
     {
-        ft::vector<int> a;
-        ft::vector<int> b;
+        ft::vector<double> a;
+        ft::vector<double> b;
 
         assert((a >= b) == true, "Comparing empty vectors");
     }
-    ft::vector<int> a(42, 42);
-    ft::vector<int> b(42, 42);
+    ft::vector<double> a(42, 42.0);
+    ft::vector<double> b(42, 42.0);
 
     assert((a >= b) == true, "Equal vectors comparison");
 

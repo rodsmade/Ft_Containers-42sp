@@ -80,7 +80,9 @@ void test_assign(void) {
     std::cout << "\n  assignment by range ( assign(InputIt first, InputIt last) )" << std::endl;
     {  // assign by range version ( assign(InputIt first, InputIt last) ) - Case 0 - new size equal to current capacity
         ft::vector<int> source;
-        ft::vector<int> destination(15, 42);
+        ft::vector<int>::size_type occurrences = 15;
+        ft::vector<int>::value_type value = 42;
+        ft::vector<int> destination(occurrences, value);
 
         for (int i = 0; i < 50; i++)
             source.push_back(i + 1);
