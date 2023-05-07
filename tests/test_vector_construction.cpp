@@ -174,6 +174,44 @@ static void test_triple_args_constructor(void) {
     }
 }
 
+static void test_range_constructor(void) {
+    std::cout << "\n  Range Constructor ==>\tvector(InputIt first, InputIt last, const allocator_type& allocator = allocator_type()):" << std::endl;
+    ft::vector<double> baseVector(42);
+    for (int i = 0; i < 42; i++)
+        baseVector.at(i) = (i + 1) * 42.0;
+    {
+        ft::vector<double> newVector(baseVector.begin(), baseVector.end());
+
+        assert(newVector == baseVector, "New vector copies full range of base vector");
+    }
+    {
+        ft::vector<double> newVector(baseVector.begin(), baseVector.begin() + 10);
+
+        bool consistencyCheck = true;
+
+        for (ft::vector<double>::size_type i = 0; i < newVector.size(); i++)
+            consistencyCheck = consistencyCheck && (newVector.at(i) == baseVector.at(i));
+
+        assert(newVector.size() == 10 && consistencyCheck, "New vector partially copies base vector from the beginning");
+    }
+    {
+        ft::vector<double> newVector(baseVector.end() - 10, baseVector.end());
+
+        bool consistencyCheck = true;
+
+        for (ft::vector<double>::size_type i = 0; i < newVector.size(); i++)
+            consistencyCheck = consistencyCheck && (newVector.at(i) == baseVector.at(baseVector.size() - 10 + i));
+
+        assert(newVector.size() == 10 && consistencyCheck, "New vector partially copies the tail of the vector");
+    }
+    {
+        ft::vector<double> newVector(baseVector.begin(), baseVector.begin());
+
+        assert(newVector.empty() == true, "New vector out of two equal iterators is empty");
+    }
+
+}
+
 static void test_copy_constructor() {
     std::cout << "\n  Copy Constructor ==>\tvector(const vector& other):" << std::endl;
 
@@ -207,5 +245,6 @@ void test_vector_construction(void) {
     test_initialisation_value_constructor();
     test_allocator_arg_constructor();
     test_triple_args_constructor();
+    test_range_constructor();
     test_copy_constructor();
 }

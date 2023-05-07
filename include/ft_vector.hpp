@@ -32,7 +32,7 @@ class vector {
     typedef std::reverse_iterator<iterator> reverse_iterator;
     typedef const reverse_iterator const_reverse_iterator;
 
-    // template<typename C>
+    // template <typename C>
     // using Iterator = typename C::iterator;
 
     /*=============================================
@@ -61,7 +61,7 @@ class vector {
     allocator_type          get_allocator() const;
     iterator                insert(const_iterator pos, const_reference value);
     iterator                insert(const_iterator pos, size_type count, const_reference value);
-    // template< class InputIt >
+    // template < class InputIt >
     // iterator                insert(const_iterator pos, InputIt first, InputIt last);
     size_type               max_size() const;
     void                    pop_back();
@@ -83,8 +83,8 @@ class vector {
     // Fill Constructor
     explicit vector(size_type size, const_reference value = T(), const allocator_type& allocator = allocator_type());
     // Range Constructor
-    // template<class InputIt>
-    // vector(InputIt first, InputIt last, const allocator_type& allocator = allocator_type());
+    template <class InputIt>
+    vector(InputIt first, InputIt last, const allocator_type& allocator = allocator_type());
     // Copy Constructor
     vector(const vector& other);
     // Destructor
@@ -120,24 +120,24 @@ class vector {
 /*********************************************/
 /*           OPERATOR OVERLOADS              */
 /*********************************************/
-template< class T, class Alloc >
+template < class T, class Alloc >
 bool operator==(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-template< class T, class Alloc >
+template < class T, class Alloc >
 bool operator!=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-template< class T, class Alloc >
+template < class T, class Alloc >
 bool operator<(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-template< class T, class Alloc >
+template < class T, class Alloc >
 bool operator<=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-template< class T, class Alloc >
+template < class T, class Alloc >
 bool operator>(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
-template< class T, class Alloc >
+template < class T, class Alloc >
 bool operator>=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs);
 
 /*********************************************/
 /*                  OTHER                    */
 /*********************************************/
 // TODO:
-// template< class T, class Alloc >
+// template < class T, class Alloc >
 // void swap(vector<T, Alloc>& lhs, vector<T, Alloc>& rhs);
 
 };  // namespace ft

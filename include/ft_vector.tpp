@@ -273,7 +273,8 @@ void vector<T, A>::reserve(size_type newCapacity) {
         _allocator.construct(&temp[i], _elements[i]); // Construct (initialize) allocated memory
         _allocator.destroy(&_elements[i]); // Destroy (return back to unitialized state?) old memory
     }
-    _allocator.deallocate(_elements, _capacity);
+    if (_capacity)
+        _allocator.deallocate(_elements, _capacity);
 
     _capacity = newCapacity;
     _elements = temp;
@@ -342,14 +343,24 @@ vector<T, A>::vector(size_type size, const_reference value, const allocator_type
 };
 
 // Range
-// template <typename T, typename A>
-// template<class InputIt>
-// ft::vector<T, A>::vector(InputIt first, InputIt last, const allocator_type& allocator) {
-//     (void) first;
-//     (void) last;
-//     (void) allocator;
-//     return;
-// };
+template <typename T, typename A>
+template <class InputIt>
+vector<T, A>::vector(InputIt first, InputIt last, const allocator_type& allocator) : _allocator(allocator), _elements(NULL), _size(0), _capacity(0) {
+
+    if (first == last)
+        return;
+
+    difference_type ogSize = last - first;
+
+    this->reserve(ogSize);
+    _size = _capacity;
+
+    for (size_type i = 0; first != last; i++) {
+        this->at(i) = *first;
+        first++;
+    }
+    return;
+};
 
 // Copy
 template <typename T, typename A>
