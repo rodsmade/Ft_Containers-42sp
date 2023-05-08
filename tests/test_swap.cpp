@@ -1,7 +1,7 @@
 #include "test_functions_header.hpp"
 
-void test_swap(void) {
-    std::cout << "\n=== Test vector swap() ===" << std::endl;
+static void test_member_swap() {
+    std::cout << "=== Member swap() ===" << std::endl;
     ft::vector<unsigned long>::size_type originalSizeV1 = 5;
     ft::vector<unsigned long>::size_type originalSizeV2 = 10;
 
@@ -32,4 +32,27 @@ void test_swap(void) {
 
     assert(integrityCheckv1, "Integrity check of vector 1 post-swap");
     assert(integrityCheckv2, "Integrity check of vector 2 post-swap");
+}
+
+static void test_non_member_swap() {
+    std::cout << "=== Non-member swap() ===" << std::endl;
+
+    ft::vector<int>::size_type sizeFoo = 3;
+    ft::vector<int>::size_type sizeBar = 5;
+    ft::vector<int>::value_type valueFoo = 100;
+    ft::vector<int>::value_type valueBar = 200;
+
+    ft::vector<int> foo (sizeFoo, valueFoo);   // three ints with a value of 100
+    ft::vector<int> bar (sizeBar, valueBar);   // five ints with a value of 200
+
+    foo.swap(bar);
+
+    assert(foo == ft::vector<int>(sizeBar, valueBar), "Integrity of vector 1 post-swap");
+    assert(bar == ft::vector<int>(sizeFoo, valueFoo), "Integrity of vector 2 post-swap");
+}
+
+void test_swap(void) {
+    std::cout << "\n=== Test vector swap() ===" << std::endl;
+    test_member_swap();
+    test_non_member_swap();
 }
