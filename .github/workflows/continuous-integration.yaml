@@ -1,0 +1,28 @@
+name: CI Pipeline
+# This Pipeline tests source code for:
+# - Compilation (if it is compiling with no warnings or errors)
+# - Unitary tests (if the library works as intended, compared to its STL counterpart).
+# - Memory error detection (detecting memory errors such as memory leaks, invalid memory accesses, and uses of uninitialized memory)
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  all-checks:
+    runs-on: ubuntu-latest
+    steps:
+    - name: install valgrind
+      run: sudo apt-get install valgrind
+    
+    - name: checkout from Github
+      uses: actions/checkout@v3
+    
+    - name: compilation check
+      run: make build
+
+    - name: unit tests check
+      run: make tests
+
+    - name: memory error detection
+      run: make valgrind
