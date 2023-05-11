@@ -37,13 +37,13 @@ void vector<T, A>::assign(size_type count, const_reference value) {
 
 template <typename T, typename A>
 typename vector<T, A>::reference vector<T, A>::at(size_type index) {
-    if (index < 0 || index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
+    if (index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
     return _elements[index];
 };
 
 template <typename T, typename A>
 typename vector<T, A>::const_reference vector<T, A>::at(size_type index) const {
-    if (index < 0 || index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
+    if (index >= _size) throw std::out_of_range(getOutOfRangeErrorMessage(index));
     return _elements[index];
 };
 
