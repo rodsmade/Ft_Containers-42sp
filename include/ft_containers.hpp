@@ -1,9 +1,6 @@
 #ifndef FT_CONTAINERS_HPP
 #define FT_CONTAINERS_HPP
 
-#include "ft_map.hpp"
-#include "ft_set.hpp"
-#include "ft_stack.hpp"
 #include "ft_vector.hpp"
 
 namespace ft {
