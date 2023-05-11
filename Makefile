@@ -13,9 +13,10 @@ TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 											test_access.cpp \
 											test_allocator.cpp \
 											test_assign.cpp \
-											test_back.cpp \
 											test_assignment_operator.cpp \
+											test_back.cpp \
 											test_cleanup.cpp \
+											test_construction.cpp \
 											test_data.cpp \
 											test_emptiness.cpp \
 											test_erase.cpp \
@@ -31,7 +32,7 @@ TEST_FILES =	$(addprefix $(TESTS_DIR)/,	main.cpp \
 											test_size_and_capacity.cpp \
 											test_swap.cpp \
 											test_typedefs.cpp \
-											test_vector_construction.cpp)
+											)
 
 all: tests
 
