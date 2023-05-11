@@ -25,55 +25,61 @@ class vector {
     typedef std::ptrdiff_t difference_type;
     typedef T& reference;
     typedef const T& const_reference;
-    typedef typename A::pointer pointer;
-    typedef typename A::const_pointer const_pointer;
+    typedef typename allocator_type::pointer pointer;
+    typedef typename allocator_type::const_pointer const_pointer;
     typedef T* iterator;
     typedef const T* const_iterator;
     typedef std::reverse_iterator<iterator> reverse_iterator;
     typedef const reverse_iterator const_reverse_iterator;
 
-    // template <typename C>
-    // using Iterator = typename C::iterator;
-
     /*=============================================
     ===            MEMBER FUNCTIONS             ===
     =============================================*/
-    template <class InputIt>
-    void                    assign(InputIt first, InputIt last);
-    void                    assign(size_type count, const_reference value);
-    reference               at(size_type i);
-    const_reference         at(size_type i) const;
-    reference               back();
-    const_reference         back() const;
+    // Iterators:
     iterator                begin();
     const_iterator          begin() const;
-    size_type               capacity(void) const;
-    void                    clear();
-    value_type*             data();
-    const value_type*       data() const;
-    bool                    empty() const;
     iterator                end();
     const_iterator          end() const;
-    iterator                erase(iterator pos);
-    iterator                erase(iterator first, iterator last);
-    reference               front();
-    const_reference         front() const;
-    allocator_type          get_allocator() const;
-    iterator                insert(const_iterator pos, const_reference value);
-    iterator                insert(const_iterator pos, size_type count, const_reference value);
-    template < class InputIt >
-    iterator                insert(const_iterator pos, InputIt first, InputIt last);
-    size_type               max_size() const;
-    void                    pop_back();
-    void                    push_back(const_reference newElem);
     reverse_iterator        rbegin();
     const_reverse_iterator  rbegin() const;
     reverse_iterator        rend();
     const_reverse_iterator  rend() const;
+
+    // Capacity:
+    size_type               capacity(void) const;
+    bool                    empty() const;
+    size_type               max_size() const;
     void                    reserve(size_type newCapacity);
     void                    resize(size_type newSize, value_type value = value_type());
     size_type               size(void) const;
+
+    // Element Access:
+    reference               at(size_type i);
+    const_reference         at(size_type i) const;
+    reference               back();
+    const_reference         back() const;
+    value_type*             data();
+    const value_type*       data() const;
+    reference               front();
+    const_reference         front() const;
+
+    // Modifiers:
+    template <class InputIt>
+    void                    assign(InputIt first, InputIt last);
+    void                    assign(size_type count, const_reference value);
+    void                    clear();
+    iterator                erase(iterator pos);
+    iterator                erase(iterator first, iterator last);
+    iterator                insert(const_iterator pos, const_reference value);
+    iterator                insert(const_iterator pos, size_type count, const_reference value);
+    template < class InputIt >
+    iterator                insert(const_iterator pos, InputIt first, InputIt last);
+    void                    pop_back();
+    void                    push_back(const_reference newElem);
     void                    swap(vector& other);
+
+    // Allocator:
+    allocator_type          get_allocator() const;
 
     /*=============================================
     ===      CONSTRUCTION / DESTRUCTION         ===
