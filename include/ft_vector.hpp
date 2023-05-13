@@ -7,8 +7,6 @@
 #include <sstream>      // std::ostringstream
 #include <stdexcept>    // std::out_of_range
 
-#include "colourise_my_prints.hpp"
-
 namespace ft {
 
 template < typename T, typename A = std::allocator<T> >
