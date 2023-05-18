@@ -87,7 +87,7 @@ static void test_rend() {
 }
 
 
-void test_iterators(void) {
+void test_vector_iterators(void) {
     test_begin();
     test_end();
     test_rbegin();

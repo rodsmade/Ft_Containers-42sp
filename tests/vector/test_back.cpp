@@ -4,7 +4,7 @@ static bool test_by_reference(const ft::vector<double> &ftVector, double expecte
     return (ftVector.back() == expectedValue);
 }
 
-void test_back(void) {
+void test_vector_back(void) {
     std::cout << "\n=== Last element of vector ( back() ) ===" << std::endl;
 
     ft::vector<double> ftVector(42);

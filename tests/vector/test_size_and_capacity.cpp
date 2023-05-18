@@ -1,6 +1,6 @@
 #include "test_functions_header.hpp"
 
-void test_size_and_capacity(void) {
+void test_vector_size_and_capacity(void) {
     std::cout << "\n=== Test size and capacity ===" << std::endl;
 
     ft::vector<int>::size_type intendedSize = 42;

@@ -1,6 +1,6 @@
 #include "test_functions_header.hpp"
 
-void test_max_size(void) {
+void test_vector_max_size(void) {
     std::cout << "\n=== Test maxsize ===" << std::endl;
     std::vector<double> stdVector;
     ft::vector<double> ftVector;

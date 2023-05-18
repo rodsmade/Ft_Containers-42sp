@@ -1,6 +1,6 @@
 #include "test_functions_header.hpp"
 
-void test_allocator(void) {
+void test_vector_allocator(void) {
     std::cout << "\n=== Test get_allocator() ===" << std::endl;
 
     ft::vector<unsigned int> myvector;

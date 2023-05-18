@@ -16,7 +16,7 @@ struct No_default {
     };
 };
 
-// A class that does not have a default constructor.
+// A class that does have a default constructor.
 struct Has_default {
     int _defaultValue;
     Has_default() : _defaultValue(42) {};

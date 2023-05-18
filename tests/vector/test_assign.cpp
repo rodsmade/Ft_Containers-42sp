@@ -1,6 +1,6 @@
 #include "test_functions_header.hpp"
 
-void test_assign(void) {
+void test_vector_assign(void) {
     std::cout << "\n=== Testing vector assignment ===" << std::endl;
     std::cout << "\n  assignment by fill ( assign (size_type n, const value_type& val) )" << std::endl;
     {  // assign by fill version ( assign (size_type n, const value_type& val) ) - Case 0 - new size equal to current capacity

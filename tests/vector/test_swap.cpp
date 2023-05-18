@@ -51,7 +51,7 @@ static void test_non_member_swap() {
     assert(bar == ft::vector<int>(sizeFoo, valueFoo), "Integrity of vector 2 post-swap");
 }
 
-void test_swap(void) {
+void test_vector_swap(void) {
     std::cout << "\n=== Test vector swap() ===" << std::endl;
     test_member_swap();
     test_non_member_swap();

@@ -4,7 +4,7 @@ static bool test_by_reference(const ft::vector<double> &ftVector, double expecte
     return (ftVector.front() == expectedValue);
 }
 
-void test_front(void) {
+void test_vector_front(void) {
     std::cout << "\n=== First Element of vector ( front() ) ===" << std::endl;
 
     ft::vector<double> ftVector;

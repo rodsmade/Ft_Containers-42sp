@@ -4,7 +4,7 @@ static bool test_by_reference(const ft::vector<double> &ftVector, double *expect
     return (ftVector.data() == expectedValue);
 }
 
-void test_data(void) {
+void test_vector_data(void) {
     std::cout << "\n=== Tests raw pointer ( data() ) ===" << std::endl;
 
     ft::vector<double> ftVector(10);

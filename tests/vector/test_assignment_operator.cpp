@@ -1,6 +1,6 @@
 #include "test_functions_header.hpp"
 
-void test_assignment_operator(void) {
+void test_vector_assignment_operator(void) {
     {
         std::cout << "\n=== Assignment Operator ===" << std::endl;
 

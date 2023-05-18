@@ -493,7 +493,7 @@ static void test_range_insert(void) {
     }
 }
 
-void test_insertion(void) {
+void test_vector_insertion(void) {
     std::cout << "\n=== Test insertion methods ( insert() ) ===" << std::endl;
     test_single_insert();
     test_fill_insert();
