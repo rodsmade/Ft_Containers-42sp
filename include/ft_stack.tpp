@@ -7,6 +7,16 @@ namespace ft {
 ===  MEMBER FUNCTIONS                                                        ===
 ==============================================================================*/
 // Element access:
+template <typename T, typename Container>
+typename stack<T, Container>::reference stack<T, Container>::top() {
+    return (_container.front());
+};
+
+template <typename T, typename Container>
+typename stack<T, Container>::const_reference stack<T, Container>::top() const {
+    return (_container.front());
+};
+
 // Capacity:
 template <typename T, typename Container>
 typename stack<T, Container>::size_type stack<T, Container>::size() const {

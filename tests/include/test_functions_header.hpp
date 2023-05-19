@@ -28,5 +28,6 @@ void    test_vector_typedefs(void);
 // Stack tests
 void    test_stack_construction(void);
 void    test_push_and_pop(void);
+void    test_top(void);
 
 #endif

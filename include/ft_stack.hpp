@@ -49,8 +49,6 @@ class stack {
     ===           OPERATOR OVERLOADS            ===
     =============================================*/
     stack&         operator=(const stack& other);
-    reference       operator[](size_type index);
-    const_reference operator[](size_type index) const;
 
 };
 

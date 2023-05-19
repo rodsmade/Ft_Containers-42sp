@@ -5,6 +5,7 @@ int main() {
     // test_stack_typedefs();
     test_stack_construction();
     test_push_and_pop();
+    test_top();
     // test_stack_max_size();
     // test_stack_size_and_capacity();
     // test_stack_resize();
