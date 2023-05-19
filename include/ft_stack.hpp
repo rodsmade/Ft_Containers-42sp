@@ -23,10 +23,10 @@ class stack {
     ===                ALIASES                  ===
     =============================================*/
     typedef Container container_type;
-    typedef Container::value_type value_type;
-    typedef Container::size_type size_type;
-    typedef Container::reference reference;
-    typedef Container::const_reference const_reference;
+    typedef typename Container::value_type value_type;
+    typedef typename Container::size_type size_type;
+    typedef typename Container::reference reference;
+    typedef typename Container::const_reference const_reference;
 
     /*=============================================
     ===            MEMBER FUNCTIONS             ===
@@ -35,11 +35,11 @@ class stack {
     reference top();
     const_reference top() const;
 
-    //Capacity: 
+    //Capacity:
     bool empty() const;
     size_type size() const;
 
-    // Modifiers
+    // Modifiers:
     void push( const value_type& value);
     void pop();
 

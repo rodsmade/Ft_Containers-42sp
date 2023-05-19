@@ -6,10 +6,26 @@ namespace ft {
 /*==============================================================================
 ===  MEMBER FUNCTIONS                                                        ===
 ==============================================================================*/
+// Element access:
+// Capacity:
+template <typename T, typename Container>
+typename stack<T, Container>::size_type stack<T, Container>::size() const {
+    return _container.size();
+};
+
+template <typename T, typename Container>
+bool stack<T, Container>::empty() const {
+    return _container.empty();
+};
 
 /*==============================================================================
 ===  CONSTRUCTION / DESTRUCTION                                              ===
 ==============================================================================*/
+template <typename T, typename Container>
+stack<T, Container>::stack(const Container & container) : _container(container) {};
+
+template <typename T, typename Container>
+stack<T, Container>::~stack(void) {};
 
 /*==============================================================================
 ===  OPERATOR OVERLOADS                                                      ===

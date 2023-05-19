@@ -1,13 +1,5 @@
 #ifndef TEST_FUNCTIONS_PROTOTYPES_HPP
-#define TEST_FUNCTIONS_PROTOTYPES_HPP
-
-#include <vector>
-
-#include "ft_containers.hpp"
-#include "tests_props.hpp"
-
-// Assertion function
-void    assert(bool condition, const std::string& tagline = "");
+# define TEST_FUNCTIONS_PROTOTYPES_HPP
 
 // Vector tests
 void    test_vector_access(void);
@@ -32,5 +24,29 @@ void    test_vector_resize(void);
 void    test_vector_size_and_capacity(void);
 void    test_vector_swap(void);
 void    test_vector_typedefs(void);
+
+// Stack tests
+// void    test_stack_access(void);
+// void    test_stack_allocator(void);
+// void    test_stack_assign(void);
+// void    test_stack_assignment_operator(void);
+// void    test_stack_back(void);
+// void    test_stack_cleanup(void);
+void    test_stack_construction(void);
+// void    test_stack_data(void);
+// void    test_stack_emptiness(void);
+// void    test_stack_erase(void);
+// void    test_stack_front(void);
+// void    test_stack_iterators(void);
+// void    test_stack_insertion(void);
+// void    test_stack_max_size(void);
+// void    test_stack_operator_overloads(void);
+// void    test_stack_pop_back(void);
+// void    test_stack_push_back(void);
+// void    test_stack_reserve(void);
+// void    test_stack_resize(void);
+// void    test_stack_size_and_capacity(void);
+// void    test_stack_swap(void);
+// void    test_stack_typedefs(void);
 
 #endif
