@@ -18,6 +18,19 @@ bool stack<T, Container>::empty() const {
     return _container.empty();
 };
 
+// Modifiers:
+template <typename T, typename Container>
+void stack<T, Container>::push(const value_type& value) {
+    _container.push_front(value);
+    return;
+};
+
+template <typename T, typename Container>
+void stack<T, Container>::pop(void) {
+    _container.pop_front();
+    return;
+};
+
 /*==============================================================================
 ===  CONSTRUCTION / DESTRUCTION                                              ===
 ==============================================================================*/

@@ -1,4 +1,4 @@
-#include "stack_tests_header.hpp"
+#include "stack_tests.hpp"
 
 template <typename T>
 static void test_empty_stack_creation(std::string typeName) {
@@ -69,6 +69,8 @@ static void test_default_constructor(void) {
 }
 
 void test_stack_construction(void) {
+    std::cout << "\n=== Stack construction ===" << std::endl;
+
     test_default_constructor();
     return ;
 }

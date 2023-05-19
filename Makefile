@@ -42,6 +42,7 @@ VECTOR_TEST_FILES =	$(addprefix $(TESTS_DIR)/,	$(TESTS_VECTOR_DIR)/main.cpp \
 
 STACK_TEST_FILES =	$(addprefix $(TESTS_DIR)/,	$(TESTS_STACK_DIR)/main.cpp \
 												$(TESTS_STACK_DIR)/test_construction.cpp \
+												$(TESTS_STACK_DIR)/test_push_and_pop.cpp \
 											)
 
 all:
@@ -57,7 +58,15 @@ test_all: $(TESTS)
 test_all_vg: $(TESTS)
 	@for test in $(TESTS); do \
 		echo "Running $$test with Valgrind"; \
-		valgrind --tool=memcheck --show-leak-kinds=all --leak-check=full --track-origins=yes --show-reachable=yes --undef-value-errors=yes --error-exitcode=42 --quiet ./$$test > /dev/null; \
+		valgrind \
+			--tool=memcheck \
+			--show-leak-kinds=all \
+			--leak-check=full \
+			--track-origins=yes \
+			--show-reachable=yes \
+			--undef-value-errors=yes \
+			--error-exitcode=42 \
+			--quiet ./$$test > /dev/null; \
 		echo ""; \
 	done
 
@@ -68,7 +77,15 @@ test_vector: vector_tests.out
 
 test_vector_vg: vector_tests.out
 	@echo "Running $^ with Valgrind"
-	@valgrind --tool=memcheck --show-leak-kinds=all --leak-check=full --track-origins=yes --show-reachable=yes --undef-value-errors=yes --error-exitcode=42 --quiet ./$^
+	@valgrind \
+		--tool=memcheck \
+		--show-leak-kinds=all \
+		--leak-check=full \
+		--track-origins=yes \
+		--show-reachable=yes \
+		--undef-value-errors=yes \
+		--error-exitcode=42 \
+		--quiet ./$^
 
 vector_tests.out: $(VECTOR_HEADERS) $(VECTOR_TEST_FILES)
 	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_PROPS) $(VECTOR_TEST_FILES) -o $@
@@ -83,22 +100,6 @@ test_stack_vg: stack_tests.out
 
 stack_tests.out: $(STACK_HEADERS) $(STACK_TEST_FILES)
 	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_PROPS) $(STACK_TEST_FILES) -o $@
-
-# valgrind: build
-# 	@for test in $(TESTS); do \
-# 		echo "Running $$test"; \
-# 		./$$test; \
-# 		echo ""; \
-# 	done
-# 	valgrind --tool=memcheck \
-# 		--show-leak-kinds=all \
-# 		--leak-check=full \
-# 		--track-origins=yes \
-# 		--show-reachable=yes \
-# 		--undef-value-errors=yes \
-# 		--error-exitcode=42 \
-# 		--quiet \
-# 		./$(TEST_BIN)
 
 clean:
 	rm -f $(TESTS)

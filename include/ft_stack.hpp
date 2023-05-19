@@ -35,7 +35,7 @@ class stack {
     size_type size() const;
 
     // Modifiers:
-    void push( const value_type& value);
+    void push(const value_type& value);
     void pop();
 
     /*=============================================
