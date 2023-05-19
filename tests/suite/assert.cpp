@@ -1,4 +1,4 @@
-#include "test_functions_header.hpp"
+#include "test_props.hpp"
 
 /*
     If `condition`, prints out TEST_OK. else, prints out TEST_NOK.
@@ -7,7 +7,6 @@
 void assert(bool condition, const std::string& tagline)
 {
     (condition)
-        ? ( std::cout << TEST_OK )
-        : ( std::cout << TEST_NOK );
-    std::cout << tagline << std::endl;
+        ? ( std::cout << TEST_OK << tagline << std::endl)
+        : ( std::cerr << TEST_NOK << tagline << std::endl);
 }

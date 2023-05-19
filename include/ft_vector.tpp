@@ -522,21 +522,6 @@ bool operator>=(const vector<T, Alloc>& lhs, const vector<T, Alloc>& rhs) {
 /*********************************************/
 template < class T, class Alloc >
 void swap(vector<T, Alloc>& lhs, vector<T, Alloc>& rhs) {
-    // if (lhs == rhs) { return; };
-
-    // typename vector<T, Alloc>::value_type* temp = lhs._elements;
-    // typename vector<T, Alloc>::size_type temp_size = lhs._size;
-    // typename vector<T, Alloc>::size_type temp_capacity = lhs._capacity;
-
-    // lhs._elements = rhs._elements;
-    // lhs._size = rhs._size;
-    // lhs._capacity = rhs._capacity;
-
-    // rhs._elements = temp;
-    // rhs._size = temp_size;
-    // rhs._capacity = temp_capacity;
-
-    // return ;
     lhs.swap(rhs);
 };
 

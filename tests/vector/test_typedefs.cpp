@@ -1,4 +1,4 @@
-#include "test_functions_header.hpp"
+#include "vector_tests_header.hpp"
 
 void test_vector_typedefs(void) {
     std::cout << "\n=== Typedefs comparison ===" << std::endl;

@@ -1,4 +1,5 @@
 #include "test_functions_header.hpp"
+#include "vector_tests_header.hpp"
 
 int main() {
     test_vector_typedefs();
