@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 void test_vector_allocator(void) {
     std::cout << "\n=== Test get_allocator() ===" << std::endl;

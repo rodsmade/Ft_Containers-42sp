@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 static void test_protected_read_access(void) {
     std::vector<int> stdVector(42);

@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 template <typename T>
 static void test_empty_vector_creation(std::string typeName) {

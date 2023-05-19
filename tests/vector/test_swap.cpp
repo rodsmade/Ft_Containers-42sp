@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 static void test_member_swap() {
     std::cout << "=== Member swap() ===" << std::endl;

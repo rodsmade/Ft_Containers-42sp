@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 static void test_positional_erase_returns(void) {
     ft::vector<int> ftVector;

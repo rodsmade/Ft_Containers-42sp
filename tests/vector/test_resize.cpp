@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 void test_vector_resize(void) {
     std::cout << "\n=== Test resize ===" << std::endl;

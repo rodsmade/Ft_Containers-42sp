@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 void test_vector_push_back(void) {
     std::cout << "\n=== Test element insertion in vector ( push_back() ) ===" << std::endl;

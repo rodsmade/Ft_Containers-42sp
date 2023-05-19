@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 void test_vector_emptiness(void) {
     std::cout << "\n=== Tests for emptiness ===" << std::endl;

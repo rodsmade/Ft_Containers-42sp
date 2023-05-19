@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 void test_vector_reserve(void) {
     std::cout << "\n=== Test reserve ===" << std::endl;

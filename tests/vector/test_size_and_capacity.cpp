@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 void test_vector_size_and_capacity(void) {
     std::cout << "\n=== Test size and capacity ===" << std::endl;

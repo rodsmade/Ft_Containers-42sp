@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 static void test_operator_equal_to(void) {
     std::cout << "  operator==:" << std::endl;

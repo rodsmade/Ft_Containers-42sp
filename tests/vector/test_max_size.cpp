@@ -1,4 +1,4 @@
-#include "vector_tests_header.hpp"
+#include "vector_tests.hpp"
 
 void test_vector_max_size(void) {
     std::cout << "\n=== Test maxsize ===" << std::endl;
