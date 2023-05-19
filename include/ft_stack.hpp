@@ -1,11 +1,6 @@
 #ifndef FT_STACK_HPP
 #define FT_STACK_HPP
 
-// #include <cstddef>      // std::size_t, std::ptrdiff_t
-// #include <iostream>     // printing, etc.
-// #include <memory>       // std::allocator
-// #include <sstream>      // std::ostringstream
-// #include <stdexcept>    // std::out_of_range
 #include <deque>
 
 namespace ft {

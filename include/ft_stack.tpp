@@ -25,6 +25,9 @@ template <typename T, typename Container>
 stack<T, Container>::stack(const Container & container) : _container(container) {};
 
 template <typename T, typename Container>
+stack<T, Container>::stack(const stack& other) : _container(other._container) {};
+
+template <typename T, typename Container>
 stack<T, Container>::~stack(void) {};
 
 /*==============================================================================
