@@ -54,10 +54,21 @@ test_all: $(TESTS)
 		echo ""; \
 	done
 
+test_all_vg: $(TESTS)
+	@for test in $(TESTS); do \
+		echo "Running $$test with Valgrind"; \
+		valgrind --tool=memcheck --show-leak-kinds=all --leak-check=full --track-origins=yes --show-reachable=yes --undef-value-errors=yes --error-exitcode=42 --quiet ./$$test > /dev/null; \
+		echo ""; \
+	done
+
 test_vector: vector_tests.out
 	@echo "Running $^"
 	@./$^ > /dev/null
 	@echo "(if nothing was printed, all is good !!)"
+
+test_vector_vg: vector_tests.out
+	@echo "Running $^ with Valgrind"
+	@valgrind --tool=memcheck --show-leak-kinds=all --leak-check=full --track-origins=yes --show-reachable=yes --undef-value-errors=yes --error-exitcode=42 --quiet ./$^
 
 vector_tests.out: $(VECTOR_HEADERS) $(VECTOR_TEST_FILES)
 	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_PROPS) $(VECTOR_TEST_FILES) -o $@
@@ -65,6 +76,10 @@ vector_tests.out: $(VECTOR_HEADERS) $(VECTOR_TEST_FILES)
 test_stack: stack_tests.out
 	@echo "Running $^"
 	@./$^
+
+test_stack_vg: stack_tests.out
+	@echo "Running $^ with Valgrind"
+	@valgrind --tool=memcheck --show-leak-kinds=all --leak-check=full --track-origins=yes --show-reachable=yes --undef-value-errors=yes --error-exitcode=42 --quiet ./$^
 
 stack_tests.out: $(STACK_HEADERS) $(STACK_TEST_FILES)
 	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_PROPS) $(STACK_TEST_FILES) -o $@
