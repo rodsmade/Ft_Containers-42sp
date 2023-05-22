@@ -19,13 +19,13 @@ typename stack<T, Container>::const_reference stack<T, Container>::top() const {
 
 // Capacity:
 template <typename T, typename Container>
-typename stack<T, Container>::size_type stack<T, Container>::size() const {
-    return _container.size();
+bool stack<T, Container>::empty() const {
+    return _container.empty();
 };
 
 template <typename T, typename Container>
-bool stack<T, Container>::empty() const {
-    return _container.empty();
+typename stack<T, Container>::size_type stack<T, Container>::size() const {
+    return _container.size();
 };
 
 // Modifiers:

@@ -23,37 +23,52 @@ static void test_against_std_empty_stack_creation(std::string typeName) {
     }
 }
 
-// static void test_copy_constructor() {
+static void test_copy_constructor() {
+    std::cout << "\n  Copy Constructor\t==>\tstack(const stack& other):" << std::endl;
+    {
+        ft::stack<double> ftStack;
 
-    // ATTENTION: não tem como testar copy constructor sem antes implementar os push e pop
+        // create stack
+        for (int i = 0; i < 10; i++)
+            ftStack.push(42 + i);
 
-//     std::cout << "\n  Copy Constructor ==>\tstack(const stack& other):" << std::endl;
+        ft::stack<double> copyStack(ftStack);
 
-//     ft::stack<double>::size_type intendedSize = 42;
-//     ft::stack<double> testStack(intendedSize);
-//     ft::stack<double> copyStack(testStack);
+        bool consistencyCheck = true;
 
-//     bool elementsTest = true;
+        for (int i = 0; i < 10; i++) {
+            consistencyCheck = consistencyCheck && (ftStack.top() == copyStack.top());
+            ftStack.pop();
+            copyStack.pop();
+        }
 
-//     assert(copyStack.size() == testStack.size(), "Copy constructor size check");
-//     assert(copyStack.capacity() == testStack.capacity(), "Copy constructor capacity check");
+        assert(copyStack.size() == ftStack.size(), "Copy constructor size check");
+        assert(consistencyCheck, "Copied elements integrity check");
+    }
+    {
+        ft::stack<double> ftStack;
 
-//     for (unsigned int i = 0; i < copyStack.size(); i++) {
-//         if (copyStack[i] != testStack[i]) {
-//             elementsTest = false;
-//             break;
-//         }
-//     }
-//     assert(elementsTest, "Copied elements assertion check");
+        // create stack
+        for (int i = 0; i < 10; i++)
+            ftStack.push(42 + i);
 
-//     testStack[0] = 42.0;
-//     copyStack[1] = 1.0;
+        ft::stack<double> copyStack(ftStack);
 
-//     assert(testStack[0] != copyStack[0] && testStack[1] != copyStack[1], "Test for hard copy");
-// };
+        ftStack.pop();
+        ftStack.pop();
+        ftStack.pop();
+        ftStack.pop();
+        ftStack.pop();
+
+        assert(ftStack.size() != copyStack.size()
+                && ftStack.top() != copyStack.top()
+                , "Check for hard copy");
+
+    }
+};
 
 static void test_default_constructor(void) {
-    std::cout << "  Default Constructor ==>\tstack<T, Container>(void):" << std::endl;
+    std::cout << "  Default Constructor\t==>\tstack<T, Container>(void):" << std::endl;
     test_empty_stack_creation<double>("double");
     test_empty_stack_creation<float>("float");
     test_empty_stack_creation<std::string>("std::string");
@@ -72,5 +87,6 @@ void test_stack_construction(void) {
     std::cout << "\n=== Stack construction ===" << std::endl;
 
     test_default_constructor();
+    test_copy_constructor();
     return ;
 }
