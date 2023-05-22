@@ -56,6 +56,11 @@ stack<T, Container>::~stack(void) {};
 /*==============================================================================
 ===  OPERATOR OVERLOADS                                                      ===
 ==============================================================================*/
+template <typename T, typename Container>
+stack<T, Container> &stack<T, Container>::operator=(const stack& other) {
+    _container = other._container;
+    return (*this);
+};
 
 /*==============================================================================
 ===  PRIVATE FUNCTIONS                                                       ===
