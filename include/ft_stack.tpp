@@ -74,15 +74,21 @@ stack<T, Container> &stack<T, Container>::operator=(const stack& other) {
 /*****************************************************************************/
 template< class T, class Container >
 bool operator==(const stack<T, Container>& lhs, const stack<T, Container>& rhs) {
-    // TODO
-    // for (typename stack<T, Container>::size_type i = 0; i < lhs.size(); i++) {
-    //     if (i == rhs.size())
-    //         break ;
-    //     if (lhs.at(i) != rhs.at(i))
-    //         return (false);
-    // }
+    if (lhs.size() != rhs.size())
+        return (false);
 
-    return (lhs.size() == rhs.size());
+    stack<T, Container> lhs_copy(lhs);
+    stack<T, Container> rhs_copy(rhs);
+
+
+    while (!(lhs_copy.empty() || rhs_copy.empty())) {
+        if (lhs_copy.top() != rhs_copy.top())
+            return (false);
+        lhs_copy.pop();
+        rhs_copy.pop();
+    }
+
+    return (true);
 };
 
 template< class T, class Container >
@@ -90,19 +96,9 @@ bool operator!=(const stack<T, Container>& lhs, const stack<T, Container>& rhs){
     return (!(lhs == rhs));
 };
 
-template< class T, class Container >
-bool operator<(const stack<T, Container>& lhs, const stack<T, Container>& rhs) {
-    // TODO:
-    // for (typename stack<T, Container>::size_type i = 0; i < lhs.size(); i++) {
-    //     if (i == rhs.size())
-    //         break ;
-    //     if (lhs.at(i) < rhs.at(i))
-    //         return (true);
-    //     else if (lhs.at(i) > rhs.at(i))
-    //         return (false);
-    // }
-
-    return (lhs.size() < rhs.size());
+template< class T, class Container>
+bool operator<(const ft::stack<T, Container>& lhs, const ft::stack<T, Container>& rhs) {
+    return (lhs._container < rhs._container);
 };
 
 template< class T, class Container >

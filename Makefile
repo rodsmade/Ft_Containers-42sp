@@ -43,6 +43,7 @@ VECTOR_TEST_FILES =	$(addprefix $(TESTS_DIR)/,	$(TESTS_VECTOR_DIR)/main.cpp \
 STACK_TEST_FILES =	$(addprefix $(TESTS_DIR)/,	$(TESTS_STACK_DIR)/main.cpp \
 												$(TESTS_STACK_DIR)/test_assignment_operator.cpp \
 												$(TESTS_STACK_DIR)/test_construction.cpp \
+												$(TESTS_STACK_DIR)/test_operator_overloads.cpp \
 												$(TESTS_STACK_DIR)/test_push_and_pop.cpp \
 												$(TESTS_STACK_DIR)/test_top.cpp \
 											)

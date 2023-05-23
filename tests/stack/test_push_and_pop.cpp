@@ -58,7 +58,7 @@ static void basic_test() {
 //     assert(ftStack.size() == stdStack.size() && ftStack.empty() == stdStack.empty(), "Testing size after many pops on empty stack against std stack");
 // }
 
-void test_push_and_pop(void) {
+void test_stack_push_and_pop(void) {
     std::cout << "\n=== Push and pop operations ===" << std::endl;
     basic_test();
     // tests_against_std();

@@ -4,7 +4,7 @@ static bool test_by_reference(const ft::stack<double> &ftStack, double expectedV
     return (ftStack.top() == expectedValue);
 }
 
-void test_top(void) {
+void test_stack_top(void) {
     std::cout << "\n=== Top operation ===" << std::endl;
 
     ft::stack<double> ftStack;
