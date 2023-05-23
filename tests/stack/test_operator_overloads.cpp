@@ -78,79 +78,118 @@ static void test_operator_less_than(void) {
     assert((a < b) == true, "Same size, one element in a is smaller than b");
 
     a.pop();
-    assert((a < b) == true, "A is smaller in size than b");
+    assert((a < b) == true, "A is smaller in size than b, all elements are the same");
     assert((b < a) == false, "B is not smaller in size than a");
+
+    a.pop();
+    a.pop();
+    a.push(420);
+    assert((a < b) == false, "A is smaller in size than b BUT a's top is greater than b's");
+    assert((b < a) == true, "B is bigger in size than a BUT b's top is smaller than a's");
 };
 
-// static void test_operator_less_than_or_equal_to(void) {
-//     std::cout << "\n  operator<=:" << std::endl;
-//     {
-//         ft::stack<double> a;
-//         ft::stack<double> b;
+static void test_operator_less_than_or_equal_to(void) {
+    std::cout << "\n  operator<=:" << std::endl;
 
-//         assert((a <= b) == true, "Comparing empty stacks");
-//     }
-//     ft::stack<double> a(42, 42.0);
-//     ft::stack<double> b(42, 42.0);
+    ft::stack<double> a;
+    ft::stack<double> b;
 
-//     assert((a <= b) == true, "Equal stacks comparison");
+    assert((a <= b) == true, "Comparing empty stacks");
 
-//     a.at(41) = 41;
-//     assert((a <= b) == true, "Same size, one element in a is smaller than b");
+    for (int i = 1; i <= 42; i++) {
+        a.push(i);
+        b.push(i);
+    }
 
-//     a.resize(41);
-//     assert((a <= b) == true, "A is smaller in size than b");
-//     assert((b <= a) == false, "B is not smaller in size than a");
-// }
+    assert((a <= b) == true, "Equal stacks comparison");
 
-// static void test_operator_greater_than(void) {
-//     std::cout << "\n  operator>:" << std::endl;
-//     {
-//         ft::stack<double> a;
-//         ft::stack<double> b;
+    a.pop();
+    a.push(0);
+    assert((a <= b) == true, "Same size, one element in a is smaller than b");
 
-//         assert((a > b) == false, "Comparing empty stacks");
-//     }
-//     ft::stack<double> a(42, 42.0);other
-//     ft::stack<double> b(42, 42.0);
+    a.pop();
+    assert((a <= b) == true, "A is smaller in size than b, all elements are the same");
+    assert((b <= a) == false, "B is not smaller in size than a");
 
-//     assert((a > b) == false, "Equal stacks comparison");
+    a.pop();
+    a.pop();
+    a.push(420);
+    assert((a <= b) == false, "A is smaller in size than b BUT a's top is greater than b's");
+    assert((b <= a) == true, "B is bigger in size than a BUT b's top is smaller than a's");
+};
 
-//     a.at(41) = 41;
-//     assert((a > b) == false, "Same size, one element in a is smaller than b");
+static void test_operator_greater_than(void) {
+   std::cout << "\n  operator>:" << std::endl;
 
-//     a.resize(41);
-//     assert((a > b) == false, "A is smaller in size than b");
-//     assert((b > a) == true, "B is not smaller in size than a");
-// };
+    ft::stack<double> a;
+    ft::stack<double> b;
 
-// static void test_operator_greater_than_or_equal_to(void) {
-//     std::cout << "\n  operator>=:" << std::endl;
-//     {
-//         ft::stack<double> a;
-//         ft::stack<double> b;
+    assert((a > b) == false, "Comparing empty stacks");
 
-//         assert((a >= b) == true, "Comparing empty stacks");
-//     }
-//     ft::stack<double> a(42, 42.0);
-//     ft::stack<double> b(42, 42.0);
+    for (int i = 1; i <= 42; i++) {
+        a.push(i);
+        b.push(i);
+    }
 
-//     assert((a >= b) == true, "Equal stacks comparison");
+    assert((a > b) == false, "Equal stacks comparison");
 
-//     a.at(41) = 41;
-//     assert((a >= b) == false, "Same size, one element in a is smaller than b");
+    a.pop();
+    a.push(420);
+    assert((a > b) == true, "Same size, one element in a is greater than b");
 
-//     a.resize(41);
-//     assert((a >= b) == false, "A is smaller in size than b");
-//     assert((b >= a) == true, "B is not smaller in size than a");
-// };
+    a.pop();
+    a.push(42);
+    a.push(43);
+    assert((a > b) == true, "A is greater in size than b, all elements are the same");
+    assert((b > a) == false, "B is not greater in size than a");
+
+    a.pop();
+    a.pop();
+    a.pop();
+    a.push(420);
+    assert((a > b) == true, "A is smaller in size than b BUT a's top is greater than b's");
+    assert((b > a) == false, "B is bigger in size than a BUT b's top is smaller than a's");
+};
+
+static void test_operator_greater_than_or_equal_to(void) {
+   std::cout << "\n  operator>:" << std::endl;
+
+    ft::stack<double> a;
+    ft::stack<double> b;
+
+    assert((a >= b) == true, "Comparing empty stacks");
+
+    for (int i = 1; i <= 42; i++) {
+        a.push(i);
+        b.push(i);
+    }
+
+    assert((a >= b) == true, "Equal stacks comparison");
+
+    a.pop();
+    a.push(420);
+    assert((a >= b) == true, "Same size, one element in a is greater than b");
+
+    a.pop();
+    a.push(42);
+    a.push(43);
+    assert((a >= b) == true, "A is greater in size than b, all elements are the same");
+    assert((b >= a) == false, "B is not greater in size than a");
+
+    a.pop();
+    a.pop();
+    a.pop();
+    a.push(420);
+    assert((a >= b) == true, "A is smaller in size than b BUT a's top is greater than b's");
+    assert((b >= a) == false, "B is bigger in size than a BUT b's top is smaller than a's");
+};
 
 void test_stack_operator_overloads(void) {
     std::cout << "\n=== Test operator overloads ===" << std::endl;
     test_operator_equal_to();
     test_operator_not_equal_to();
     test_operator_less_than();
-    // test_operator_less_than_or_equal_to();
-    // test_operator_greater_than();
-    // test_operator_greater_than_or_equal_to();
+    test_operator_less_than_or_equal_to();
+    test_operator_greater_than();
+    test_operator_greater_than_or_equal_to();
 }

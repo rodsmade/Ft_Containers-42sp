@@ -14,13 +14,18 @@ class stack {
     =============================================*/
     Container _container;
 
-    // friend bool operator==(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
-    // friend bool operator!=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
     template <typename U, typename C>
-    friend bool operator<(const ft::stack<U, C>& lhs, const ft::stack<U, C>& rhs);
-    // friend bool operator<=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
-    // friend bool operator>(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
-    // friend bool operator>=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
+    friend bool operator==(const stack<U, C>& lhs, const stack<U, C>& rhs);
+    template <typename U, typename C>
+    friend bool operator!=(const stack<U, C>& lhs, const stack<U, C>& rhs);
+    template <typename U, typename C>
+    friend bool operator<(const stack<U, C>& lhs, const stack<U, C>& rhs);
+    template <typename U, typename C>
+    friend bool operator<=(const stack<U, C>& lhs, const stack<U, C>& rhs);
+    template <typename U, typename C>
+    friend bool operator>(const stack<U, C>& lhs, const stack<U, C>& rhs);
+    template <typename U, typename C>
+    friend bool operator>=(const stack<U, C>& lhs, const stack<U, C>& rhs);
 
    public:
     /*=============================================
@@ -71,10 +76,8 @@ template< class T, class Container >
 bool operator==(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
 template< class T, class Container >
 bool operator!=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
-
 template< class T, class Container >
 bool operator<(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
-
 template< class T, class Container >
 bool operator<=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
 template< class T, class Container >
