@@ -39,10 +39,10 @@ all: tests
 build: $(HEADERS) $(TEST_FILES)
 	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_FILES) -o $(TEST_BIN)
 
-run: build
+test_all: build
 	./$(TEST_BIN)
 
-valgrind: build
+test_all_vg: build
 	valgrind --tool=memcheck \
 		--show-leak-kinds=all \
 		--leak-check=full \
