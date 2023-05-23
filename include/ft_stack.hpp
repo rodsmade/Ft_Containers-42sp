@@ -7,12 +7,6 @@ namespace ft {
 
 template <typename T, typename Container = std::deque<T> >
 class stack {
-    // friend bool operator==(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
-    // friend bool operator!=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
-    // friend bool operator<(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
-    // friend bool operator<=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
-    // friend bool operator>(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
-    // friend bool operator>=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
 
    protected:
     /*=============================================
@@ -20,9 +14,13 @@ class stack {
     =============================================*/
     Container _container;
 
-    friend bool operator<(const ft::stack<T, Container>& lhs, const ft::stack<T, Container>& rhs) {
-    return (lhs._container < rhs._container);
-};
+    // friend bool operator==(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
+    // friend bool operator!=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
+    template <typename U, typename C>
+    friend bool operator<(const ft::stack<U, C>& lhs, const ft::stack<U, C>& rhs);
+    // friend bool operator<=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
+    // friend bool operator>(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
+    // friend bool operator>=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
 
    public:
     /*=============================================
@@ -73,8 +71,10 @@ template< class T, class Container >
 bool operator==(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
 template< class T, class Container >
 bool operator!=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
-// template< class T, class Container >
-// bool operator<(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
+
+template< class T, class Container >
+bool operator<(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
+
 template< class T, class Container >
 bool operator<=(const stack<T, Container>& lhs, const stack<T, Container>& rhs);
 template< class T, class Container >
