@@ -1,3 +1,14 @@
+# ANSI COLOURS
+RED := \033[0;31m
+GREEN := \033[0;32m
+YELLOW := \033[0;33m
+BLUE := \033[0;34m
+RESET := \033[0m
+
+# ANSI TEXT FORMATTING
+BOLD := \033[1m
+UNDERLINE := \033[4m
+
 CC = c++ -Wall -Wextra -Werror -std=c++98 -g
 
 TESTS = vector_tests.out stack_tests.out #map_tests.out set_tests.out
@@ -48,17 +59,17 @@ STACK_TEST_FILES =	$(addprefix $(TESTS_DIR)/,	$(TESTS_STACK_DIR)/main.cpp \
 												$(TESTS_STACK_DIR)/test_top.cpp \
 											)
 
-all:
-	@echo aaaaaaaAaaAaaAAaa
+build: $(TESTS)
+	@echo "$(GREEN)$(BOLD)All tests$(RESET) built $(UNDERLINE)successfully$(RESET)! ✅"
 
-test_all: $(TESTS)
+test_all: build
 	@for test in $(TESTS); do \
 		echo "Running $$test"; \
 		./$$test > /dev/null; \
 		echo ""; \
 	done
 
-test_all_vg: $(TESTS)
+test_all_vg: build
 	@for test in $(TESTS); do \
 		echo "Running $$test with Valgrind"; \
 		valgrind \
