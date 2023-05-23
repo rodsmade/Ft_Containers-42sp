@@ -1,4 +1,4 @@
-#include "test_functions_header.hpp"
+#include "vector_tests.hpp"
 
 static void test_protected_read_access(void) {
     std::vector<int> stdVector(42);
@@ -112,7 +112,7 @@ static void test_unprotected_access() {
     // Unprotected write access for invalid indices won't be tested, for i do not wish to jumble up any memory.
 }
 
-void test_access(void) {
+void test_vector_access(void) {
     std::cout << "\n=== Test access functions ( at() && operator[] ) ===" << std::endl;
 
     test_protected_read_access();

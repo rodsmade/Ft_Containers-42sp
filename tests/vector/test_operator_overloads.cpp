@@ -1,4 +1,4 @@
-#include "test_functions_header.hpp"
+#include "vector_tests.hpp"
 
 static void test_operator_equal_to(void) {
     std::cout << "  operator==:" << std::endl;
@@ -155,7 +155,7 @@ static void test_operator_greater_than_or_equal_to(void) {
     assert((b >= a) == true, "B is not smaller in size than a");
 };
 
-void test_operator_overloads(void) {
+void test_vector_operator_overloads(void) {
     std::cout << "\n=== Test operator overloads ===" << std::endl;
     test_operator_equal_to();
     test_operator_not_equal_to();

@@ -1,6 +1,6 @@
-#include "test_functions_header.hpp"
+#include "vector_tests.hpp"
 
-void test_cleanup(void) {
+void test_vector_cleanup(void) {
     std::cout << "\n=== Tests the cleaning up process of a vector ===" << std::endl;
     std::vector<int> stdVector;
     ft::vector<int> ftVector;

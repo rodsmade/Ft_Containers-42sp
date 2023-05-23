@@ -1,6 +1,6 @@
-#include "test_functions_header.hpp"
+#include "vector_tests.hpp"
 
-void test_reserve(void) {
+void test_vector_reserve(void) {
     std::cout << "\n=== Test reserve ===" << std::endl;
 
     ft::vector<int> ftVector(42);

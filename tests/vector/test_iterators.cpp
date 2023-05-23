@@ -1,4 +1,4 @@
-#include "test_functions_header.hpp"
+#include "vector_tests.hpp"
 
 static void test_begin_by_reference(const ft::vector<int> &ftVector, int expectedValue) {
     ft::vector<int>::const_iterator it = ftVector.begin();
@@ -87,7 +87,7 @@ static void test_rend() {
 }
 
 
-void test_iterators(void) {
+void test_vector_iterators(void) {
     test_begin();
     test_end();
     test_rbegin();

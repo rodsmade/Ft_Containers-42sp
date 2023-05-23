@@ -1,6 +1,6 @@
-#include "test_functions_header.hpp"
+#include "vector_tests.hpp"
 
-void test_resize(void) {
+void test_vector_resize(void) {
     std::cout << "\n=== Test resize ===" << std::endl;
 
     ft::vector<int> ftVector(42);

@@ -1,4 +1,4 @@
-#include "test_functions_header.hpp"
+#include "vector_tests.hpp"
 
 static void test_positional_erase_returns(void) {
     ft::vector<int> ftVector;
@@ -109,36 +109,9 @@ static void test_range_erase(void) {
 
 }
 
-void test_erase(void) {
+void test_vector_erase(void) {
     std::cout << "\n=== Tests for erase() ===";
     test_positional_erase();
     test_positional_erase_returns();
     test_range_erase();
 }
-
-// void print_container(const std::vector<int>& c) 
-// {
-//     for (int i : c)
-//         std::cout << i << " ";
-//     std::cout << '\n';
-// }
- 
-// int main( )
-// {
-//     std::vector<int> c{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-//     print_container(c);
- 
- 
-//     c.erase(c.begin() + 2, c.begin() + 5);
-//     print_container(c);
- 
-//     // Erase all even numbers
-//     for (std::vector<int>::iterator it = c.begin(); it != c.end();)
-//     {
-//         if (*it % 2 == 0)
-//             it = c.erase(it);
-//         else
-//             ++it;
-//     }
-//     print_container(c);
-// }

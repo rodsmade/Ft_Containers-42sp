@@ -1,4 +1,4 @@
-#include "test_functions_header.hpp"
+#include "vector_tests.hpp"
 
 template <typename T>
 static void test_empty_vector_creation(std::string typeName) {
@@ -7,7 +7,7 @@ static void test_empty_vector_creation(std::string typeName) {
 
         assert(ftVector.size() == 0 && ftVector.capacity() == 0 && ftVector.empty(), "Empty ft::vector<" + typeName + "> creation");
     } catch (const std::exception& e) {
-        std::cout << TEST_NOK << e.what() << std::endl;
+        std::cerr << TEST_NOK << e.what() << std::endl;
     }
 }
 
@@ -19,7 +19,7 @@ static void test_against_std_empty_vector_creation(std::string typeName) {
 
         assert(ftVector.size() == stdVector.size() && ftVector.capacity() == stdVector.capacity() && ftVector.empty() == stdVector.empty(), "Empty ft::vector<" + typeName + "> against empty std::vector<" + typeName + "> creation");
     } catch (const std::exception& e) {
-        std::cout << TEST_NOK << e.what() << std::endl;
+        std::cerr << TEST_NOK << e.what() << std::endl;
     }
 }
 
@@ -80,7 +80,7 @@ static void test_size_type_constructor(void) {
         try {
             ft::vector<double>::size_type intendedSize = -1;
             ft::vector<double> ftVector(intendedSize);
-            std::cout << TEST_NOK;
+            std::cerr << TEST_NOK;
         } catch (const std::exception& e) {
             std::cout << TEST_OK;
             ftExceptionMessage = e.what();
