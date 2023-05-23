@@ -118,6 +118,6 @@ stack_tests.out: $(STACK_HEADERS) $(STACK_TEST_FILES)
 clean:
 	rm -f $(TESTS)
 
-re: fclean all
+re: clean build
 
-.PHONY: all build clean re run valgrind
+.PHONY: build test_all test_all_vg test_vector test_vector_vg test_stack test_stack_vg clean re
