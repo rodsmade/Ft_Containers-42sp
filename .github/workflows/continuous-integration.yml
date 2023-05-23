@@ -9,20 +9,28 @@ on:
     branches: [ "main" ]
 
 jobs:
-  all-checks:
+  compilation-check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout from Github
+      uses: actions/checkout@v3
+    - name: compilation check
+      run: make build
+
+  unit-tests-checks:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout from Github
+      uses: actions/checkout@v3
+    - name: unit tests check
+      run: make test_all
+
+  valgrind-checks:
     runs-on: ubuntu-latest
     steps:
     - name: install valgrind
       run: sudo apt-get install valgrind
-    
     - name: checkout from Github
       uses: actions/checkout@v3
-    
-    - name: compilation check
-      run: make build
-
-    - name: unit tests check
-      run: make tests
-
     - name: memory error detection
-      run: make valgrind
+      run: make test_all_vg
