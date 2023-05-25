@@ -10,20 +10,31 @@
 # define TEST_NOK "[ " BOLD RED "NOK" RESET " ]\t"
 
 // A class that does not have a default constructor.
-struct No_default {
+class No_default {
+   private:
     int _value;
-    No_default(int arg) {
-        _value = arg;
-    };  // the only constructor for No_default
-    bool operator==(const No_default& other) {
-        return (_value == other._value);
-    };
+   public:
+    No_default(int arg) : _value(arg) {};  // the only constructor for No_default
+    bool operator==(const No_default &other) const { return (_value == other._value); };
+    bool operator!=(const No_default &other) const { return (!(_value == other._value)); };
+    bool operator<(const No_default &other) const { return (_value < other._value); };
+    bool operator<=(const No_default &other) const { return (_value < other._value || _value == other._value); };
+    bool operator>(const No_default &other) const { return (!_value <= other._value); };
+    bool operator>=(const No_default &other) const { return (!(_value < other._value)); };
 };
 
 // A class that does have a default constructor.
 struct Has_default {
-    int _defaultValue;
-    Has_default() : _defaultValue(42) {};
+   private:
+    int _value;
+   public:
+    Has_default() : _value(42) {};
+    bool operator==(const Has_default &other) const { return (_value == other._value); };
+    bool operator!=(const Has_default &other) const { return (!(_value == other._value)); };
+    bool operator<(const Has_default &other) const { return (_value < other._value); };
+    bool operator<=(const Has_default &other) const { return (_value < other._value || _value == other._value); };
+    bool operator>(const Has_default &other) const { return (!_value <= other._value); };
+    bool operator>=(const Has_default &other) const { return (!(_value < other._value)); };
 };
 
 // Templated structs to test for types equality:
