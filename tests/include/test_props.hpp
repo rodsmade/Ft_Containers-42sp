@@ -15,6 +15,11 @@ class No_default {
     int _value;
    public:
     No_default(int arg) : _value(arg) {};  // the only constructor for No_default
+    const No_default &operator=(const No_default &other) {
+        if (*this != other)
+            this->_value = other._value;
+        return (*this);
+    };
     bool operator==(const No_default &other) const { return (_value == other._value); };
     bool operator!=(const No_default &other) const { return (!(_value == other._value)); };
     bool operator<(const No_default &other) const { return (_value < other._value); };
@@ -29,6 +34,11 @@ struct Has_default {
     int _value;
    public:
     Has_default() : _value(42) {};
+    const Has_default &operator=(const Has_default &other) {
+        if (*this != other)
+            this->_value = other._value;
+        return (*this);
+    };
     bool operator==(const Has_default &other) const { return (_value == other._value); };
     bool operator!=(const Has_default &other) const { return (!(_value == other._value)); };
     bool operator<(const Has_default &other) const { return (_value < other._value); };
