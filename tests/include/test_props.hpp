@@ -24,7 +24,7 @@ class No_default {
     bool operator!=(const No_default &other) const { return (!(_value == other._value)); };
     bool operator<(const No_default &other) const { return (_value < other._value); };
     bool operator<=(const No_default &other) const { return (_value < other._value || _value == other._value); };
-    bool operator>(const No_default &other) const { return (!_value <= other._value); };
+    bool operator>(const No_default &other) const { return (!(_value <= other._value)); };
     bool operator>=(const No_default &other) const { return (!(_value < other._value)); };
 };
 
@@ -43,7 +43,7 @@ struct Has_default {
     bool operator!=(const Has_default &other) const { return (!(_value == other._value)); };
     bool operator<(const Has_default &other) const { return (_value < other._value); };
     bool operator<=(const Has_default &other) const { return (_value < other._value || _value == other._value); };
-    bool operator>(const Has_default &other) const { return (!_value <= other._value); };
+    bool operator>(const Has_default &other) const { return (!(_value <= other._value)); };
     bool operator>=(const Has_default &other) const { return (!(_value < other._value)); };
 };
 

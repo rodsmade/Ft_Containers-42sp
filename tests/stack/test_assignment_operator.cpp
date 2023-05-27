@@ -94,40 +94,48 @@ void test_stack_assignment_operator(void) {
 
         assert(consistencyCheck, "Assigned elements integrity check for assignedStack previously greater than testStack");
     }
-    // {
-    //     ft::stack<double> testStack(42);
-    //     ft::stack<double> assignedStack(21);
-        
-    //     assignedStack = testStack;
-    //     assert(assignedStack.size() == testStack.size(), "Source stack greater than destination stack: Size check");
-    //     assert(assignedStack.capacity() == testStack.capacity(), "Source stack greater than destination stack: Capacity check");
+    {
+        ft::stack<double> testStack;
+        for (int i = 0; i < 42; i++)
+            testStack.push(1.0 + i);
 
-    //     bool consistencyCheck = true;
-    //     for (unsigned int i = 0; i < assignedStack.size(); i++) {
-    //         if (assignedStack[i] != testStack[i]) {
-    //             consistencyCheck = false;
-    //             break;
-    //         }
-    //     }
-    //     assert(consistencyCheck, "Source stack greater than destination stack: Assigned elements assertion check");
-    // }
-    // {
-    //     ft::stack<double> testStack(21);
-    //     ft::stack<double> assignedStack(42);
-        
-    //     assignedStack = testStack;
-    //     assert(assignedStack.size() == testStack.size(), "Source stack smaller than destination stack: Size check");
-    //     assert(assignedStack.capacity() == testStack.capacity(), "Source stack smaller than destination stack: Capacity check");
+        ft::stack<double> assignedStack;
+        for (int i = 0; i < 21; i++)
+            testStack.push(1.0 + i);
 
-    //     bool consistencyCheck = true;
-    //     for (unsigned int i = 0; i < assignedStack.size(); i++) {
-    //         if (assignedStack[i] != testStack[i]) {
-    //             consistencyCheck = false;
-    //             break;
-    //         }
-    //     }
-    //     assert(consistencyCheck, "Source stack smaller than destination stack: Assigned elements assertion check");
-    // }
+        assignedStack = testStack;
+        assert(assignedStack.size() == testStack.size(), "Source stack greater than destination stack: Size check");
+
+        bool consistencyCheck = true;
+        while (!assignedStack.empty()) {
+            consistencyCheck = consistencyCheck && (assignedStack.top() == testStack.top());
+            assignedStack.pop();
+            testStack.pop();
+        }
+
+        assert(consistencyCheck, "Source stack greater than destination stack: Assigned elements assertion check");
+    }
+    {
+        ft::stack<double> testStack;
+        for (int i = 0; i < 42; i++)
+            testStack.push(1.0 + i);
+
+        ft::stack<double> assignedStack;
+        for (int i = 0; i < 21; i++)
+            testStack.push(1.0 + i);
+
+        assignedStack = testStack;
+        assert(assignedStack.size() == testStack.size(), "Source stack smaller than destination stack: Size check");
+
+        bool consistencyCheck = true;
+        while (!assignedStack.empty()) {
+            consistencyCheck = consistencyCheck && (assignedStack.top() == testStack.top());
+            assignedStack.pop();
+            testStack.pop();
+        }
+
+        assert(consistencyCheck, "Source stack smaller than destination stack: Assigned elements assertion check");
+    }
 
     return;
 }
