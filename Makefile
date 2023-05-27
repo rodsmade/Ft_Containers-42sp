@@ -11,7 +11,7 @@ UNDERLINE := \033[4m
 
 CC = c++ -Wall -Wextra -Werror -std=c++98 -g
 
-TESTS = vector_tests.out stack_tests.out #map_tests.out set_tests.out
+TESTS = vector_tests.out stack_tests.out map_tests.out# set_tests.out
 
 BINARIES_DIR = bin
 HEADERS_DIR = include
@@ -19,9 +19,11 @@ TESTS_DIR = tests
 TESTS_SUITE_DIR = suite
 TESTS_VECTOR_DIR = vector
 TESTS_STACK_DIR = stack
+TESTS_MAP_DIR = map
 
 VECTOR_HEADERS = $(addprefix $(HEADERS_DIR)/,	ft_vector.hpp ft_vector.tpp)
 STACK_HEADERS = $(addprefix $(HEADERS_DIR)/,	ft_stack.hpp ft_stack.tpp)
+MAP_HEADERS = $(addprefix $(HEADERS_DIR)/,	ft_map.hpp ft_map.tpp)
 
 TEST_PROPS = $(addprefix $(TESTS_DIR)/,	$(TESTS_SUITE_DIR)/assert.cpp \
 									)
@@ -57,6 +59,10 @@ STACK_TEST_FILES =	$(addprefix $(TESTS_DIR)/,	$(TESTS_STACK_DIR)/main.cpp \
 												$(TESTS_STACK_DIR)/test_operator_overloads.cpp \
 												$(TESTS_STACK_DIR)/test_push_and_pop.cpp \
 												$(TESTS_STACK_DIR)/test_top.cpp \
+											)
+
+MAP_TEST_FILES =	$(addprefix $(TESTS_DIR)/,	$(TESTS_MAP_DIR)/main.cpp \
+												$(TESTS_MAP_DIR)/test_construction.cpp \
 											)
 
 build: $(TESTS)
@@ -110,10 +116,37 @@ test_stack: stack_tests.out
 
 test_stack_vg: stack_tests.out
 	@echo "Running $^ with Valgrind"
-	@valgrind --tool=memcheck --show-leak-kinds=all --leak-check=full --track-origins=yes --show-reachable=yes --undef-value-errors=yes --error-exitcode=42 --quiet ./$^
+	@valgrind \
+		--tool=memcheck \
+		--show-leak-kinds=all \
+		--leak-check=full \
+		--track-origins=yes \
+		--show-reachable=yes \
+		--undef-value-errors=yes \
+		--error-exitcode=42 \
+		--quiet ./$^
 
 stack_tests.out: $(STACK_HEADERS) $(STACK_TEST_FILES)
 	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_PROPS) $(STACK_TEST_FILES) -o $@
+
+test_map: map_tests.out
+	@echo "Running $^"
+	@./$^
+
+test_map_vg: map_tests.out
+	@echo "Running $^ with Valgrind"
+	@valgrind \
+		--tool=memcheck \
+		--show-leak-kinds=all \
+		--leak-check=full \
+		--track-origins=yes \
+		--show-reachable=yes \
+		--undef-value-errors=yes \
+		--error-exitcode=42 \
+		--quiet ./$^
+
+map_tests.out: $(MAP_HEADERS) $(MAP_TEST_FILES)
+	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_PROPS) $(MAP_TEST_FILES) -o $@
 
 clean:
 	rm -f $(TESTS)

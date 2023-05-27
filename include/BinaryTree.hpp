@@ -15,24 +15,18 @@ class BinaryTreeNode {
 
    public:
     BinaryTreeNode(const T &value);
-    // BinaryTreeNode(const BinaryTreeNode &other) : _content(other._content), _smaller(other._smaller), _greater(other._greater) {};
-    // ~BinaryTreeNode() {};
-    // BinaryTreeNode const &operator=(const BinaryTreeNode &other) {
-    //     if (other != *this) {
-    //         _content = other._content;
-    //         _smaller = other._smaller;
-    //         _greater = other._greater;
-    //     }
-    // };
+    BinaryTreeNode(const BinaryTreeNode &other);
+    ~BinaryTreeNode();
+    BinaryTreeNode &operator=(const BinaryTreeNode &other);
 };
 
 template <class T>
 class BinaryTree {
    private:
-    BinaryTreeNode<T> *_root;
-    size_t _size;
-    size_t _height;
-    bool _cleared;
+    BinaryTreeNode<T>   *_root;
+    size_t              _size;
+    size_t              _height;
+    bool                _cleared;
 
     void insertRecursive(BinaryTreeNode<T> *&current, const T &value);
 
@@ -43,13 +37,9 @@ class BinaryTree {
 
    public:
     BinaryTree();
-    // BinaryTree(const BinaryTree &other) : _root(other._root) {};
+    BinaryTree(const BinaryTree &other);
     ~BinaryTree();
-    // BinaryTree const &operator=(const BinaryTree &other) {
-    //     if (*this != other) {
-    //         _root = other._root;
-    //     }
-    // }
+    BinaryTree &operator=(const BinaryTree &other);
 
     // Accessors
     size_t  getSize(void) const;

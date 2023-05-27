@@ -3,9 +3,26 @@
 
 namespace ft {
 
+//////////////////////////////////////////////////////////////////////////////////// BINARY TREE NODE 
 template <class T>
 BinaryTreeNode<T>::BinaryTreeNode(const T &value) : _content(value), _smaller(NULL), _greater(NULL) {};
 
+template <class T>
+BinaryTreeNode<T>::BinaryTreeNode(const BinaryTreeNode &other) : _content(other._content), _smaller(other._smaller), _greater(other._greater) {};
+
+template <class T>
+BinaryTreeNode<T> &BinaryTreeNode<T>::operator=(const BinaryTreeNode &other) {
+    if (other != *this) {
+        _content = other._content;
+        _smaller = other._smaller;
+        _greater = other._greater;
+    }
+};
+
+template <class T>
+BinaryTreeNode<T>::~BinaryTreeNode() {};
+
+//////////////////////////////////////////////////////////////////////////////////// BINARY TREE NODE 
 template <class T>
 void BinaryTree<T>::insertRecursive(BinaryTreeNode<T> *&current, const T &value) {
     if (current == NULL) {
@@ -60,9 +77,23 @@ template <class T>
 BinaryTree<T>::BinaryTree() : _root(NULL), _size(0), _height(0), _cleared(true) {};
 
 template <class T>
+BinaryTree<T>::BinaryTree(const BinaryTree &other) : _root(other._root) {};
+
+template <class T>
 BinaryTree<T>::~BinaryTree() {
     if (!_cleared) {
         deleteRecursive(_root);
+    }
+};
+
+template <class T>
+BinaryTree<T> &BinaryTree<T>::operator=(const BinaryTree &other) {
+    if (*this != other) {
+        deleteRecursive(_root);
+        _root = other._root;
+        _cleared = other._cleared;
+        _size = other._size;
+        _height = other._height;
     }
 };
 
