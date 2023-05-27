@@ -1,5 +1,5 @@
-#ifndef TEST_STRUCTURES_HPP
-# define TEST_STRUCTURES_HPP
+#ifndef TEST_PROPS_HPP
+# define TEST_PROPS_HPP
 
 # include <iostream>
 

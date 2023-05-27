@@ -90,14 +90,14 @@ class vector {
     template <class InputIt>
     vector(InputIt first, InputIt last, const allocator_type& allocator = allocator_type());
     // Copy Constructor
-    vector(const vector& other);
+    vector(const vector &other);
     // Destructor
     ~vector();
 
     /*=============================================
     ===           OPERATOR OVERLOADS            ===
     =============================================*/
-    vector&         operator=(const vector& other);
+    vector          &operator=(const vector &other);
     // for non-const vectors:
     reference       operator[](size_type index);  //  returns a reference, i. e., the object itself, knowing this "address" won't possibly change or be changed, but its contents can.
     // for const vectors:

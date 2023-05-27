@@ -1,5 +1,5 @@
-#ifndef VECTOR_STACK_HEADER_HPP
-# define VECTOR_STACK_HEADER_HPP
+#ifndef STACK_TESTS_HPP
+# define STACK_TESTS_HPP
 
 # include <stack>
 

@@ -1,5 +1,5 @@
-#ifndef vector_tests_HPP
-#define vector_tests_HPP
+#ifndef VECTOR_TESTS_HPP
+#define VECTOR_TESTS_HPP
 
 #include <vector>
 

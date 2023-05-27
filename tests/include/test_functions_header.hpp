@@ -1,5 +1,5 @@
-#ifndef TEST_FUNCTIONS_PROTOTYPES_HPP
-# define TEST_FUNCTIONS_PROTOTYPES_HPP
+#ifndef TEST_FUNCTIONS_HEADER_HPP
+# define TEST_FUNCTIONS_HEADER_HPP
 
 // Vector tests
 void    test_vector_access(void);
@@ -31,5 +31,8 @@ void    test_stack_push_and_pop(void);
 void    test_stack_top(void);
 void    test_stack_assignment_operator(void);
 void    test_stack_operator_overloads(void);
+
+// Map tests
+void    test_map_construction(void);
 
 #endif
