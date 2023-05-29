@@ -20,7 +20,8 @@ class map {
     =============================================*/
     // typedef T value_type;
     typedef Key key_type;
-    // typedef [...] value_type;
+    // typedef std::pair<const Key, T> value_type;
+    typedef T value_type;
     typedef Compare key_compare;
     typedef T mapped_type;
     typedef std::size_t size_type;
@@ -62,6 +63,8 @@ class map {
     // iterator                                    erase( iterator first, iterator last );
     size_type                                   erase( const Key& key );
     // std::pair<iterator, bool>                   insert(const value_type& value);
+    // TODO: adequar o protótipo abaixo pro de cima
+    bool                                        insert(const value_type& value);
     // iterator                                    insert( iterator pos, const value_type& value );
     template< class InputIt >
     void                                        insert( InputIt first, InputIt last );

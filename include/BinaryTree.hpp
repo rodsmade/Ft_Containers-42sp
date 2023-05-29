@@ -51,6 +51,9 @@ class BinaryTree {
     // Modifiers
     void    insert(const T &newValue);
     void    clear(void);
+
+    // Lookup
+    bool    has(const T&value);
 };
 
 }  // namespace ft

@@ -72,6 +72,13 @@ void BinaryTree<T>::printTreeHelper(BinaryTreeNode<T>* current, int level) {
     printTreeHelper(current->_smaller, level + 1);
 }
 
+// MEMBER FUNCTIONS
+template <class T>
+bool BinaryTree<T>::has(const T&value) {
+    // TODO
+};
+
+
 // constructor
 template <class T>
 BinaryTree<T>::BinaryTree() : _root(NULL), _size(0), _height(0), _cleared(true) {};

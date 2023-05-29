@@ -9,6 +9,13 @@ namespace ft {
 ===  MEMBER FUNCTIONS                                                        ===
 ==============================================================================*/
 
+// Modifiers:
+template <typename Key, typename T, typename Compare, typename Allocator>
+bool map<Key, T, Compare, Allocator>::insert(const value_type& value) {
+    
+    _contents.insert(value);
+};
+
 /*==============================================================================
 ===  CONSTRUCTION / DESTRUCTION                                              ===
 ==============================================================================*/
