@@ -59,7 +59,7 @@ typename vector<T, A>::const_reference vector<T, A>::back() const {
 
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::begin() {
-    return (_elements);
+    return (iterator(_elements));
 };
 
 template <typename T, typename A>

@@ -45,28 +45,37 @@ static void test_positional_erase(void) {
 
     ftVector.erase(ftVector.begin());
 
+    ft::vector<int>::iterator it = ftVector.begin();
+
     assert(ftVector.size() == 9
-            && (*(ftVector.begin()) == 2)
-            && (*(ftVector.begin() + 1) == 3)
-            && (*(ftVector.begin() + 2) == 4)
-            && (*(ftVector.begin() + 3) == 5)
-            && (*(ftVector.begin() + 4) == 6)
-            && (*(ftVector.begin() + 5) == 7)
-            && (*(ftVector.begin() + 6) == 8)
-            && (*(ftVector.begin() + 7) == 9)
-            && (*(ftVector.begin() + 8) == 10)
+            && (*(it) == 2)
+            && (*(++it) == 3)
+            && (*(++it) == 4)
+            && (*(++it) == 5)
+            && (*(++it) == 6)
+            && (*(++it) == 7)
+            && (*(++it) == 8)
+            && (*(++it) == 9)
+            && (*(++it) == 10)
             , "Consistency check after one erase() in the beginning of vector");
 
-    ftVector.erase(ftVector.begin() + 4);
+    it = ftVector.begin();
+    it++;
+    it++;
+    it++;
+    it++;
+    ftVector.erase(it);
+
+    it = ftVector.begin();
     assert(ftVector.size() == 8
-            && (*(ftVector.begin()) == 2)
-            && (*(ftVector.begin() + 1) == 3)
-            && (*(ftVector.begin() + 2) == 4)
-            && (*(ftVector.begin() + 3) == 5)
-            && (*(ftVector.begin() + 4) == 7)
-            && (*(ftVector.begin() + 5) == 8)
-            && (*(ftVector.begin() + 6) == 9)
-            && (*(ftVector.begin() + 7) == 10)
+            && (*(it) == 2)
+            && (*(++it) == 3)
+            && (*(++it) == 4)
+            && (*(++it) == 5)
+            && (*(++it) == 7)
+            && (*(++it) == 8)
+            && (*(++it) == 9)
+            && (*(++it) == 10)
             , "Consistency check after one erase() in the middle of vector");
 
     ftVector.erase(ftVector.begin());
