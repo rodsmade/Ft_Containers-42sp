@@ -7,16 +7,15 @@ static void test_positional_erase_returns(void) {
         ftVector.push_back(i);
     }
 
-    int *posToDelete;
-    int *eraseReturn;
-
-    posToDelete = &(*ftVector.begin());
-    eraseReturn = &(*ftVector.erase(ftVector.begin()));
+    ft::vector<int>::iterator posToDelete(ftVector.begin());
+    ft::vector<int>::iterator eraseReturn(posToDelete);
 
     assert(posToDelete == eraseReturn, "Check iterator return when erasing first element");
 
-    posToDelete = &(*(ftVector.begin() + 4));
-    eraseReturn = &(*ftVector.erase(ftVector.begin() + 4));
+    posToDelete = ftVector.begin();
+    for (int i = 0; i < 4; i++)
+        posToDelete++;
+    eraseReturn = ftVector.erase(posToDelete);
 
     assert(posToDelete == eraseReturn, "Check iterator return when erasing arbitrary element");
 
@@ -28,8 +27,8 @@ static void test_positional_erase_returns(void) {
     ftVector.erase(ftVector.begin());
     ftVector.erase(ftVector.begin());
 
-    posToDelete = &(*ftVector.begin());
-    eraseReturn = &(*ftVector.erase(ftVector.begin()));
+    posToDelete = ftVector.begin();
+    eraseReturn = ftVector.erase(posToDelete);
     assert(posToDelete == eraseReturn, "Check iterator return when vector has only one element left");
     return ;
 }
@@ -96,17 +95,25 @@ static void test_positional_erase(void) {
 static void test_range_erase(void) {
     std::cout << "\n  Range instance erase ( erase(iterator first, iterator last) ) ===" << std::endl;
     ft::vector<int> ftVector;
-    ft::vector<int>::iterator returnIt;
 
-    for (int i = 1; i <= 10; i++) {
+    for (int i = 1; i <= 10; i++)
         ftVector.push_back(i);
-    }
 
     ft::vector<int>::size_type sizeBefore = ftVector.size();
-    returnIt = ftVector.erase(ftVector.begin() + 2, ftVector.begin() + 7);
+
+    ft::vector<int>::iterator lowerBound(ftVector.begin());
+    lowerBound++;
+    lowerBound++;
+
+    ft::vector<int>::iterator upperBound(ftVector.begin());
+    for (int i = 0; i < 7; i++)
+        upperBound++;
+
+    ft::vector<int>::iterator returnIt = ftVector.erase(lowerBound, upperBound);
     ft::vector<int>::size_type sizeAfter = ftVector.size();
 
-    assert(returnIt == ftVector.begin() + 2, "Return iterator check for range erase");
+
+    assert(returnIt == lowerBound, "Return iterator check for range erase");
     assert(sizeAfter == sizeBefore - 5 &&
             ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
