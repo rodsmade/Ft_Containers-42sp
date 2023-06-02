@@ -379,7 +379,10 @@ vector<T, A>::vector(InputIt first, InputIt last, const allocator_type& allocato
     if (first == last)
         return;
 
-    difference_type ogSize = last - first;
+    iterator copyOfFirst(first);
+    size_type ogSize = 0;
+    for (; copyOfFirst != last; copyOfFirst++)
+        ogSize++;
 
     this->reserve(ogSize);
     _size = _capacity;
