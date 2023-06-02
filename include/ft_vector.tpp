@@ -105,23 +105,19 @@ typename vector<T, A>::const_iterator vector<T, A>::end() const {
 
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::erase(iterator pos) {
-    // conclusão: não rola realloc, apenas um resize e redistribuição dos elementos.
-    iterator returningIt;
+    iterator returningIt(pos);
+    iterator pivot(pos);
+    iterator next(++pos);
 
-    returningIt = pos;
-
-    if (_size == 1) {
-        _allocator.destroy(pos);
-        _size--;
-        return (pos);
+    while (pivot != this->end()) {
+        _allocator.destroy(&*pivot);
+        if (next != this->end()) {
+            _allocator.construct(&*pivot, *next);
+            next++;
+        }
+        pivot++;
     }
 
-    while (pos != this->end())
-    {
-        _allocator.destroy(pos);
-        _allocator.construct(pos, *(pos + 1));
-        pos++;
-    }
     _size--;
 
     return (returningIt);
@@ -129,22 +125,21 @@ typename vector<T, A>::iterator vector<T, A>::erase(iterator pos) {
 
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::erase(iterator first, iterator last) {
-    iterator returningIt;
+    iterator returningIt(first);
 
-    returningIt = first;
-    iterator pivot = first;
-    iterator pivotPastRange = last;
+    iterator pivot(first);
+    iterator pivotPastRange(last);
     size_type oldSize = _size;
 
     while (pivot != last) {
-        _allocator.destroy(pivot);
+        _allocator.destroy(&*pivot);
         oldSize--;
-        _allocator.construct(pivot, *pivotPastRange);
+        _allocator.construct(&*pivot, *pivotPastRange);
         pivot++;
         pivotPastRange++;
     }
     while (pivot != this->end()) {
-        _allocator.destroy(pivot);
+        _allocator.destroy(&*pivot);
         pivot++;
     }
 
