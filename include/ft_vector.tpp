@@ -164,81 +164,91 @@ typename vector<T, A>::allocator_type vector<T, A>::get_allocator() const {
 
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, const_reference value) {
-
-    difference_type offset = pos - begin(); // keeps the relative distance between pos and the beginning of this vector
-
+    std::cout << "b >> size: " << _size << " and capacity: " << _capacity << "\n";
     if (_size == _capacity)
         this->reserve(_capacity * 2);
+    std::cout << "a >> size: " << _size << " and capacity: " << _capacity << "\n";
 
-    iterator pivot = this->end();
-    for (; pivot != (begin() + offset); pivot--) {
-        _allocator.destroy(pivot);
-        _allocator.construct(pivot, *(pivot - 1));
+    iterator pivot(this->end());
+    iterator previous(this->end());
+    previous--;
+
+    for (; pivot != pos; ) {
+        _allocator.destroy(&*pivot);
+        _allocator.construct(&*pivot, *previous);
+        pivot--;
+        previous--;
     }
-    _allocator.destroy(pivot);
-    _allocator.construct(pivot, value);
+    _allocator.destroy(&*pivot);
+    _allocator.construct(&*pivot, value);
 
     _size++;
 
-    return (pivot);
+    return (pos);
 };
 
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_type count, const_reference value) {
-    difference_type offset = pos - begin(); // keeps the relative distance between pos and the beginning of this vector
-
     if (count == 0)
-        return this->begin() + offset;
+        return pos;
 
     if (_size + count > _capacity)
         this->reserve(_size + count);
 
-    iterator pivot = this->end() + count - 1;
-    for (; pivot >= (begin() + offset + count); pivot--) {
-        _allocator.destroy(pivot);
-        _allocator.construct(pivot, *(pivot - count));
+    iterator pastInsertionRange(pos);
+    for (size_type i = 0; i < count; i++)
+        pastInsertionRange++;
+
+    iterator pivot(pos);
+
+    for (size_type i = 0; i < count; i++) {
+        if (pivot < this->end()) {
+            _allocator.construct(&*pastInsertionRange, *pivot);
+            pastInsertionRange++;
+            _allocator.destroy(&*pivot);
+        }
+        _allocator.construct(&*pivot, value);
+        pivot++;
     }
 
     _size += count;
 
-    for (size_type i = count; i > 0; i--) {
-        _allocator.destroy(pivot);
-        _allocator.construct(pivot, value);
-        pivot--;
-    }
-
-    return (pivot);
+    return (pos);
 };
 
 template <typename T, typename A>
 template< class InputIt >
 typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, InputIt first, InputIt last) {
-    difference_type offset = pos - this->begin();
-
     if (first == last)
-        return this->begin() + offset;
+        return pos;
 
-    difference_type count = last - first;
+    size_type count = 0;
+    iterator pastInsertionRange(pos);
+    {
+        iterator temp(first);
+        while (temp++ != last) {
+            count++;
+            pastInsertionRange++;
+        }
+    }
 
     if (_size + count > _capacity)
         this->reserve(_size + count);
 
-    iterator pivot = this->end() + count - 1;
-    for (; pivot >= (begin() + offset + count); pivot--) {
-        _allocator.destroy(pivot);
-        _allocator.construct(pivot, *(pivot - count));
+    iterator pivot(pos);
+    while (first != last) {
+        if (pivot < this->end()) {
+            _allocator.construct(&*pastInsertionRange, *pivot);
+            _allocator.destroy(&*pivot);
+        }
+        _allocator.construct(&*pivot, *first);
+        first++;
+        pivot++;
     }
 
     _size += count;
 
-    for (size_type i = count; i > 0; i--) {
-        _allocator.destroy(pivot);
-        _allocator.construct(pivot, *(first + i - 1));
-        pivot--;
-    }
-
-    return (pivot);
-
+    return (pos);
 };
 
 template <typename T, typename A>
