@@ -30,6 +30,11 @@ static void test_positional_erase_returns(void) {
     posToDelete = ftVector.begin();
     eraseReturn = ftVector.erase(posToDelete);
     assert(posToDelete == eraseReturn, "Check iterator return when vector has only one element left");
+
+    posToDelete = ftVector.begin();
+    eraseReturn = ftVector.erase(posToDelete);
+    assert(posToDelete == eraseReturn, "Check iterator return when vector is empty");
+
     return ;
 }
 
