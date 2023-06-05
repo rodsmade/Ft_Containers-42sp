@@ -59,7 +59,7 @@ typename vector<T, A>::const_reference vector<T, A>::back() const {
 
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::begin() {
-    return (_elements);
+    return (iterator(_elements));
 };
 
 template <typename T, typename A>
@@ -105,23 +105,19 @@ typename vector<T, A>::const_iterator vector<T, A>::end() const {
 
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::erase(iterator pos) {
-    // conclusão: não rola realloc, apenas um resize e redistribuição dos elementos.
-    iterator returningIt;
+    iterator returningIt(pos);
+    iterator pivot(pos);
+    iterator next(++pos);
 
-    returningIt = pos;
-
-    if (_size == 1) {
-        _allocator.destroy(pos);
-        _size--;
-        return (pos);
+    while (pivot != this->end()) {
+        _allocator.destroy(&*pivot);
+        if (next != this->end()) {
+            _allocator.construct(&*pivot, *next);
+            next++;
+        }
+        pivot++;
     }
 
-    while (pos != this->end())
-    {
-        _allocator.destroy(pos);
-        _allocator.construct(pos, *(pos + 1));
-        pos++;
-    }
     _size--;
 
     return (returningIt);
@@ -129,22 +125,21 @@ typename vector<T, A>::iterator vector<T, A>::erase(iterator pos) {
 
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::erase(iterator first, iterator last) {
-    iterator returningIt;
+    iterator returningIt(first);
 
-    returningIt = first;
-    iterator pivot = first;
-    iterator pivotPastRange = last;
+    iterator pivot(first);
+    iterator pivotPastRange(last);
     size_type oldSize = _size;
 
     while (pivot != last) {
-        _allocator.destroy(pivot);
+        _allocator.destroy(&*pivot);
         oldSize--;
-        _allocator.construct(pivot, *pivotPastRange);
+        _allocator.construct(&*pivot, *pivotPastRange);
         pivot++;
         pivotPastRange++;
     }
     while (pivot != this->end()) {
-        _allocator.destroy(pivot);
+        _allocator.destroy(&*pivot);
         pivot++;
     }
 
@@ -170,80 +165,140 @@ typename vector<T, A>::allocator_type vector<T, A>::get_allocator() const {
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, const_reference value) {
 
-    difference_type offset = pos - begin(); // keeps the relative distance between pos and the beginning of this vector
+    iterator relationalPos(pos);
 
-    if (_size == _capacity)
+    if (_size == _capacity) {
+        size_t offset = 0;
+        iterator oldBegin = this->begin();
+        while (oldBegin++ != pos)
+            offset++;
+
         this->reserve(_capacity * 2);
 
-    iterator pivot = this->end();
-    for (; pivot != (begin() + offset); pivot--) {
-        _allocator.destroy(pivot);
-        _allocator.construct(pivot, *(pivot - 1));
+        relationalPos = this->begin();
+        while (offset--)
+            relationalPos++;
     }
-    _allocator.destroy(pivot);
-    _allocator.construct(pivot, value);
+
+    iterator pivot(this->end());
+    iterator previous(this->end());
+    previous--;
+    for (; pivot != relationalPos;) {
+        _allocator.destroy(&*pivot);
+        _allocator.construct(&*pivot, *previous);
+        pivot--;
+        previous--;
+    }
+    _allocator.destroy(&*pivot);
+    _allocator.construct(&*pivot, value);
 
     _size++;
 
-    return (pivot);
+    return (relationalPos);
 };
 
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_type count, const_reference value) {
-    difference_type offset = pos - begin(); // keeps the relative distance between pos and the beginning of this vector
-
     if (count == 0)
-        return this->begin() + offset;
+        return pos;
 
-    if (_size + count > _capacity)
+    iterator relationalPos(pos);
+
+    if (_size + count > _capacity) {
+        size_t offset = 0;
+        iterator oldBegin = this->begin();
+        while (oldBegin++ != pos)
+            offset++;
+
         this->reserve(_size + count);
 
-    iterator pivot = this->end() + count - 1;
-    for (; pivot >= (begin() + offset + count); pivot--) {
-        _allocator.destroy(pivot);
-        _allocator.construct(pivot, *(pivot - count));
+        relationalPos = this->begin();
+        while (offset--)
+            relationalPos++;
+    }
+
+    iterator pivot(this->end());
+    pivot--;
+    iterator copyHead(this->end());
+    copyHead--;
+    for (size_type i = 0; i < count; i++)
+        copyHead++;
+
+    iterator halt(relationalPos);
+    halt--;
+
+    while (pivot != halt) {
+        if (copyHead < this->end())
+            _allocator.destroy(&*copyHead);
+        _allocator.construct(&*copyHead, *pivot);
+        pivot--;
+        copyHead--;
+    }
+
+    for (size_type i = 0; i < count; i++) {
+        _allocator.destroy(&*(++pivot));
+        _allocator.construct(&*pivot, value);
     }
 
     _size += count;
 
-    for (size_type i = count; i > 0; i--) {
-        _allocator.destroy(pivot);
-        _allocator.construct(pivot, value);
-        pivot--;
-    }
-
-    return (pivot);
+    return (relationalPos);
 };
 
 template <typename T, typename A>
 template< class InputIt >
 typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, InputIt first, InputIt last) {
-    difference_type offset = pos - this->begin();
-
     if (first == last)
-        return this->begin() + offset;
+        return pos;
 
-    difference_type count = last - first;
+    iterator relationalPos(pos);
 
-    if (_size + count > _capacity)
+    size_type count = 0;
+    {
+        iterator temp(first);
+        while (temp++ != last)
+            count++;
+    }
+
+    if (_size + count > _capacity) {
+        size_t offset = 0;
+        iterator oldBegin = this->begin();
+        while (oldBegin++ != pos)
+            offset++;
+
         this->reserve(_size + count);
 
-    iterator pivot = this->end() + count - 1;
-    for (; pivot >= (begin() + offset + count); pivot--) {
-        _allocator.destroy(pivot);
-        _allocator.construct(pivot, *(pivot - count));
+        relationalPos = this->begin();
+        while (offset--)
+            relationalPos++;
+    }
+
+    iterator pivot(this->end());
+    pivot--;
+    iterator copyHead(this->end());
+    copyHead--;
+    for (size_type i = 0; i < count; i++)
+        copyHead++;
+
+    iterator halt(relationalPos);
+    halt--;
+
+    while (pivot != halt) {
+        if (copyHead < this->end())
+            _allocator.destroy(&*copyHead);
+        _allocator.construct(&*copyHead, *pivot);
+        pivot--;
+        copyHead--;
+    }
+
+    for (size_type i = 0; i < count; i++) {
+        _allocator.destroy(&*(++pivot));
+        _allocator.construct(&*pivot, *(first++));
     }
 
     _size += count;
 
-    for (size_type i = count; i > 0; i--) {
-        _allocator.destroy(pivot);
-        _allocator.construct(pivot, *(first + i - 1));
-        pivot--;
-    }
-
-    return (pivot);
-
+    return (pos);
 };
 
 template <typename T, typename A>
@@ -379,7 +434,10 @@ vector<T, A>::vector(InputIt first, InputIt last, const allocator_type& allocato
     if (first == last)
         return;
 
-    difference_type ogSize = last - first;
+    iterator copyOfFirst(first);
+    size_type ogSize = 0;
+    for (; copyOfFirst != last; copyOfFirst++)
+        ogSize++;
 
     this->reserve(ogSize);
     _size = _capacity;

@@ -86,8 +86,9 @@ test_all_vg: build
 
 test_vector: vector_tests.out
 	@echo "Running $^"
-	@./$^ > /dev/null
-	@echo "(if nothing was printed, all is good !!)"
+#	@./$^ > /dev/null
+	@./$^
+#	@echo "(if nothing was printed, all is good !!)"
 
 test_vector_vg: vector_tests.out
 	@echo "Running $^ with Valgrind"

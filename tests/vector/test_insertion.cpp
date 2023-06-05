@@ -12,7 +12,12 @@ static void test_single_insert(void) {
 
         ft::vector<int>::size_type oldSize = ftVector.size();
 
-        ftVector.insert(ftVector.begin() + 5, 42);
+        ft::vector<int>::iterator tempIt(ftVector.begin());
+        for (int i = 0; i < 5; i++)
+            tempIt++;
+        ft::vector<int>::const_iterator insertPosition(tempIt);
+
+        ftVector.insert(insertPosition, 42);
 
         assert(ftVector.size() == oldSize + 1, "Size check for insertion in arbitrary position");
         assert(ftVector.at(0) == 1 &&
@@ -26,7 +31,7 @@ static void test_single_insert(void) {
             ftVector.at(8) == 8 &&
             ftVector.at(9) == 9 &&
             ftVector.at(10) == 10
-            , "Consistency check for insertion in arbitrary position");
+            , "Consistency check for insertion in arbitrary position");  
 
         oldSize = ftVector.size();
         ftVector.insert(ftVector.begin(), 21);
@@ -73,7 +78,11 @@ static void test_single_insert(void) {
 
         ft::vector<int>::size_type oldSize = ftVector.size();
 
-        ftVector.insert(ftVector.begin() + 5, 42);
+        ft::vector<int>::iterator insertPos = ftVector.begin();
+        for (int i = 0; i < 5; i++)
+            insertPos++;
+        
+        ftVector.insert(insertPos, 42);
 
         assert(ftVector.size() == oldSize + 1, "Size check for insertion in arbitrary position");
         assert(ftVector.at(0) == 1 &&
@@ -138,12 +147,17 @@ static void test_fill_insert(void) {
         for (int i = 0; i < 10; i++)
             ftVector.at(i) = i + 1;
 
-        ft::vector<int>::size_type oldSize = ftVector.size();
-        ft::vector<int>::size_type numberOfCopies = 6;
+        ft::vector<int>::size_type oldSize = ftVector.size();   // oldsize = 10
+        ft::vector<int>::size_type numberOfNewCopies = 6;
 
-        ftVector.insert(ftVector.begin() + 5, numberOfCopies, 42);
+        ft::vector<int>::iterator insertPos = ftVector.begin();
+        for (int i = 0; i < 5; i++)
+            insertPos++;
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in arbitrary position");
+        ftVector.insert(insertPos, numberOfNewCopies, 42);
+
+        std::cout << "size: " << ftVector.size() << " oldSize + nbCps: " << (oldSize + numberOfNewCopies) << "\n";
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion in arbitrary position");
         assert(ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 3 &&
@@ -163,10 +177,10 @@ static void test_fill_insert(void) {
             , "Consistency check for insertion in arbitrary position");
 
         oldSize = ftVector.size();
-        numberOfCopies = 3;
-        ftVector.insert(ftVector.begin(), numberOfCopies, 21);
+        numberOfNewCopies = 3;
+        ftVector.insert(ftVector.begin(), numberOfNewCopies, 21);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion in the beginning of vector");
         assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
@@ -189,10 +203,10 @@ static void test_fill_insert(void) {
             , "Consistency check for insertion in the beginning of vector");
 
         oldSize = ftVector.size();
-        numberOfCopies = 4;
-        ftVector.insert(ftVector.end(), numberOfCopies, 84);
+        numberOfNewCopies = 4;
+        ftVector.insert(ftVector.end(), numberOfNewCopies, 84);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion at the end of vector");
         assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
@@ -226,11 +240,15 @@ static void test_fill_insert(void) {
             ftVector.at(i) = i + 1;
 
         ft::vector<int>::size_type oldSize = ftVector.size();
-        ft::vector<int>::size_type numberOfCopies = 6;
+        ft::vector<int>::size_type numberOfNewCopies = 6;
 
-        ftVector.insert(ftVector.begin() + 5, numberOfCopies, 42);
+        ft::vector<int>::iterator insertPos = ftVector.begin();
+        for (int i = 0; i < 5; i++)
+            insertPos++;
+        
+        ftVector.insert(insertPos, numberOfNewCopies, 42);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at arbitrary position");
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion at arbitrary position");
         assert(ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 3 &&
@@ -250,10 +268,10 @@ static void test_fill_insert(void) {
             , "Consistency check for insertion at arbitrary position");
 
         oldSize = ftVector.size();
-        numberOfCopies = 3;
-        ftVector.insert(ftVector.begin(), numberOfCopies, 21);
+        numberOfNewCopies = 3;
+        ftVector.insert(ftVector.begin(), numberOfNewCopies, 21);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion in the beginning of vector");
         assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
@@ -276,10 +294,10 @@ static void test_fill_insert(void) {
             , "Consistency check for insertion in the beginning of vector");
 
         oldSize = ftVector.size();
-        numberOfCopies = 4;
-        ftVector.insert(ftVector.end(), numberOfCopies, 84);
+        numberOfNewCopies = 4;
+        ftVector.insert(ftVector.end(), numberOfNewCopies, 84);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion at the end of vector");
         assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
@@ -318,12 +336,16 @@ static void test_range_insert(void) {
             ftVector.at(i) = i + 1;
 
         ft::vector<int>::size_type oldSize = ftVector.size();
-        ft::vector<int>::size_type numberOfCopies = 6;
-        ft::vector<int> rangeVector(numberOfCopies, 42);
+        ft::vector<int>::size_type numberOfNewCopies = 6;
+        ft::vector<int> rangeVector(numberOfNewCopies, 42);
 
-        ftVector.insert(ftVector.begin() + 5, rangeVector.begin(), rangeVector.end());
+        ft::vector<int>::iterator insertPos = ftVector.begin();
+        for (int i = 0; i < 5; i++)
+            insertPos++;
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in arbitrary position");
+        ftVector.insert(insertPos, rangeVector.begin(), rangeVector.end());
+
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion in arbitrary position");
         assert(ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 3 &&
@@ -343,13 +365,13 @@ static void test_range_insert(void) {
             , "Consistency check for insertion in arbitrary position");
 
         oldSize = ftVector.size();
-        numberOfCopies = 3;
+        numberOfNewCopies = 3;
         rangeVector.clear();
-        rangeVector.insert(rangeVector.begin(), numberOfCopies, 21);
+        rangeVector.insert(rangeVector.begin(), numberOfNewCopies, 21);
 
         ftVector.insert(ftVector.begin(), rangeVector.begin(), rangeVector.end());
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion in the beginning of vector");
         assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
@@ -372,13 +394,13 @@ static void test_range_insert(void) {
             , "Consistency check for insertion in the beginning of vector");
 
         oldSize = ftVector.size();
-        numberOfCopies = 4;
+        numberOfNewCopies = 4;
         rangeVector.clear();
-        rangeVector.insert(rangeVector.begin(), numberOfCopies, 84);
+        rangeVector.insert(rangeVector.begin(), numberOfNewCopies, 84);
 
         ftVector.insert(ftVector.end(), rangeVector.begin(), rangeVector.end());
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion at the end of vector");
         assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
@@ -412,11 +434,15 @@ static void test_range_insert(void) {
             ftVector.at(i) = i + 1;
 
         ft::vector<int>::size_type oldSize = ftVector.size();
-        ft::vector<int>::size_type numberOfCopies = 6;
+        ft::vector<int>::size_type numberOfNewCopies = 6;
 
-        ftVector.insert(ftVector.begin() + 5, numberOfCopies, 42);
+        ft::vector<int>::iterator insertPos = ftVector.begin();
+        for (int i = 0; i < 5; i++)
+            insertPos++;
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at arbitrary position");
+        ftVector.insert(insertPos, numberOfNewCopies, 42);
+
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion at arbitrary position");
         assert(ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 3 &&
@@ -436,10 +462,10 @@ static void test_range_insert(void) {
             , "Consistency check for insertion at arbitrary position");
 
         oldSize = ftVector.size();
-        numberOfCopies = 3;
-        ftVector.insert(ftVector.begin(), numberOfCopies, 21);
+        numberOfNewCopies = 3;
+        ftVector.insert(ftVector.begin(), numberOfNewCopies, 21);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion in the beginning of vector");
         assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
@@ -462,10 +488,10 @@ static void test_range_insert(void) {
             , "Consistency check for insertion in the beginning of vector");
 
         oldSize = ftVector.size();
-        numberOfCopies = 4;
-        ftVector.insert(ftVector.end(), numberOfCopies, 84);
+        numberOfNewCopies = 4;
+        ftVector.insert(ftVector.end(), numberOfNewCopies, 84);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
+        assert(ftVector.size() == oldSize + numberOfNewCopies, "Size check for insertion at the end of vector");
         assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&

@@ -7,6 +7,8 @@
 #include <sstream>      // std::ostringstream
 #include <stdexcept>    // std::out_of_range
 
+#include "VectorIterator.hpp"
+
 namespace ft {
 
 template < typename T, typename A = std::allocator<T> >
@@ -25,10 +27,10 @@ class vector {
     typedef const T& const_reference;
     typedef typename allocator_type::pointer pointer;
     typedef typename allocator_type::const_pointer const_pointer;
-    typedef T* iterator;
-    typedef const T* const_iterator;
+    typedef VectorIterator<vector<T> > iterator;
+    typedef const iterator const_iterator;
     typedef std::reverse_iterator<iterator> reverse_iterator;
-    typedef const reverse_iterator const_reverse_iterator;
+    typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
 
     /*=============================================
     ===            MEMBER FUNCTIONS             ===

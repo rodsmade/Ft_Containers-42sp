@@ -6,8 +6,8 @@
 # include "colourise_my_prints.hpp"
 
 // Test Output Strings
-# define TEST_OK "[ " BOLD GREEN "OK " RESET " ]\t"
-# define TEST_NOK "[ " BOLD RED "NOK" RESET " ]\t"
+# define TEST_OK "[ " BOLD GREEN "OK" RESET " ]\t"
+# define TEST_NOK "[ " BOLD RED "KO" RESET " ]\t"
 
 // A class that does not have a default constructor.
 struct No_default {

@@ -185,7 +185,13 @@ static void test_range_constructor(void) {
         assert(newVector == baseVector, "New vector copies full range of base vector");
     }
     {
-        ft::vector<double> newVector(baseVector.begin(), baseVector.begin() + 10);
+
+        ft::vector<double>::iterator beginIt = baseVector.begin();
+        ft::vector<double>::iterator endIt = baseVector.begin();
+        for (int i = 0; i < 10; i++)
+            endIt++;
+
+        ft::vector<double> newVector(beginIt, endIt);
 
         bool consistencyCheck = true;
 
@@ -195,7 +201,12 @@ static void test_range_constructor(void) {
         assert(newVector.size() == 10 && consistencyCheck, "New vector partially copies base vector from the beginning");
     }
     {
-        ft::vector<double> newVector(baseVector.end() - 10, baseVector.end());
+        ft::vector<double>::iterator beginIt = baseVector.end();
+        ft::vector<double>::iterator endIt = baseVector.end();
+        for (int i = 0; i < 10; i++)
+            beginIt--;
+
+        ft::vector<double> newVector(beginIt, endIt);
 
         bool consistencyCheck = true;
 
