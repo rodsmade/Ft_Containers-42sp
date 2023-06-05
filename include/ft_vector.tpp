@@ -172,7 +172,9 @@ typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, const_r
         iterator oldBegin = this->begin();
         while (oldBegin++ != pos)
             offset++;
+
         this->reserve(_capacity * 2);
+
         relationalPos = this->begin();
         while (offset--)
             relationalPos++;
@@ -200,28 +202,79 @@ typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_ty
     if (count == 0)
         return pos;
 
-    if (_size + count > _capacity)
+    iterator relationalPos(pos);
+
+    if (_size + count > _capacity) {
+        size_t offset = 0;
+        iterator oldBegin = this->begin();
+        while (oldBegin++ != pos)
+            offset++;
+
         this->reserve(_size + count);
 
-    iterator pastInsertionRange(pos);
-    for (size_type i = 0; i < count; i++)
-        pastInsertionRange++;
+        relationalPos = this->begin();
+        while (offset--)
+            relationalPos++;
+    }
 
-    iterator pivot(pos);
+    iterator backwardsPivot(this->end());
+    backwardsPivot--;
+    iterator copyHead(this->end());
+    copyHead--;
+    for (size_type i = 0; i < count; i++)
+        copyHead++;
+
+    iterator halt(relationalPos);
+    halt--;
+
+    while (backwardsPivot != halt) {
+        if (copyHead < this->end())
+            _allocator.destroy(&*copyHead);
+        _allocator.construct(&*copyHead, *backwardsPivot);
+        backwardsPivot--;
+        copyHead--;
+    }
 
     for (size_type i = 0; i < count; i++) {
-        if (pivot < this->end()) {
-            _allocator.construct(&*pastInsertionRange, *pivot);
-            pastInsertionRange++;
-            _allocator.destroy(&*pivot);
-        }
-        _allocator.construct(&*pivot, value);
-        pivot++;
+        _allocator.destroy(&*(++backwardsPivot));
+        _allocator.construct(&*backwardsPivot, value);
     }
+
+
+
+    // iterator pastInsertionRange(relationalPos);
+    // for (size_type i = 0; i < count; i++)
+    //     pastInsertionRange++;
+
+    // iterator pivot(relationalPos);
+
+    // reverse_iterator pivotBackwards(rend());
+    // iterator copyHead(end());
+    // for (size_type i = count; i > 0; i++) {
+    //     pivotBackwards--;
+    // }
+    // iterator halt(relationalPos);
+    // halt--;
+
+    // while(pivotBackwards != halt) {
+
+    //     pivotBackwards++;
+    // }
+
+
+    // for (size_type i = 0; i < count; i++) {
+    //     if (pivot < this->end()) {
+    //         _allocator.construct(&*pastInsertionRange, *pivot);
+    //         pastInsertionRange++;
+    //         _allocator.destroy(&*pivot);
+    //     }
+    //     _allocator.construct(&*pivot, value);
+    //     pivot++;
+    // }
 
     _size += count;
 
-    return (pos);
+    return (relationalPos);
 };
 
 template <typename T, typename A>
