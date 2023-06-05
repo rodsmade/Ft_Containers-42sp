@@ -217,8 +217,8 @@ typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_ty
             relationalPos++;
     }
 
-    iterator backwardsPivot(this->end());
-    backwardsPivot--;
+    iterator pivot(this->end());
+    pivot--;
     iterator copyHead(this->end());
     copyHead--;
     for (size_type i = 0; i < count; i++)
@@ -227,50 +227,18 @@ typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, size_ty
     iterator halt(relationalPos);
     halt--;
 
-    while (backwardsPivot != halt) {
+    while (pivot != halt) {
         if (copyHead < this->end())
             _allocator.destroy(&*copyHead);
-        _allocator.construct(&*copyHead, *backwardsPivot);
-        backwardsPivot--;
+        _allocator.construct(&*copyHead, *pivot);
+        pivot--;
         copyHead--;
     }
 
     for (size_type i = 0; i < count; i++) {
-        _allocator.destroy(&*(++backwardsPivot));
-        _allocator.construct(&*backwardsPivot, value);
+        _allocator.destroy(&*(++pivot));
+        _allocator.construct(&*pivot, value);
     }
-
-
-
-    // iterator pastInsertionRange(relationalPos);
-    // for (size_type i = 0; i < count; i++)
-    //     pastInsertionRange++;
-
-    // iterator pivot(relationalPos);
-
-    // reverse_iterator pivotBackwards(rend());
-    // iterator copyHead(end());
-    // for (size_type i = count; i > 0; i++) {
-    //     pivotBackwards--;
-    // }
-    // iterator halt(relationalPos);
-    // halt--;
-
-    // while(pivotBackwards != halt) {
-
-    //     pivotBackwards++;
-    // }
-
-
-    // for (size_type i = 0; i < count; i++) {
-    //     if (pivot < this->end()) {
-    //         _allocator.construct(&*pastInsertionRange, *pivot);
-    //         pastInsertionRange++;
-    //         _allocator.destroy(&*pivot);
-    //     }
-    //     _allocator.construct(&*pivot, value);
-    //     pivot++;
-    // }
 
     _size += count;
 
@@ -283,28 +251,49 @@ typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, InputIt
     if (first == last)
         return pos;
 
+    iterator relationalPos(pos);
+
     size_type count = 0;
-    iterator pastInsertionRange(pos);
     {
         iterator temp(first);
-        while (temp++ != last) {
+        while (temp++ != last)
             count++;
-            pastInsertionRange++;
-        }
     }
 
-    if (_size + count > _capacity)
+    if (_size + count > _capacity) {
+        size_t offset = 0;
+        iterator oldBegin = this->begin();
+        while (oldBegin++ != pos)
+            offset++;
+
         this->reserve(_size + count);
 
-    iterator pivot(pos);
-    while (first != last) {
-        if (pivot < this->end()) {
-            _allocator.construct(&*pastInsertionRange, *pivot);
-            _allocator.destroy(&*pivot);
-        }
-        _allocator.construct(&*pivot, *first);
-        first++;
-        pivot++;
+        relationalPos = this->begin();
+        while (offset--)
+            relationalPos++;
+    }
+
+    iterator pivot(this->end());
+    pivot--;
+    iterator copyHead(this->end());
+    copyHead--;
+    for (size_type i = 0; i < count; i++)
+        copyHead++;
+
+    iterator halt(relationalPos);
+    halt--;
+
+    while (pivot != halt) {
+        if (copyHead < this->end())
+            _allocator.destroy(&*copyHead);
+        _allocator.construct(&*copyHead, *pivot);
+        pivot--;
+        copyHead--;
+    }
+
+    for (size_type i = 0; i < count; i++) {
+        _allocator.destroy(&*(++pivot));
+        _allocator.construct(&*pivot, *(first++));
     }
 
     _size += count;
