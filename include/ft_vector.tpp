@@ -164,16 +164,24 @@ typename vector<T, A>::allocator_type vector<T, A>::get_allocator() const {
 
 template <typename T, typename A>
 typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, const_reference value) {
-    std::cout << "b >> size: " << _size << " and capacity: " << _capacity << "\n";
-    if (_size == _capacity)
+
+    iterator relationalPos(pos);
+
+    if (_size == _capacity) {
+        size_t offset = 0;
+        iterator oldBegin = this->begin();
+        while (oldBegin++ != pos)
+            offset++;
         this->reserve(_capacity * 2);
-    std::cout << "a >> size: " << _size << " and capacity: " << _capacity << "\n";
+        relationalPos = this->begin();
+        while (offset--)
+            relationalPos++;
+    }
 
     iterator pivot(this->end());
     iterator previous(this->end());
     previous--;
-
-    for (; pivot != pos; ) {
+    for (; pivot != relationalPos;) {
         _allocator.destroy(&*pivot);
         _allocator.construct(&*pivot, *previous);
         pivot--;
@@ -184,7 +192,7 @@ typename vector<T, A>::iterator vector<T, A>::insert(const_iterator pos, const_r
 
     _size++;
 
-    return (pos);
+    return (relationalPos);
 };
 
 template <typename T, typename A>

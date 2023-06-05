@@ -85,19 +85,6 @@ static void test_single_insert(void) {
         ftVector.insert(insertPos, 42);
 
         assert(ftVector.size() == oldSize + 1, "Size check for insertion in arbitrary position");
-
-        std::cout << "ftVector.at(0): "  << ftVector.at(0) << "\n";
-        std::cout << "ftVector.at(1): "  << ftVector.at(1) << "\n";
-        std::cout << "ftVector.at(2): "  << ftVector.at(2) << "\n";
-        std::cout << "ftVector.at(3): "  << ftVector.at(3) << "\n";
-        std::cout << "ftVector.at(4): "  << ftVector.at(4) << "\n";
-        std::cout << "ftVector.at(5): "  << ftVector.at(5) << "\n";
-        std::cout << "ftVector.at(6): "  << ftVector.at(6) << "\n";
-        std::cout << "ftVector.at(7): "  << ftVector.at(7) << "\n";
-        std::cout << "ftVector.at(8): "  << ftVector.at(8) << "\n";
-        std::cout << "ftVector.at(9): "  << ftVector.at(9) << "\n";
-        std::cout << "ftVector.at(10): "  << ftVector.at(10) << "\n";
-
         assert(ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 3 &&
