@@ -21,6 +21,8 @@ BinaryTreeNode<T, Compare, Allocator>::BinaryTreeNode(const BinaryTreeNode &othe
 template <class T, class Compare, class Allocator >
 BinaryTreeNode<T, Compare, Allocator> &BinaryTreeNode<T, Compare, Allocator>::operator=(const BinaryTreeNode &other) {
     if (other != *this) {
+        _allocator = other._allocator;
+        _compare = other._compare;
         _content = other._content;
         _smaller = other._smaller;
         _greater = other._greater;
@@ -114,6 +116,8 @@ template <class T, class Compare, class Allocator>
 BinaryTree<T, Compare, Allocator> &BinaryTree<T, Compare, Allocator>::operator=(const BinaryTree &other) {
     if (*this != other) {
         deleteRecursive(_root);
+         _allocator = other._allocator;
+         _compare = other._compare;
         _root = other._root;
         _cleared = other._cleared;
         _size = other._size;
