@@ -66,6 +66,18 @@ class BinaryTree {
     bool    has(const T&value);
 };
 
+/*=============================================
+===          NON-MEMBER FUNCTIONS           ===
+=============================================*/
+/*********************************************/
+/*           OPERATOR OVERLOADS              */
+/*********************************************/
+// TODO: só vai sair quando tiver ITERADORES CARAI
+// template <class T, class Compare, class Allocator>
+// bool operator==(const BinaryTree<T, Compare, Allocator>& lhs, const BinaryTree<T, Compare, Allocator>& rhs);
+// template <class T, class Compare, class Allocator>
+// bool operator!=(const BinaryTree<T, Compare, Allocator>& lhs, const BinaryTree<T, Compare, Allocator>& rhs);
+
 }  // namespace ft
 
 #include "BinaryTree.tpp"

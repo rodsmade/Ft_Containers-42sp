@@ -123,6 +123,7 @@ BinaryTree<T, Compare, Allocator> &BinaryTree<T, Compare, Allocator>::operator=(
         _size = other._size;
         _height = other._height;
     }
+    return (*this);
 };
 
 // Accessors
@@ -148,6 +149,24 @@ void    BinaryTree<T, Compare, Allocator>::clear(void) {
     deleteRecursive(_root);
     _cleared = true;
 }
+
+/*==============================================================================
+===  NON-MEMBER FUNCTIONS                                                    ===
+==============================================================================*/
+/******************************************************************************/
+/*   OPERATOR OVERLOADS                                                       */
+/******************************************************************************/
+// TODO: só vai sair quando tiver ITERADORES CARAI
+// template <class T, class Compare, class Allocator>
+// bool operator==(const BinaryTree<T, Compare, Allocator>& lhs, const BinaryTree<T, Compare, Allocator>& rhs) {
+//     return (false);
+// };
+
+// template <class T, class Compare, class Allocator>
+// bool operator!=(const BinaryTree<T, Compare, Allocator>& lhs, const BinaryTree<T, Compare, Allocator>& rhs) {
+//     return (false);
+// };
+
 
 }  // namespace ft
 

@@ -9,6 +9,7 @@
 #include <memory>       // std::allocator
 
 #include "BinaryTree.hpp"
+// #include "BinaryTreeIterator.hpp"
 
 namespace ft {
 
@@ -32,7 +33,7 @@ class map {
     // typedef [...] const_reference;
     // typedef [...] pointer;
     // typedef [...] const_pointer;
-    // typedef [...] iterator;
+    // typedef BinaryTreeIterator<T> iterator;
     // typedef [...] const_iterator;
     // typedef [...] reverse_iterator;
     // typedef [...] const_reverse_iterator;
@@ -66,7 +67,7 @@ class map {
     // size_type                                   erase( const Key& key );
     size_type                                   erase( const T& key );
     // std::pair<iterator, bool>                   insert(const value_type& value);
-    // TODO: adequar o protótipo abaixo pro de cima
+    // TODO: adequar o protótipo abaixo (devolve bool) pro de cima (devolve pair<iterator, bool>)
     bool                                        insert(const value_type& value);
     // iterator                                    insert( iterator pos, const value_type& value );
     template< class InputIt >
@@ -92,7 +93,7 @@ class map {
     ===      CONSTRUCTION / DESTRUCTION         ===
     =============================================*/
     // Default:
-    explicit map (const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type());
+    explicit map(const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type());
 
     // Range:
     template <class InputIterator>
@@ -113,7 +114,9 @@ class map {
     /*=============================================
     ===              ATTRIBUTES                 ===
     =============================================*/
-    BinaryTree<T>   *_contents;
+    BinaryTree<T, Compare, Allocator>   *_contents;
+    allocator_type  _allocator;
+    key_compare     _compare;
 };
 
 /*=============================================
