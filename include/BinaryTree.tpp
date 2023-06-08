@@ -40,16 +40,13 @@ void BinaryTree<T>::deleteRecursive(BinaryTreeNode<T> *&current) {
     if (current) {
         if (current->_smaller == NULL && current->_greater == NULL) {
             delete current;
+            current = NULL;
             return ;
         } else {
-            if (current->_smaller) {
+            if (current->_smaller)
                 deleteRecursive(current->_smaller);
-                current->_smaller = NULL;
-            }
-            if (current->_greater) {
+            if (current->_greater)
                 deleteRecursive(current->_greater);
-                current->_greater = NULL;
-            }
             deleteRecursive(current);
         }
     }

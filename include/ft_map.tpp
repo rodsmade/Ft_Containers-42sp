@@ -10,24 +10,26 @@ namespace ft {
 ==============================================================================*/
 
 // Modifiers:
-template <typename Key, typename T, typename Compare, typename Allocator>
-bool map<Key, T, Compare, Allocator>::insert(const value_type& value) {
+// template <typename Key, typename T, typename Compare, typename Allocator>
+// bool map<Key, T, Compare, Allocator>::insert(const value_type& value) {
     
-    _contents.insert(value);
-};
+//     _contents.insert(value);
+// };
 
 /*==============================================================================
 ===  CONSTRUCTION / DESTRUCTION                                              ===
 ==============================================================================*/
 template <typename Key, typename T, typename Compare, typename Allocator>
 map<Key, T, Compare, Allocator>::map(const key_compare& comp, const allocator_type& alloc) {
-    // _contents = new BinaryTree<T>;
+    _contents = new BinaryTree<T>;
     (void) comp;
     (void) alloc;
 };
 
 template <typename Key, typename T, typename Compare, typename Allocator>
-map<Key, T, Compare, Allocator>::~map() {};
+map<Key, T, Compare, Allocator>::~map() {
+    delete _contents;
+};
 
 /*==============================================================================
 ===  OPERATOR OVERLOADS                                                      ===
