@@ -12,14 +12,15 @@
 
 namespace ft {
 
-template <class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T> > >
+// template <class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T> > >
+template <class T, class Compare = std::less<T>, class Allocator = std::allocator<T> >
 class map {
    public:
     /*=============================================
     ===                ALIASES                  ===
     =============================================*/
     // typedef T value_type;
-    typedef Key key_type;
+    // typedef Key key_type;
     // typedef std::pair<const Key, T> value_type;
     typedef T value_type;
     typedef Compare key_compare;
@@ -61,7 +62,9 @@ class map {
     void                                        clear();
     // iterator                                    erase( iterator pos );
     // iterator                                    erase( iterator first, iterator last );
-    size_type                                   erase( const Key& key );
+    // ATTENTION: TO IGNORANDO TUDO O QUE É KEY E TROCANDO PRA T, DEPOIS VOLTAR !!!!!!
+    // size_type                                   erase( const Key& key );
+    size_type                                   erase( const T& key );
     // std::pair<iterator, bool>                   insert(const value_type& value);
     // TODO: adequar o protótipo abaixo pro de cima
     bool                                        insert(const value_type& value);
@@ -71,7 +74,7 @@ class map {
     void                                        swap( map& other );
 
     // Lookup:
-    size_type                                   count( const Key& key ) const;
+    // size_type                                   count( const Key& key ) const;
     // iterator                                    find( const Key& key );
     // const_iterator                              find( const Key& key ) const;
     // std::pair<iterator,iterator>                equal_range( const Key& key );
@@ -135,8 +138,10 @@ bool operator>=(const map<T, Compare, Allocator>& lhs, const map<T, Compare, All
 /*********************************************/
 /*                  OTHER                    */
 /*********************************************/
-template <class Key, class Compare, class Allocator>
-void swap(ft::map<Key, Compare, Allocator>& lhs, ft::map<Key, Compare, Allocator>& rhs );
+// template <class Key, class Compare, class Allocator>
+// void swap(ft::map<Key, Compare, Allocator>& lhs, ft::map<Key, Compare, Allocator>& rhs );
+template <class T, class Compare, class Allocator>
+void swap(ft::map<T, Compare, Allocator>& lhs, ft::map<T, Compare, Allocator>& rhs );
 
 };  // namespace ft
 

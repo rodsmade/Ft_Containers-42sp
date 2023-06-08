@@ -6,37 +6,47 @@
 namespace ft {
 
 // template <class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T> > >
-template <class T>
+template <class T, class Compare = std::less<T>, class Allocator = std::allocator<T> >
 class BinaryTreeNode {
    public:
+    Allocator       _allocator;
+    Compare         _compare;
     T               _content;
     BinaryTreeNode  *_smaller;
     BinaryTreeNode  *_greater;
 
    public:
-    BinaryTreeNode(const T &value);
+    BinaryTreeNode(const T &value, const Compare& comp = Compare(), const Allocator& alloc = Allocator());
     BinaryTreeNode(const BinaryTreeNode &other);
     ~BinaryTreeNode();
     BinaryTreeNode &operator=(const BinaryTreeNode &other);
 };
 
-template <class T>
+template <class T, class Compare = std::less<T>, class Allocator = std::allocator<T> >
 class BinaryTree {
    private:
-    BinaryTreeNode<T>   *_root;
-    size_t              _size;
-    size_t              _height;
-    bool                _cleared;
+    Allocator                               _allocator;
+    Compare                                 _compare;
+    BinaryTreeNode<T, Compare, Allocator>   *_root;
+    size_t                                  _size;
+    size_t                                  _height;
+    bool                                    _cleared;
 
-    void insertRecursive(BinaryTreeNode<T> *&current, const T &value);
+    void insertRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T &value);
 
-    void deleteRecursive(BinaryTreeNode<T> *&current);
+    void deleteRecursive(BinaryTreeNode<T, Compare, Allocator> *&current);
 
     // Helper function for printing the tree
-    void printTreeHelper(BinaryTreeNode<T>* current, int level);
+    void printTreeHelper(BinaryTreeNode<T, Compare, Allocator>* current, int level);
 
    public:
-    BinaryTree();
+    /*=============================================
+    ===                ALIASES                  ===
+    =============================================*/
+    typedef Allocator allocator_type;
+    typedef Compare key_compare;
+
+    BinaryTree(const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type());
     BinaryTree(const BinaryTree &other);
     ~BinaryTree();
     BinaryTree &operator=(const BinaryTree &other);

@@ -86,7 +86,7 @@
 void test_map_construction(void) {
     std::cout << "\n=== Map construction ===" << std::endl;
 
-    ft::map<int, std::string> testMap;
+    ft::map<int> testMap;
 
     return ;
 }

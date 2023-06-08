@@ -10,8 +10,8 @@ namespace ft {
 ==============================================================================*/
 
 // Modifiers:
-// template <typename Key, typename T, typename Compare, typename Allocator>
-// bool map<Key, T, Compare, Allocator>::insert(const value_type& value) {
+// template <typename T, typename Compare, typename Allocator>
+// bool map<T, Compare, Allocator>::insert(const value_type& value) {
     
 //     _contents.insert(value);
 // };
@@ -19,15 +19,15 @@ namespace ft {
 /*==============================================================================
 ===  CONSTRUCTION / DESTRUCTION                                              ===
 ==============================================================================*/
-template <typename Key, typename T, typename Compare, typename Allocator>
-map<Key, T, Compare, Allocator>::map(const key_compare& comp, const allocator_type& alloc) {
+template <typename T, typename Compare, typename Allocator>
+map<T, Compare, Allocator>::map(const key_compare& comp, const allocator_type& alloc) {
     _contents = new BinaryTree<T>;
     (void) comp;
     (void) alloc;
 };
 
-template <typename Key, typename T, typename Compare, typename Allocator>
-map<Key, T, Compare, Allocator>::~map() {
+template <typename T, typename Compare, typename Allocator>
+map<T, Compare, Allocator>::~map() {
     delete _contents;
 };
 
