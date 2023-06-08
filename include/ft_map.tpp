@@ -9,12 +9,25 @@ namespace ft {
 ===  MEMBER FUNCTIONS                                                        ===
 ==============================================================================*/
 
+// Capacity:
+template <typename T, typename Compare, typename Allocator>
+bool map<T, Compare, Allocator>::empty() const {
+    if (this->size() == 0)
+        return (true);
+    return (false);
+};
+
+template <typename T, typename Compare, typename Allocator>
+ typename map<T, Compare, Allocator>::size_type map<T, Compare, Allocator>::size() const {
+    return (_contents->getSize());
+};
+
 // Modifiers:
-// template <typename T, typename Compare, typename Allocator>
-// bool map<T, Compare, Allocator>::insert(const value_type& value) {
-    
-//     _contents.insert(value);
-// };
+template <typename T, typename Compare, typename Allocator>
+bool map<T, Compare, Allocator>::insert(const value_type& value) {
+    _contents->insert(value);
+    return (true);
+};
 
 /*==============================================================================
 ===  CONSTRUCTION / DESTRUCTION                                              ===

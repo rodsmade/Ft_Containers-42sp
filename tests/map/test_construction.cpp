@@ -87,6 +87,7 @@ void test_map_construction(void) {
     std::cout << "\n=== Map construction ===" << std::endl;
 
     ft::map<int> testMap;
+    assert(testMap.size() == 0 && testMap.empty() == true, "Construction of empty map");
 
     return ;
 }

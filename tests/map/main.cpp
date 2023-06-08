@@ -3,4 +3,5 @@
 
 int main() {
     test_map_construction();
+    test_map_modifiers();
 }

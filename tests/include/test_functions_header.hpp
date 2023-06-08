@@ -34,5 +34,6 @@ void    test_stack_operator_overloads(void);
 
 // Map tests
 void    test_map_construction(void);
+void    test_map_modifiers(void);
 
 #endif
