@@ -1,16 +1,6 @@
 #include <cstddef> // NULL wtd
 #include <iostream> // std::string, std::cout
 
-template<typename T>
-struct IsPointer {
-    static const bool value = false;
-};
-
-template<typename T>
-struct IsPointer<T*> {
-    static const bool value = true;
-};
-
 template <typename T>
 class List {
    public:
@@ -23,6 +13,8 @@ class List {
     private:
         ContentType _content;
         Node        *_next;
+
+        friend class List<T>;
 
     public:
         Node() : _content(ContentType()), _next(NULL) {};
@@ -42,14 +34,28 @@ class List {
    public:
     List() : _head(NULL), _size(0) {};
     ~List() {
-        delete _head;
+        Node<T> *temp;
+
+        while (_head) {
+            temp = _head->_next;
+            delete _head;
+            _head = temp;
+        }
     }
 
     void insert(T value) {
         if (_head == NULL) {
             _head = new Node<T>(value);
             _size++;
+            return ;
         }
+
+        Node<T> *pivot(_head);
+        while (pivot->_next)
+            pivot = pivot->_next;
+        
+        pivot->_next = new Node<T>(value);
+        _size++;
         return ;
     }
 
@@ -61,6 +67,7 @@ class List {
         Node<T> *pivot = _head;
         for (size_type i = 0; i < _size; i++) {
             std::cout << *pivot << " ";
+            pivot = pivot->_next;
         }
         std::cout << std::endl;
     }
@@ -74,8 +81,9 @@ int main() {
     List<std::string>::size_type listSize = list.size();
 
     std::cout << "Tamanho da list: " << listSize << "\n";
-    // list.insert("quarenta e três");
-    // std::cout << "Tamanho da list: " << list.size() << "\n";
+
+    list.insert("quarenta e três");
+    std::cout << "Tamanho da list: " << list.size() << "\n";
 
     list.printElements();
 }
