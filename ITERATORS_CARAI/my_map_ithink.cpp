@@ -40,6 +40,15 @@ class List {
         ContentType &operator*(void) {
             return (_node->getContent());
         }
+        MyIterator &operator++(void) {
+            _node = _node->getNext();
+            return (*this);
+        }
+        MyIterator operator++(int) {
+            MyIterator temp(*this);
+            ++(*this);
+            return (temp);
+        }
     };
 
     /* ---------------- ATTRIBUTES ---------------- */
@@ -80,7 +89,8 @@ class List {
         std::cout << "List has "<< _size << " elements:" << std::endl;
         for (size_type i = 0; i < _size - 1; i++) {
             std::cout << "  [" << *pivot << "]," << std::endl;
-            // pivot = pivot->getNext();
+            pivot++;
+            // ++pivot;
         }
         std::cout << "  [" << *pivot << "].";
         std::cout << std::endl;
