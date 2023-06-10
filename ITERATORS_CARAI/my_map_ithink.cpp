@@ -22,16 +22,27 @@ class List {
 
         Node<ContentType> *getNext(void) { return (_next); };
         void setNext(Node *next) { _next = next; };
+        ContentType &getContent(void) { return (_content); };
+        void setContent(ContentType content) { _content = content; };
 
         friend std::ostream& operator<<(std::ostream& os, const Node& obj) {
             os << obj._content;
             return os;
         }
     };
-    // template <typename IteratorType>
-    // class MyIterator {
-    //     Node<IteratorType>  _node;
-    // };
+
+    template <typename ContentType>
+    class MyIterator {
+       private:
+        Node<ContentType>  *_node;
+       public:
+        MyIterator(Node<ContentType> *node) : _node(node) {};
+        ContentType &operator*(void) {
+            return (_node->getContent());
+        }
+    };
+
+    /* ---------------- ATTRIBUTES ---------------- */
     Node<T>     *_head;
     size_type   _size;
 
@@ -65,38 +76,24 @@ class List {
     }
 
     void printElements(void) {
-        Node<T> *pivot = _head;
-        for (size_type i = 0; i < _size; i++) {
-            std::cout << *pivot << " ";
-            pivot = pivot->getNext();
+        List<T>::MyIterator<T> pivot(_head);
+        std::cout << "List has "<< _size << " elements:" << std::endl;
+        for (size_type i = 0; i < _size - 1; i++) {
+            std::cout << "  [" << *pivot << "]," << std::endl;
+            // pivot = pivot->getNext();
         }
+        std::cout << "  [" << *pivot << "].";
         std::cout << std::endl;
     }
 };
 
 int main() {
     List<std::string> list;
-    std::cout << "Tamanho da list: " << list.size() << "\n";
     list.insert("quarenta e dois");
-
-    List<std::string>::size_type listSize = list.size();
-
-    std::cout << "Tamanho da list: " << listSize << "\n";
-
     list.insert("quarenta e três");
-    std::cout << "Tamanho da list: " << list.size() << "\n";
-
     list.insert("quarenta e quatro");
-    std::cout << "Tamanho da list: " << list.size() << "\n";
-
     list.insert("quarenta e cinco");
-    std::cout << "Tamanho da list: " << list.size() << "\n";
-
     list.insert("quarenta e seis");
-    std::cout << "Tamanho da list: " << list.size() << "\n";
-
     list.insert("quarenta e sete");
-    std::cout << "Tamanho da list: " << list.size() << "\n";
-
     list.printElements();
 }
