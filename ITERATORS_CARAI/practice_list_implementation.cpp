@@ -1,20 +1,23 @@
-#include <cstddef> // NULL wtd
+#include <cstddef> // NULL wtf
 #include <iostream> // std::string, std::cout
+
+class MyIterator;
 
 template <typename T>
 class List {
    public:
-    /* ---------------- ALIASES ---------------- */
+    /* --------------- ALIASES ----------------- */
     typedef size_t size_type;
 
    private:
+    /* ----------- AUXILIAR CLASSES ------------ */
     template <typename ContentType>
     class Node {
-    private:
+       private:
         ContentType         _content;
         Node<ContentType>   *_next;
 
-    public:
+       public:
         Node() : _content(ContentType()), _next(NULL) {};
         Node(ContentType content) : _content(content), _next(NULL) {};
         Node(const Node &other) : _content(other._content), _next(other._next) {};
@@ -31,13 +34,12 @@ class List {
         }
     };
 
-    template <typename ContentType>
     class MyIterator {
        private:
-        Node<ContentType>  *_node;
+        Node<T>  *_node;
        public:
-        MyIterator(Node<ContentType> *node) : _node(node) {};
-        ContentType &operator*(void) {
+        MyIterator(Node<T> *node) : _node(node) {};
+        T &operator*(void) {
             return (_node->getContent());
         }
         MyIterator &operator++(void) {
@@ -49,13 +51,21 @@ class List {
             ++(*this);
             return (temp);
         }
+        // bool operator==(const MyIterator &rhs) {
+        //     return (_node == rhs._node);
+        // }
+        // bool operator!=(const MyIterator &rhs) {
+        //     return (!(*this == rhs));
+        // }
     };
 
-    /* ---------------- ATTRIBUTES ---------------- */
+    /* --------------- ATTRIBUTES -------------- */
     Node<T>     *_head;
     size_type   _size;
 
    public:
+    /* --------------- ALIASES ----------------- */
+    typedef MyIterator iterator;
     List() : _head(NULL), _size(0) {};
     ~List() {
         Node<T> *temp;
@@ -84,17 +94,22 @@ class List {
         return (_size);
     }
 
-    void printElements(void) {
-        List<T>::MyIterator<T> pivot(_head);
-        std::cout << "List has "<< _size << " elements:" << std::endl;
-        for (size_type i = 0; i < _size - 1; i++) {
-            std::cout << "  [" << *pivot << "]," << std::endl;
-            pivot++;
-            // ++pivot;
-        }
-        std::cout << "  [" << *pivot << "].";
-        std::cout << std::endl;
-    }
+    iterator begin() {
+        return (iterator(_head));
+    };
+    // iterator end() {
+    //     if (_head == NULL)
+    //         return (iterator(NULL));
+
+    //     Node<T> *temp = _head->getNext();
+    //     iterator last(temp);
+
+    //     while (temp) {
+    //         ++last;
+    //     }
+
+    //     return (last);
+    // };
 };
 
 int main() {
@@ -105,5 +120,17 @@ int main() {
     list.insert("quarenta e cinco");
     list.insert("quarenta e seis");
     list.insert("quarenta e sete");
-    list.printElements();
+
+    List<std::string>::iterator it = list.begin();
+
+    List<std::string>::size_type listSize = list.size();
+    std::cout << "List has "<< listSize << " elements:" << std::endl;
+    // while (it != list.end())
+    for (List<std::string>::size_type i = 0; i < listSize; i++) {
+        std::cout << "  [" << *it << "]," << std::endl;
+        it++;
+    }
+
+
+    // List<std::string>::MyIterator
 }
