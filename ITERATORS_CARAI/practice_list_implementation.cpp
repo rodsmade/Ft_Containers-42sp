@@ -51,12 +51,9 @@ class List {
             ++(*this);
             return (temp);
         }
-        // bool operator==(const MyIterator &rhs) {
-        //     return (_node == rhs._node);
-        // }
-        // bool operator!=(const MyIterator &rhs) {
-        //     return (!(*this == rhs));
-        // }
+        bool operator!=(const MyIterator &rhs) {
+            return (_node != rhs._node);
+        }
     };
 
     /* --------------- ATTRIBUTES -------------- */
@@ -97,19 +94,9 @@ class List {
     iterator begin() {
         return (iterator(_head));
     };
-    // iterator end() {
-    //     if (_head == NULL)
-    //         return (iterator(NULL));
-
-    //     Node<T> *temp = _head->getNext();
-    //     iterator last(temp);
-
-    //     while (temp) {
-    //         ++last;
-    //     }
-
-    //     return (last);
-    // };
+    iterator end() {
+        return (iterator(NULL)); // sacada genial, tipo foda-se onde tá o fim da lista na memória, a hora q eu chegar no fim, eu vou ter um iterator(NULL).
+    };
 };
 
 int main() {
@@ -125,12 +112,13 @@ int main() {
 
     List<std::string>::size_type listSize = list.size();
     std::cout << "List has "<< listSize << " elements:" << std::endl;
-    // while (it != list.end())
-    for (List<std::string>::size_type i = 0; i < listSize; i++) {
+    while (it != list.end()) {
         std::cout << "  [" << *it << "]," << std::endl;
         it++;
     }
 
-
-    // List<std::string>::MyIterator
+    // for (List<std::string>::size_type i = 0; i < listSize; i++) {
+    //     std::cout << "  [" << *it << "]," << std::endl;
+    //     it++;
+    // }
 }
