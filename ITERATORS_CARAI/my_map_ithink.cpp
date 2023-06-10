@@ -44,17 +44,14 @@ class List {
     }
 
     void insert(T value) {
-        if (_head == NULL) {
+        if (_head == NULL) 
             _head = new Node<T>(value);
-            _size++;
-            return ;
+        else {
+            Node<T> *pivot(_head);
+            while (pivot->_next)
+                pivot = pivot->_next;
+            pivot->_next = new Node<T>(value);
         }
-
-        Node<T> *pivot(_head);
-        while (pivot->_next)
-            pivot = pivot->_next;
-        
-        pivot->_next = new Node<T>(value);
         _size++;
         return ;
     }
@@ -83,6 +80,18 @@ int main() {
     std::cout << "Tamanho da list: " << listSize << "\n";
 
     list.insert("quarenta e três");
+    std::cout << "Tamanho da list: " << list.size() << "\n";
+
+    list.insert("quarenta e quatro");
+    std::cout << "Tamanho da list: " << list.size() << "\n";
+
+    list.insert("quarenta e cinco");
+    std::cout << "Tamanho da list: " << list.size() << "\n";
+
+    list.insert("quarenta e seis");
+    std::cout << "Tamanho da list: " << list.size() << "\n";
+
+    list.insert("quarenta e sete");
     std::cout << "Tamanho da list: " << list.size() << "\n";
 
     list.printElements();
