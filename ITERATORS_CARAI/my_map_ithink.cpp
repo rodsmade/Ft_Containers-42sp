@@ -11,10 +11,8 @@ class List {
     template <typename ContentType>
     class Node {
     private:
-        ContentType _content;
-        Node        *_next;
-
-        friend class List<T>;
+        ContentType         _content;
+        Node<ContentType>   *_next;
 
     public:
         Node() : _content(ContentType()), _next(NULL) {};
@@ -22,12 +20,18 @@ class List {
         Node(const Node &other) : _content(other._content), _next(other._next) {};
         ~Node() {};
 
+        Node<ContentType> *getNext(void) { return (_next); };
+        void setNext(Node *next) { _next = next; };
+
         friend std::ostream& operator<<(std::ostream& os, const Node& obj) {
             os << obj._content;
             return os;
         }
     };
-
+    // template <typename IteratorType>
+    // class MyIterator {
+    //     Node<IteratorType>  _node;
+    // };
     Node<T>     *_head;
     size_type   _size;
 
@@ -37,7 +41,7 @@ class List {
         Node<T> *temp;
 
         while (_head) {
-            temp = _head->_next;
+            temp = _head->getNext();
             delete _head;
             _head = temp;
         }
@@ -48,9 +52,9 @@ class List {
             _head = new Node<T>(value);
         else {
             Node<T> *pivot(_head);
-            while (pivot->_next)
-                pivot = pivot->_next;
-            pivot->_next = new Node<T>(value);
+            while (pivot->getNext())
+                pivot = pivot->getNext();
+            pivot->setNext(new Node<T>(value));
         }
         _size++;
         return ;
@@ -64,7 +68,7 @@ class List {
         Node<T> *pivot = _head;
         for (size_type i = 0; i < _size; i++) {
             std::cout << *pivot << " ";
-            pivot = pivot->_next;
+            pivot = pivot->getNext();
         }
         std::cout << std::endl;
     }
