@@ -1,76 +1,81 @@
-#include <iostream>
+#include <cstddef> // NULL wtd
+#include <iostream> // std::string, std::cout
 
-class Node {
-   public:
-    int     *content;
-    Node    *next;
-
-    Node() : content(NULL), next(NULL) {};
+template<typename T>
+struct IsPointer {
+    static const bool value = false;
 };
 
-// Custom data structure
-class MyList {
-private:
-    Node *firstLinkInTheChain;
+template<typename T>
+struct IsPointer<T*> {
+    static const bool value = true;
+};
 
-public:
-    // Iterator for custom data structure
-    class iterator {
+template <typename T>
+class List {
+   public:
+    /* ---------------- ALIASES ---------------- */
+    typedef size_t size_type;
+
+   private:
+    template <typename ContentType>
+    class Node {
     private:
-        int *current;  // pointer to current element
+        ContentType _content;
+        Node        *_next;
 
     public:
-        explicit iterator(int* ptr) : current(ptr) {}
+        Node() : _content(ContentType()), _next(NULL) {};
+        Node(ContentType content) : _content(content), _next(NULL) {};
+        Node(const Node &other) : _content(other._content), _next(other._next) {};
+        ~Node() {};
 
-        iterator& operator++() {
-            // Increment the iterator logic based on your data structure
-            // Example: Move to the next element in your custom structure
-            // You'll need to define the specific logic for your data structure here
-
-            // For demonstration, let's increment by 2 positions in the array
-            current += 2;
-
-            return *this;
-        }
-
-        int& operator*() const {
-            return *current;
-        }
-
-        bool operator!=(const iterator& other) const {
-            return current != other.current;
+        friend std::ostream& operator<<(std::ostream& os, const Node& obj) {
+            os << obj._content;
+            return os;
         }
     };
 
-    MyList() {
-        firstLinkInTheChain = NULL;
+    Node<T>     *_head;
+    size_type   _size;
+
+   public:
+    List() : _head(NULL), _size(0) {};
+    ~List() {
+        delete _head;
     }
 
-    iterator begin() {
-        // Return the iterator pointing to the beginning of your custom data structure
-        // Example: Return the iterator initialized to the first element of your structure
-        return iterator(firstLinkInTheChain->content);
+    void insert(T value) {
+        if (_head == NULL) {
+            _head = new Node<T>(value);
+            _size++;
+        }
+        return ;
     }
 
-    iterator end() {
-        // Return the iterator pointing to the end of your custom data structure
-        // Example: Return the iterator initialized to one past the last element of your structure
-        
-        
-        while (firstLinkInTheChain)
-        
-        return iterator(&data[5]);
+    size_type size(void) {
+        return (_size);
+    }
+
+    void printElements(void) {
+        Node<T> *pivot = _head;
+        for (size_type i = 0; i < _size; i++) {
+            std::cout << *pivot << " ";
+        }
+        std::cout << std::endl;
     }
 };
 
 int main() {
-    MyList myData;
+    List<std::string> list;
+    std::cout << "Tamanho da list: " << list.size() << "\n";
+    list.insert("quarenta e dois");
 
-    // Traverse the custom data structure using custom iterators
-    for (MyList::iterator it = myData.begin(); it != myData.end(); ++it) {
-        std::cout << *it << " ";
-    }
-    std::cout << std::endl;
+    List<std::string>::size_type listSize = list.size();
 
-    return 0;
+    std::cout << "Tamanho da list: " << listSize << "\n";
+    // list.insert("quarenta e três");
+    // std::cout << "Tamanho da list: " << list.size() << "\n";
+
+    list.printElements();
 }
