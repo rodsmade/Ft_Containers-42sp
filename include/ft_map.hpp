@@ -44,6 +44,11 @@ class map {
     // Allocator:
     allocator_type                              get_allocator() const;
 
+    // Element Access:
+    // T& at( const Key& key );
+    // const T& at( const Key& key ) const;
+    // T& operator[]( const Key& key );
+
     // Iterators:
     // iterator                                    begin();
     // const_iterator                              begin() const;
