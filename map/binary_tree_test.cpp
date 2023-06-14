@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "/nfs/homes/roaraujo/Documents/Ft_Containers-42sp/temp_bintree/BinaryTree.hpp"
+#include "../include/BinaryTree.hpp"
 
 class No_default {
    private:
@@ -52,10 +52,12 @@ int main() {
 
     myTree->printTree();
 
+    std::cout << std::boolalpha;
+    std::cout << "achou: " << myTree->has(1813) << "\n";
+
     myTree->clear();
     delete myTree;
 
-    std::cout << "hmmmmm\n";
 
     return 0;
 }

@@ -63,6 +63,20 @@ void BinaryTree<T, Compare, Allocator>::deleteRecursive(BinaryTreeNode<T, Compar
 }
 
 template <class T, class Compare, class Allocator>
+bool BinaryTree<T, Compare, Allocator>::lookupRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T&value) {
+    if (current->_content == value)
+        return (true);
+    else if (!current->_greater && !current->_smaller)
+        return (false);
+    else {
+        if (value < current->_content)
+            return (lookupRecursive(current->_smaller, value));
+        else
+            return (lookupRecursive(current->_greater, value));
+    }
+};
+
+template <class T, class Compare, class Allocator>
 void BinaryTree<T, Compare, Allocator>::printTreeHelper(BinaryTreeNode<T, Compare, Allocator>* current, int level) {
     if (current == NULL) {
         return;
@@ -80,10 +94,13 @@ void BinaryTree<T, Compare, Allocator>::printTreeHelper(BinaryTreeNode<T, Compar
 }
 
 // MEMBER FUNCTIONS
-// template <class T, class Compare, class Allocator>
-// bool BinaryTree<T, Compare, Allocator>::has(const T&value) {
-//     // TODO
-// };
+template <class T, class Compare, class Allocator>
+bool BinaryTree<T, Compare, Allocator>::has(const T&value) {
+    if (_root == NULL)
+        return (false);
+
+    return (lookupRecursive(_root, value));
+};
 
 
 /*==============================================================================
@@ -159,6 +176,8 @@ void    BinaryTree<T, Compare, Allocator>::clear(void) {
 // TODO: só vai sair quando tiver ITERADORES CARAI
 // template <class T, class Compare, class Allocator>
 // bool operator==(const BinaryTree<T, Compare, Allocator>& lhs, const BinaryTree<T, Compare, Allocator>& rhs) {
+//     if (lhs.getSize() != rhs.getSize());
+//         return (false);
 //     return (false);
 // };
 
