@@ -72,7 +72,7 @@ build: $(TESTS)
 temp: testing_bin_tree.out
 
 testing_bin_tree.out: $(HEADERS_DIR)/BinaryTree.tpp $(HEADERS_DIR)/BinaryTree.hpp
-	c++ -Wextra -Werror -Wall -std=c++98 map/binary_tree_test.cpp -o testing_bin_tree.out
+	c++ -Wextra -Werror -Wall -std=c++98 -g map/binary_tree_test.cpp -o testing_bin_tree.out
 
 test_all: build
 	@for test in $(TESTS); do \

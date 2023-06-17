@@ -9,14 +9,16 @@ BinaryTreeNode<T, Compare, Allocator>::BinaryTreeNode(const T &value, const Comp
                                                                                                                     , _compare(comp)
                                                                                                                     , _content(value)
                                                                                                                     , _smaller(NULL)
-                                                                                                                    , _greater(NULL) {};
+                                                                                                                    , _greater(NULL)
+                                                                                                                    , _parent(NULL) {};
 
 template <class T, class Compare, class Allocator >
 BinaryTreeNode<T, Compare, Allocator>::BinaryTreeNode(const BinaryTreeNode &other) : _allocator(other._allocator)
                                                                                     , _compare(other._compare)
                                                                                     , _content(other._content)
                                                                                     , _smaller(other._smaller)
-                                                                                    , _greater(other._greater) {};
+                                                                                    , _greater(other._greater)
+                                                                                    , _parent(other._parent) {};
 
 template <class T, class Compare, class Allocator >
 BinaryTreeNode<T, Compare, Allocator> &BinaryTreeNode<T, Compare, Allocator>::operator=(const BinaryTreeNode &other) {
@@ -26,6 +28,7 @@ BinaryTreeNode<T, Compare, Allocator> &BinaryTreeNode<T, Compare, Allocator>::op
         _content = other._content;
         _smaller = other._smaller;
         _greater = other._greater;
+        _parent = other._parent;
     }
 };
 
@@ -34,14 +37,16 @@ BinaryTreeNode<T, Compare, Allocator>::~BinaryTreeNode() {};
 
 //////////////////////////////////////////////////////////////////////////////////// BINARY TREE
 template <class T, class Compare, class Allocator>
-void BinaryTree<T, Compare, Allocator>::_insertRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T &value) {
+void BinaryTree<T, Compare, Allocator>::_insertRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T &value, BinaryTreeNode<T, Compare, Allocator> *&parent) {
     if (current == NULL) {
         current = new BinaryTreeNode<T, Compare, Allocator>(value);
+        if (current != parent)
+            current->_parent = parent;
         _size++;
     } else if (value < current->_content) {
-        _insertRecursive(current->_smaller, value);
+        _insertRecursive(current->_smaller, value, current);
     } else if (value > current->_content) {
-        _insertRecursive(current->_greater, value);
+        _insertRecursive(current->_greater, value, current);
     }
 }
 
@@ -77,55 +82,61 @@ bool BinaryTree<T, Compare, Allocator>::_lookupRecursive(BinaryTreeNode<T, Compa
 };
 
 template <class T, class Compare, class Allocator>
-void BinaryTree<T, Compare, Allocator>::_inOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *root) {
-    if (root == NULL)
+void BinaryTree<T, Compare, Allocator>::_inOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *current) {
+    if (current == NULL)
         return;
 
-    _inOrderTraversal(root->_smaller);
-    std::cout << root->_content << " ";
-    _inOrderTraversal(root->_greater);
+    _inOrderTraversal(current->_smaller);
+    std::cout << current->_content << " ";
+    _inOrderTraversal(current->_greater);
 };
 
 template <class T, class Compare, class Allocator>
-void BinaryTree<T, Compare, Allocator>::_preOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *root) {
-    if (root == NULL)
+void BinaryTree<T, Compare, Allocator>::_preOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *current) {
+    if (current == NULL)
         return;
 
-    std::cout << root->_content << " ";
-    _preOrderTraversal(root->_smaller);
-    _preOrderTraversal(root->_greater);
+    std::cout << current->_content << " ";
+    _preOrderTraversal(current->_smaller);
+    _preOrderTraversal(current->_greater);
 };
 
 template <class T, class Compare, class Allocator>
-void BinaryTree<T, Compare, Allocator>::_postOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *root) {
-    if (root == NULL)
+void BinaryTree<T, Compare, Allocator>::_postOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *current) {
+    if (current == NULL)
         return;
 
-    _postOrderTraversal(root->_smaller);
-    _postOrderTraversal(root->_greater);
-    std::cout << root->_content << " ";
+    _postOrderTraversal(current->_smaller);
+    _postOrderTraversal(current->_greater);
+    std::cout << current->_content << " ";
 };
 
 template <class T, class Compare, class Allocator>
-void BinaryTree<T, Compare, Allocator>::printTreeHelper(BinaryTreeNode<T, Compare, Allocator>* current, int level) {
-    (void) current;
-    (void) level;
-    // if (current == NULL) {
-    //     return;
-    // }
+void BinaryTree<T, Compare, Allocator>::_printTreeHelper(BinaryTreeNode<T, Compare, Allocator>* current, int level)
+{
+    if (current == NULL) {
+        return;
+    }
 
-    // printTreeHelper(current->_greater, level + 1);
+    _printTreeHelper(current->_greater, level + 1);
 
-    // for (int i = 0; i < level; i++) {
-    //     std::cout << "\t";
-    // }
+    for (int i = 0; i < level; i++) {
+        std::cout << "\t";
+    }
 
-    // std::cout << current->_content << std::endl;
+    if (current->_parent)
+        std::cout << current->_parent->_content << "/" << current->_content << std::endl;
+    else
+        std::cout << "NULL" << "/" << current->_content << std::endl;
 
-    // printTreeHelper(current->_smaller, level + 1);
-    _inOrderTraversal(_root);
-    std::cout << std::endl;
+    _printTreeHelper(current->_smaller, level + 1);
 }
+// {
+//     (void) current;
+//     (void) level;
+//     _inOrderTraversal(_root);
+//     std::cout << std::endl;
+// }
 
 // MEMBER FUNCTIONS
 template <class T, class Compare, class Allocator>
@@ -186,12 +197,12 @@ size_t  BinaryTree<T, Compare, Allocator>::getHeight(void) const { return _heigh
 
 template <class T, class Compare, class Allocator>
 void BinaryTree<T, Compare, Allocator>::printTree() {
-    printTreeHelper(_root, 0);
+    _printTreeHelper(_root, 0);
 };
 
 template <class T, class Compare, class Allocator>
 void    BinaryTree<T, Compare, Allocator>::insert(const T &newValue) {
-    _insertRecursive(_root, newValue);
+    _insertRecursive(_root, newValue, _root);
     _cleared = false;
 }
 

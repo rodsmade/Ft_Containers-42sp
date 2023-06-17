@@ -14,6 +14,7 @@ class BinaryTreeNode {
     T               _content;
     BinaryTreeNode  *_smaller;
     BinaryTreeNode  *_greater;
+    BinaryTreeNode  *_parent;
 
    public:
     BinaryTreeNode(const T &value, const Compare& comp = Compare(), const Allocator& alloc = Allocator());
@@ -32,7 +33,7 @@ class BinaryTree {
     size_t                                  _height;
     bool                                    _cleared;
 
-    void _insertRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T &value);
+    void _insertRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T &value, BinaryTreeNode<T, Compare, Allocator> *&parent);
 
     void _deleteRecursive(BinaryTreeNode<T, Compare, Allocator> *&current);
 
@@ -44,8 +45,7 @@ class BinaryTree {
 
     void _postOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *root);
 
-    // Helper function for printing the tree
-    void printTreeHelper(BinaryTreeNode<T, Compare, Allocator>* current, int level);
+    void _printTreeHelper(BinaryTreeNode<T, Compare, Allocator>* current, int level);
 
    public:
     /*=============================================
@@ -64,7 +64,7 @@ class BinaryTree {
     size_t  getHeight(void) const;
 
     // Public function to print the tree
-    void printTree();
+    void    printTree();
 
     // Modifiers
     void    insert(const T &newValue);
