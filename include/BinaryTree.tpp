@@ -124,6 +124,7 @@ void BinaryTree<T, Compare, Allocator>::_printTreeHelper(BinaryTreeNode<T, Compa
         std::cout << "\t";
     }
 
+    // std::cout << current->_content << std::endl;
     if (current->_parent)
         std::cout << current->_parent->_content << "/" << current->_content << std::endl;
     else
@@ -147,6 +148,40 @@ bool BinaryTree<T, Compare, Allocator>::has(const T&value) {
     return (_lookupRecursive(_root, value));
 };
 
+// template <class T, class Compare, class Allocator>
+// BinaryTreeNode<T, Compare, Allocator> *BinaryTree<T, Compare, Allocator>::_findNodeByContent(T searchContent) {
+//     BinaryTreeNode<T, Compare, Allocator> *pivot = _root;
+//     while (pivot != NULL) {
+//         if (searchContent < pivot->_content > )
+//             pivot = pivot->_smaller;
+//         else if (searchContent > pivot->_content)
+//             pivot = pivot->_greater;
+//         else
+//             return (pivot);
+//     }
+
+//     return (NULL);
+// };
+
+template <class T, class Compare, class Allocator>
+BinaryTreeNode<T, Compare, Allocator> *BinaryTree<T, Compare, Allocator>::getNextNode(T searchValue) {
+    if (_root == NULL)
+        return NULL;
+
+    BinaryTreeNode<T, Compare, Allocator> *pivot = _root;
+    BinaryTreeNode<T, Compare, Allocator> *nextGreaterValue = NULL;
+
+    while (pivot != NULL) {
+        if (searchValue < pivot->_content) {
+            nextGreaterValue = pivot;
+            pivot = pivot->_smaller;
+        }
+        else
+            pivot = pivot->_greater;
+    }
+
+    return (nextGreaterValue);
+}
 
 /*==============================================================================
 ===  CONSTRUCTION / DESTRUCTION                                              ===

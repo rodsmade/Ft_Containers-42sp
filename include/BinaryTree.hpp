@@ -39,11 +39,11 @@ class BinaryTree {
 
     bool _lookupRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T&value);
 
-    void _inOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *root);
+    void _inOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *current);
 
-    void _preOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *root);
+    void _preOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *current);
 
-    void _postOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *root);
+    void _postOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *current);
 
     void _printTreeHelper(BinaryTreeNode<T, Compare, Allocator>* current, int level);
 
@@ -72,6 +72,9 @@ class BinaryTree {
 
     // Lookup
     bool    has(const T&value);
+
+    // Element Access
+    BinaryTreeNode<T, Compare, Allocator> *getNextNode(T searchValue);
 };
 
 /*=============================================

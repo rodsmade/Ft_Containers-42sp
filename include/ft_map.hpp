@@ -102,7 +102,7 @@ class map {
 
     // Range:
     template <class InputIterator>
-    map (InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type());
+    map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type());
 
     // Copy:
     map(const map& other);
