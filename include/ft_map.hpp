@@ -45,13 +45,13 @@ class map {
     allocator_type                              get_allocator() const;
 
     // Iterators:
-    // iterator                                    begin();
+    // iterator                                    begin(); // = o menor elemento de todos
     // const_iterator                              begin() const;
-    // iterator                                    end();
+    // iterator                                    end(); // = 1 past o maior elemento de todos
     // const_iterator                              end() const;
-    // reverse_iterator                            rbegin();
+    // reverse_iterator                            rbegin(); // = 1 before o menor elemento de todos
     // const_reverse_iterator                      rbegin() const;
-    // reverse_iterator                            rend();
+    // reverse_iterator                            rend(); // o maior elemento de todos
     // const_reverse_iterator                      rend() const;
 
     // Capacity:

@@ -28,8 +28,8 @@ int main()
     std::map<std::string, std::string>::iterator it = mymap.begin();
     std::cout << typeid(it).name() << "\n";
     std::cout << typeid(*it).name() << "\n";
-    std::cout << it << "\n";
-    std::cout << (*it) << "\n";
+    // std::cout << it << "\n";
+    // std::cout << (*it) << "\n";
     std::cout << (*it).first << "\n";
     std::cout << (*it).second << "\n";
 
