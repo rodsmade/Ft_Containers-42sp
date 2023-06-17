@@ -69,6 +69,11 @@ MAP_TEST_FILES =	$(addprefix $(TESTS_DIR)/,	$(TESTS_MAP_DIR)/main.cpp \
 build: $(TESTS)
 	@echo "$(GREEN)$(BOLD)All tests$(RESET) built $(UNDERLINE)successfully$(RESET)! ✅"
 
+temp: testing_bin_tree.out
+
+testing_bin_tree.out: $(HEADERS_DIR)/BinaryTree.tpp $(HEADERS_DIR)/BinaryTree.hpp
+	c++ -Wextra -Werror -Wall -std=c++98 map/binary_tree_test.cpp -o testing_bin_tree.out
+
 test_all: build
 	@for test in $(TESTS); do \
 		echo "Running $$test"; \

@@ -32,11 +32,17 @@ class BinaryTree {
     size_t                                  _height;
     bool                                    _cleared;
 
-    void insertRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T &value);
+    void _insertRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T &value);
 
-    void deleteRecursive(BinaryTreeNode<T, Compare, Allocator> *&current);
+    void _deleteRecursive(BinaryTreeNode<T, Compare, Allocator> *&current);
 
-    bool lookupRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T&value);
+    bool _lookupRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T&value);
+
+    void _inOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *root);
+
+    void _preOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *root);
+
+    void _postOrderTraversal(BinaryTreeNode<T, Compare, Allocator> *root);
 
     // Helper function for printing the tree
     void printTreeHelper(BinaryTreeNode<T, Compare, Allocator>* current, int level);
