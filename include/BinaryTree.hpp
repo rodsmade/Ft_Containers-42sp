@@ -36,6 +36,8 @@ class BinaryTree {
 
     void deleteRecursive(BinaryTreeNode<T, Compare, Allocator> *&current);
 
+    bool lookupRecursive(BinaryTreeNode<T, Compare, Allocator> *&current, const T&value);
+
     // Helper function for printing the tree
     void printTreeHelper(BinaryTreeNode<T, Compare, Allocator>* current, int level);
 
