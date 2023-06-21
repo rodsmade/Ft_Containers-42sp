@@ -3,37 +3,6 @@
 
 namespace ft {
 
-//////////////////////////////////////////////////////////////////////////////////// BINARY TREE NODE 
-template <class T, class Compare, class Allocator >
-BinaryTreeNode<T, Compare, Allocator>::BinaryTreeNode(const T &value, const Compare& comp, const Allocator& alloc) : _allocator(alloc)
-                                                                                                                    , _compare(comp)
-                                                                                                                    , _content(value)
-                                                                                                                    , _smaller(NULL)
-                                                                                                                    , _greater(NULL)
-                                                                                                                    , _parent(NULL) {};
-
-template <class T, class Compare, class Allocator >
-BinaryTreeNode<T, Compare, Allocator>::BinaryTreeNode(const BinaryTreeNode &other) : _allocator(other._allocator)
-                                                                                    , _compare(other._compare)
-                                                                                    , _content(other._content)
-                                                                                    , _smaller(other._smaller)
-                                                                                    , _greater(other._greater)
-                                                                                    , _parent(other._parent) {};
-
-template <class T, class Compare, class Allocator >
-BinaryTreeNode<T, Compare, Allocator> &BinaryTreeNode<T, Compare, Allocator>::operator=(const BinaryTreeNode &other) {
-    if (other != *this) {
-        _allocator = other._allocator;
-        _compare = other._compare;
-        _content = other._content;
-        _smaller = other._smaller;
-        _greater = other._greater;
-        _parent = other._parent;
-    }
-};
-
-template <class T, class Compare, class Allocator >
-BinaryTreeNode<T, Compare, Allocator>::~BinaryTreeNode() {};
 
 //////////////////////////////////////////////////////////////////////////////////// BINARY TREE
 template <class T, class Compare, class Allocator>
@@ -164,7 +133,7 @@ bool BinaryTree<T, Compare, Allocator>::has(const T&value) {
 // };
 
 template <class T, class Compare, class Allocator>
-BinaryTreeNode<T, Compare, Allocator> *BinaryTree<T, Compare, Allocator>::getNextNode(T searchValue) {
+typename BinaryTree<T, Compare, Allocator>::template BinaryTreeNode<T, Compare, Allocator> *BinaryTree<T, Compare, Allocator>::getNextNode(T searchValue) {
     if (_root == NULL)
         return NULL;
 
