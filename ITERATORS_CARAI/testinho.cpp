@@ -4,9 +4,21 @@ namespace ft {
 template <typename T>
 class BinaryTree {
    private:
+    // Prototypes
+    template <typename U>
+    class BinaryTreeNode;
+
+    template <typename V>
+    friend std::ostream& operator<<(std::ostream& os, const BinaryTreeNode<V>& node);
+
+    // Implementation
     template <typename U>
     class BinaryTreeNode {
        private:
+        // Prototypes
+        friend class BinaryTree<U>;
+
+        // Private members
         U _content;
         BinaryTreeNode* _smaller;
         BinaryTreeNode* _greater;
@@ -20,7 +32,7 @@ class BinaryTree {
             _greater = other._greater;
         };
 
-        BinaryTreeNode<U>& operator=(const BinaryTreeNode &other) {
+        BinaryTreeNode<U>& operator=(const BinaryTreeNode& other) {
             if (*this != other) {
                 _content = other._content;
                 _smaller = other._smaller;
@@ -38,13 +50,44 @@ class BinaryTree {
         }
     };
 
-    template <typename V>
-    friend std::ostream& operator<<(std::ostream& os, const BinaryTreeNode<V>& node);
+    // Attributes
+    BinaryTreeNode<T>* _root;
+
+    // Private member functions
+    void _recursive_insertion(T value, BinaryTreeNode<T>* &current_node) {
+        if (current_node == NULL) {
+            current_node = new BinaryTreeNode<T>(value);
+        }
+        else if (current_node->_content < value) {
+            _recursive_insertion(value, current_node->_smaller);
+        }
+        else if (current_node->_content > value) {
+            _recursive_insertion(value, current_node->_greater);
+        }
+    };
+    void _recursive_deletion(BinaryTreeNode<T>* current_node) {
+        if (current_node) {
+            _recursive_deletion(current_node->_smaller);
+            _recursive_deletion(current_node->_greater);
+            delete current_node;
+        }
+    }
 
    public:
-    BinaryTree() {
-        std::cout << "Hello world\n";
+    BinaryTree() : _root(NULL) {
+        std::cout << "Default constructor\n";
     }
+    BinaryTree(T value) {
+        std::cout << "Value constructor\n";
+        _root = new BinaryTreeNode<T>(value);
+    }
+    ~BinaryTree() {
+        if (_root)
+            _recursive_deletion(_root);
+    };
+    void insert(const T &value) {
+        _recursive_insertion(value, _root);
+    };
 };
 
 template <typename V>
@@ -54,6 +97,17 @@ std::ostream& operator<<(std::ostream& os, const typename BinaryTree<V>::BinaryT
 };
 
 }  // namespace ft
+
+int main() {
+    ft::BinaryTree<std::string> teste;
+    teste.insert("eita deus");
+    teste.insert("eita amor");
+    teste.insert("eita febre");
+    ft::BinaryTree<std::string> teste2("quarenta e dois");
+    teste2.insert("quarenta e três");
+    teste2.insert("quarenta e quatro");
+    teste2.insert("quarenta e cinco");
+}
 
 // int main() {
 //     ft::BinaryTreeNode<std::string> node2("DOIS");
@@ -79,8 +133,3 @@ std::ostream& operator<<(std::ostream& os, const typename BinaryTree<V>::BinaryT
 //     std::cout << node4 << std::endl;
 //     std::cout << node5 << std::endl;
 // }
-
-int main() {
-    ft::BinaryTree<std::string> teste;
-    (void) teste;
-}
