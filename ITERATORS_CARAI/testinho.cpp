@@ -52,15 +52,17 @@ class BinaryTree {
 
     // Attributes
     BinaryTreeNode<T>* _root;
+    size_t _size;
 
     // Private member functions
-    void _insert_recursively(T value, BinaryTreeNode<T>*& current_node) {
+    void _insert_recursively(const T& value, BinaryTreeNode<T>*& current_node) {
         if (current_node == NULL) {
             current_node = new BinaryTreeNode<T>(value);
+            _size++;
         } else if (current_node->_content < value) {
-            _insert_recursively(value, current_node->_smaller);
-        } else if (current_node->_content > value) {
             _insert_recursively(value, current_node->_greater);
+        } else if (current_node->_content > value) {
+            _insert_recursively(value, current_node->_smaller);
         }
     };
     void _delete_in_post_order_traversal(BinaryTreeNode<T>* current_node) {
@@ -81,6 +83,11 @@ class BinaryTree {
     };
     void _print_tree_helper(BinaryTreeNode<T>* current_node, int level) {
         if (current_node == NULL) {
+            for (int i = 0; i < level; i++) {
+                std::cout << "\t";
+            }
+
+            std::cout << "🍃" << std::endl;
             return;
         }
 
@@ -101,15 +108,17 @@ class BinaryTree {
     }
 
    public:
-    BinaryTree() : _root(NULL) {
+    BinaryTree() : _root(NULL), _size(0) {
         std::cout << "Default constructor\n";
     }
     BinaryTree(T value) {
         std::cout << "Value constructor\n";
         _root = new BinaryTreeNode<T>(value);
+        _size = 1;
     }
     BinaryTree(const BinaryTree<T>& other) {
         _root = _copy_nodes_in_pre_order_traversal(other._root);
+        _size = other._size;
     };
     ~BinaryTree() {
         if (_root)
@@ -121,6 +130,7 @@ class BinaryTree {
     void printTree() {
         _print_tree_helper(_root, 0);
     };
+    size_t getSize(void) { return this->_size; };
 };
 
 template <typename V>
@@ -141,15 +151,24 @@ int main() {
     teste2.insert(44);
     teste2.insert(45);
     ft::BinaryTree<int> teste3(teste2);
-    std::cout << "Teste 1:\n";
-    teste.printTree();
+    // ft::BinaryTree<int> teste4;
+    // teste4 = teste;
 
+    teste.insert(6);
+    teste.insert(5);
+    teste.insert(4);
     teste2.insert(41);
     teste2.insert(40);
-    std::cout << "Teste 2:\n";
+
+    std::cout << "\nTeste 1: (size: " << teste.getSize() << ")\n";
+    teste.printTree();
+
+    std::cout << "\nTeste 2: (size: " << teste2.getSize() << ")\n";
     teste2.printTree();
-    std::cout << "Teste 3:\n";
+    std::cout << "\nTeste 3: (size: " << teste3.getSize() << ")\n";
     teste3.printTree();
+    // std::cout << "\nTeste 4: (size: " << teste4.getSize() << ")\n";
+    // teste4.printTree();
 }
 
 // int main() {
