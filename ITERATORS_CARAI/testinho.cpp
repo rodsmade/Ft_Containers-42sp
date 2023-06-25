@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip> // std::boolalpha
 
 namespace ft {
 template <typename T>
@@ -107,6 +108,30 @@ class BinaryTree {
         _print_tree_helper(current_node->_smaller, level + 1);
     }
 
+    void _compare_in_order_traversal(BinaryTreeNode<T>* lhs, BinaryTreeNode<T>* rhs, bool* result) {
+        if (*result == false)
+            return;
+        else {
+            if (lhs == NULL && rhs == NULL)  // both are leaves
+                return;
+            else if ((lhs == NULL && rhs != NULL) || (lhs != NULL && rhs == NULL)) {  // one is leaf and the other is not
+                *result = false;
+                return;
+            } else {  // none are leaves
+                _compare_in_order_traversal(lhs->_smaller, rhs->_smaller, result);
+                if (lhs->_content != rhs->_content) {
+                    *result = false;
+                    return;
+                }
+                _compare_in_order_traversal(lhs->_greater, rhs->_greater, result);
+            }
+        }
+
+        // compare smaller
+        // compare current
+        // compare greater
+    };
+
    public:
     BinaryTree() : _root(NULL), _size(0) {
         std::cout << "Default constructor\n";
@@ -124,6 +149,23 @@ class BinaryTree {
         if (_root)
             _delete_in_post_order_traversal(_root);
     };
+
+    BinaryTree<T> operator=(const BinaryTree<T>& other) {
+        if (*this != other) {
+            _delete_in_post_order_traversal(_root);
+            _root = _copy_nodes_in_pre_order_traversal(other._root);
+            _size = other._size;
+        }
+        return (*this);
+    }
+    bool operator==(const BinaryTree<T>& other) {
+        bool result = true;
+        _compare_in_order_traversal(this->_root, other._root, &result);
+        return (result);
+    }
+    bool operator!=(const BinaryTree<T>& other) {
+        return (!(this->_root == other._root));
+    }
     void insert(const T& value) {
         _insert_recursively(value, _root);
     };
@@ -142,33 +184,45 @@ std::ostream& operator<<(std::ostream& os, const typename BinaryTree<V>::BinaryT
 }  // namespace ft
 
 int main() {
-    ft::BinaryTree<int> teste;
-    teste.insert(1);
-    teste.insert(2);
-    teste.insert(3);
+    ft::BinaryTree<int> teste1;
+    teste1.insert(1);
+    teste1.insert(2);
+    teste1.insert(3);
     ft::BinaryTree<int> teste2(42);
     teste2.insert(43);
     teste2.insert(44);
-    teste2.insert(45);
     ft::BinaryTree<int> teste3(teste2);
-    // ft::BinaryTree<int> teste4;
-    // teste4 = teste;
+    ft::BinaryTree<int> teste4;
+    teste4 = teste1;
 
-    teste.insert(6);
-    teste.insert(5);
-    teste.insert(4);
+    teste1.insert(6);
+    teste1.insert(5);
+    teste1.insert(4);
     teste2.insert(41);
     teste2.insert(40);
 
-    std::cout << "\nTeste 1: (size: " << teste.getSize() << ")\n";
-    teste.printTree();
+    std::cout << "\nTeste 1: (size: " << teste1.getSize() << ")\n";
+    teste1.printTree();
 
     std::cout << "\nTeste 2: (size: " << teste2.getSize() << ")\n";
     teste2.printTree();
     std::cout << "\nTeste 3: (size: " << teste3.getSize() << ")\n";
     teste3.printTree();
-    // std::cout << "\nTeste 4: (size: " << teste4.getSize() << ")\n";
-    // teste4.printTree();
+    std::cout << "\nTeste 4: (size: " << teste4.getSize() << ")\n";
+    teste4.printTree();
+
+    std::cout << std::boolalpha << std::endl;
+    std::cout << "teste1 == teste1: " << (teste1 == teste1) << std::endl;
+    std::cout << "teste1 == teste2: " << (teste1 == teste2) << std::endl;
+    std::cout << "teste1 == teste3: " << (teste1 == teste3) << std::endl;
+    std::cout << "teste1 == teste4: " << (teste1 == teste4) << std::endl;
+    std::cout << "teste2 == teste2: " << (teste2 == teste2) << std::endl;
+    std::cout << "teste2 == teste3: " << (teste2 == teste3) << std::endl;
+    std::cout << "teste2 == teste4: " << (teste2 == teste4) << std::endl;
+    std::cout << "teste3 == teste3: " << (teste3 == teste3) << std::endl;
+    std::cout << "teste3 == teste4: " << (teste3 == teste4) << std::endl;
+    std::cout << "teste4 == teste4: " << (teste4 == teste4) << std::endl;
+
 }
 
 // int main() {
