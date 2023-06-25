@@ -114,7 +114,7 @@ class BinaryTree {
         else {
             if (lhs == NULL && rhs == NULL)  // both are leaves
                 return;
-            else if ((lhs == NULL && rhs != NULL) || (lhs != NULL && rhs == NULL)) {  // one is leaf and the other is not
+            else if (lhs == NULL || rhs == NULL) {  // one is leaf and the other is not
                 *result = false;
                 return;
             } else {  // none are leaves
@@ -126,10 +126,6 @@ class BinaryTree {
                 _compare_in_order_traversal(lhs->_greater, rhs->_greater, result);
             }
         }
-
-        // compare smaller
-        // compare current
-        // compare greater
     };
 
    public:
@@ -222,7 +218,6 @@ int main() {
     std::cout << "teste3 == teste3: " << (teste3 == teste3) << std::endl;
     std::cout << "teste3 == teste4: " << (teste3 == teste4) << std::endl;
     std::cout << "teste4 == teste4: " << (teste4 == teste4) << std::endl;
-
 }
 
 // int main() {
