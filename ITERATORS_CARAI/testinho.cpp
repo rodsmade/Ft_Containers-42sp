@@ -54,23 +54,32 @@ class BinaryTree {
     BinaryTreeNode<T>* _root;
 
     // Private member functions
-    void _recursive_insertion(T value, BinaryTreeNode<T>* &current_node) {
+    void _insert_recursively(T value, BinaryTreeNode<T>* &current_node) {
         if (current_node == NULL) {
             current_node = new BinaryTreeNode<T>(value);
         }
         else if (current_node->_content < value) {
-            _recursive_insertion(value, current_node->_smaller);
+            _insert_recursively(value, current_node->_smaller);
         }
         else if (current_node->_content > value) {
-            _recursive_insertion(value, current_node->_greater);
+            _insert_recursively(value, current_node->_greater);
         }
     };
-    void _recursive_deletion(BinaryTreeNode<T>* current_node) {
+    void _delete_in_post_order_traversal(BinaryTreeNode<T>* current_node) {
         if (current_node) {
-            _recursive_deletion(current_node->_smaller);
-            _recursive_deletion(current_node->_greater);
+            _delete_in_post_order_traversal(current_node->_smaller);
+            _delete_in_post_order_traversal(current_node->_greater);
             delete current_node;
         }
+    }
+    BinaryTreeNode<T>  *_copy_nodes_in_pre_order_traversal(BinaryTreeNode<T> *current_node) {
+        if (current_node) {
+            BinaryTreeNode<T>* new_node = new BinaryTreeNode<T>(current_node->_content);
+            new_node->_smaller = _copy_nodes_in_pre_order_traversal(current_node->_smaller);
+            new_node->_greater = _copy_nodes_in_pre_order_traversal(current_node->_greater);
+            return new_node;
+        }
+        return (NULL);
     }
 
    public:
@@ -81,12 +90,15 @@ class BinaryTree {
         std::cout << "Value constructor\n";
         _root = new BinaryTreeNode<T>(value);
     }
+    BinaryTree(const BinaryTree<T> &other) {
+        _root = _copy_nodes_in_pre_order_traversal(other._root);
+    };
     ~BinaryTree() {
         if (_root)
-            _recursive_deletion(_root);
+            _delete_in_post_order_traversal(_root);
     };
     void insert(const T &value) {
-        _recursive_insertion(value, _root);
+        _insert_recursively(value, _root);
     };
 };
 
@@ -99,14 +111,15 @@ std::ostream& operator<<(std::ostream& os, const typename BinaryTree<V>::BinaryT
 }  // namespace ft
 
 int main() {
-    ft::BinaryTree<std::string> teste;
-    teste.insert("eita deus");
-    teste.insert("eita amor");
-    teste.insert("eita febre");
-    ft::BinaryTree<std::string> teste2("quarenta e dois");
-    teste2.insert("quarenta e três");
-    teste2.insert("quarenta e quatro");
-    teste2.insert("quarenta e cinco");
+    ft::BinaryTree<int> teste;
+    teste.insert(1);
+    teste.insert(2);
+    teste.insert(3);
+    ft::BinaryTree<int> teste2(42);
+    teste2.insert(43);
+    teste2.insert(44);
+    teste2.insert(45);
+    ft::BinaryTree<int> teste3(teste2);
 }
 
 // int main() {
