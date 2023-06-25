@@ -54,14 +54,12 @@ class BinaryTree {
     BinaryTreeNode<T>* _root;
 
     // Private member functions
-    void _insert_recursively(T value, BinaryTreeNode<T>* &current_node) {
+    void _insert_recursively(T value, BinaryTreeNode<T>*& current_node) {
         if (current_node == NULL) {
             current_node = new BinaryTreeNode<T>(value);
-        }
-        else if (current_node->_content < value) {
+        } else if (current_node->_content < value) {
             _insert_recursively(value, current_node->_smaller);
-        }
-        else if (current_node->_content > value) {
+        } else if (current_node->_content > value) {
             _insert_recursively(value, current_node->_greater);
         }
     };
@@ -71,8 +69,8 @@ class BinaryTree {
             _delete_in_post_order_traversal(current_node->_greater);
             delete current_node;
         }
-    }
-    BinaryTreeNode<T>  *_copy_nodes_in_pre_order_traversal(BinaryTreeNode<T> *current_node) {
+    };
+    BinaryTreeNode<T>* _copy_nodes_in_pre_order_traversal(BinaryTreeNode<T>* current_node) {
         if (current_node) {
             BinaryTreeNode<T>* new_node = new BinaryTreeNode<T>(current_node->_content);
             new_node->_smaller = _copy_nodes_in_pre_order_traversal(current_node->_smaller);
@@ -80,6 +78,26 @@ class BinaryTree {
             return new_node;
         }
         return (NULL);
+    };
+    void _print_tree_helper(BinaryTreeNode<T>* current_node, int level) {
+        if (current_node == NULL) {
+            return;
+        }
+
+        _print_tree_helper(current_node->_greater, level + 1);
+
+        for (int i = 0; i < level; i++) {
+            std::cout << "\t";
+        }
+
+        std::cout << current_node->_content << std::endl;
+        // if (current_node->_parent)
+        //     std::cout << current_node->_parent->_content << "/" << current_node->_content << std::endl;
+        // else
+        //     std::cout << "NULL"
+        //               << "/" << current_node->_content << std::endl;
+
+        _print_tree_helper(current_node->_smaller, level + 1);
     }
 
    public:
@@ -90,15 +108,18 @@ class BinaryTree {
         std::cout << "Value constructor\n";
         _root = new BinaryTreeNode<T>(value);
     }
-    BinaryTree(const BinaryTree<T> &other) {
+    BinaryTree(const BinaryTree<T>& other) {
         _root = _copy_nodes_in_pre_order_traversal(other._root);
     };
     ~BinaryTree() {
         if (_root)
             _delete_in_post_order_traversal(_root);
     };
-    void insert(const T &value) {
+    void insert(const T& value) {
         _insert_recursively(value, _root);
+    };
+    void printTree() {
+        _print_tree_helper(_root, 0);
     };
 };
 
@@ -120,6 +141,15 @@ int main() {
     teste2.insert(44);
     teste2.insert(45);
     ft::BinaryTree<int> teste3(teste2);
+    std::cout << "Teste 1:\n";
+    teste.printTree();
+
+    teste2.insert(41);
+    teste2.insert(40);
+    std::cout << "Teste 2:\n";
+    teste2.printTree();
+    std::cout << "Teste 3:\n";
+    teste3.printTree();
 }
 
 // int main() {
