@@ -7,42 +7,37 @@ template <typename T>
 class map {
    private:
     // Prototypes
-    template <typename U>
-    class BinaryTree;
+    // ...
 
     // Implementation
-    template <typename Batatafrita>
     class BinaryTree {
-    private:
+       private:
         // Prototypes
-        template <typename U>
         class BinaryTreeNode;
 
-        template <typename V>
-        friend std::ostream& operator<<(std::ostream& os, const BinaryTreeNode<V>& node);
+        friend std::ostream& operator<<(std::ostream& os, const BinaryTreeNode& node);
 
         // Implementation
-        template <typename U>
         class BinaryTreeNode {
-        private:
+           private:
             // Prototypes
-            friend class BinaryTree<U>;
+            friend class BinaryTree;
 
             // Private members
-            U _content;
+            T _content;
             BinaryTreeNode* _smaller;
             BinaryTreeNode* _greater;
 
-        public:
-            BinaryTreeNode(U content = U(), BinaryTreeNode* smaller = NULL, BinaryTreeNode* greater = NULL) : _content(content), _smaller(smaller), _greater(greater){};
+           public:
+            BinaryTreeNode(T content = T(), BinaryTreeNode* smaller = NULL, BinaryTreeNode* greater = NULL) : _content(content), _smaller(smaller), _greater(greater){};
             ~BinaryTreeNode(){};
             BinaryTreeNode(const BinaryTreeNode& other) {
-                _content = U(other._content);
+                _content = T(other._content);
                 _smaller = other._smaller;
                 _greater = other._greater;
             };
 
-            BinaryTreeNode<U>& operator=(const BinaryTreeNode& other) {
+            BinaryTreeNode& operator=(const BinaryTreeNode& other) {
                 if (*this != other) {
                     _content = other._content;
                     _smaller = other._smaller;
@@ -51,23 +46,23 @@ class map {
                 return (*this);
             }
 
-            bool operator==(const BinaryTreeNode<U>& rhs) {
+            bool operator==(const BinaryTreeNode& rhs) {
                 return (this->_content == rhs._content && this->_smaller == rhs._smaller && this->_greater == rhs._greater);
             }
 
-            bool operator!=(const BinaryTreeNode<U>& rhs) {
+            bool operator!=(const BinaryTreeNode& rhs) {
                 return !(*this == rhs);
             }
         };
 
         // Attributes
-        BinaryTreeNode<Batatafrita>* _root;
+        BinaryTreeNode* _root;
         size_t _size;
 
         // Private member functions
-        void _insert_recursively(const Batatafrita& value, BinaryTreeNode<Batatafrita>*& current_node) {
+        void _insert_recursively(const T& value, BinaryTreeNode*& current_node) {
             if (current_node == NULL) {
-                current_node = new BinaryTreeNode<Batatafrita>(value);
+                current_node = new BinaryTreeNode(value);
                 _size++;
             } else if (current_node->_content < value) {
                 _insert_recursively(value, current_node->_greater);
@@ -75,23 +70,23 @@ class map {
                 _insert_recursively(value, current_node->_smaller);
             }
         };
-        void _delete_in_post_order_traversal(BinaryTreeNode<Batatafrita>* current_node) {
+        void _delete_in_post_order_traversal(BinaryTreeNode* current_node) {
             if (current_node) {
                 _delete_in_post_order_traversal(current_node->_smaller);
                 _delete_in_post_order_traversal(current_node->_greater);
                 delete current_node;
             }
         };
-        BinaryTreeNode<Batatafrita>* _copy_nodes_in_pre_order_traversal(BinaryTreeNode<Batatafrita>* current_node) {
+        BinaryTreeNode* _copy_nodes_in_pre_order_traversal(BinaryTreeNode* current_node) {
             if (current_node) {
-                BinaryTreeNode<Batatafrita>* new_node = new BinaryTreeNode<Batatafrita>(current_node->_content);
+                BinaryTreeNode* new_node = new BinaryTreeNode(current_node->_content);
                 new_node->_smaller = _copy_nodes_in_pre_order_traversal(current_node->_smaller);
                 new_node->_greater = _copy_nodes_in_pre_order_traversal(current_node->_greater);
                 return new_node;
             }
             return (NULL);
         };
-        void _print_tree_helper(BinaryTreeNode<Batatafrita>* current_node, int level) {
+        void _print_tree_helper(BinaryTreeNode* current_node, int level) {
             if (current_node == NULL) {
                 for (int i = 0; i < level; i++) {
                     std::cout << "\t";
@@ -117,7 +112,7 @@ class map {
             _print_tree_helper(current_node->_smaller, level + 1);
         }
 
-        void _compare_in_order_traversal(BinaryTreeNode<Batatafrita>* lhs, BinaryTreeNode<Batatafrita>* rhs, bool* result) {
+        void _compare_in_order_traversal(BinaryTreeNode* lhs, BinaryTreeNode* rhs, bool* result) {
             if (*result == false)
                 return;
             else {
@@ -139,11 +134,11 @@ class map {
 
     public:
         BinaryTree() : _root(NULL), _size(0) {}
-        BinaryTree(Batatafrita value) {
-            _root = new BinaryTreeNode<Batatafrita>(value);
+        BinaryTree(T value) {
+            _root = new BinaryTreeNode(value);
             _size = 1;
         }
-        BinaryTree(const BinaryTree<Batatafrita>& other) {
+        BinaryTree(const BinaryTree& other) {
             _root = _copy_nodes_in_pre_order_traversal(other._root);
             _size = other._size;
         };
@@ -152,7 +147,7 @@ class map {
                 _delete_in_post_order_traversal(_root);
         };
 
-        BinaryTree<Batatafrita> operator=(const BinaryTree<Batatafrita>& other) {
+        BinaryTree operator=(const BinaryTree& other) {
             if (*this != other) {
                 _delete_in_post_order_traversal(_root);
                 _root = _copy_nodes_in_pre_order_traversal(other._root);
@@ -160,15 +155,15 @@ class map {
             }
             return (*this);
         }
-        bool operator==(const BinaryTree<Batatafrita>& other) {
+        bool operator==(const BinaryTree& other) {
             bool result = true;
             _compare_in_order_traversal(this->_root, other._root, &result);
             return (result);
         }
-        bool operator!=(const BinaryTree<Batatafrita>& other) {
+        bool operator!=(const BinaryTree& other) {
             return (!(this->_root == other._root));
         }
-        void insert(const Batatafrita& value) {
+        void insert(const T& value) {
             _insert_recursively(value, _root);
         };
         void printTree() {
@@ -177,15 +172,16 @@ class map {
         size_t getSize(void) { return this->_size; };
     };
 
+
     // Attributes
-    BinaryTree<T>   _container;
+    BinaryTree   _container;
 
    public:
     // Aliases 
     typedef T value_type;
     typedef size_t size_type;
 
-    map() : _container(BinaryTree<T>()) { std::cout << "Map default constructor called\n"; };
+    map() : _container(BinaryTree()) { std::cout << "Map default constructor called\n"; };
     ~map() { std::cout << "Map destructor called\n"; };
 
     void insert(T value) {
