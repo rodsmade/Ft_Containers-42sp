@@ -138,11 +138,8 @@ class map {
         };
 
     public:
-        BinaryTree() : _root(NULL), _size(0) {
-            std::cout << "Default constructor\n";
-        }
+        BinaryTree() : _root(NULL), _size(0) {}
         BinaryTree(Batatafrita value) {
-            std::cout << "Value constructor\n";
             _root = new BinaryTreeNode<Batatafrita>(value);
             _size = 1;
         }
@@ -184,8 +181,24 @@ class map {
     BinaryTree<T>   _container;
 
    public:
+    // Aliases 
+    typedef T value_type;
+    typedef size_t size_type;
+
     map() : _container(BinaryTree<T>()) { std::cout << "Map default constructor called\n"; };
     ~map() { std::cout << "Map destructor called\n"; };
+
+    void insert(T value) {
+        _container.insert(value);
+    };
+
+    size_type size(void) {
+        return _container.getSize();
+    };
+
+    bool empty(void) {
+        return (size() == 0);
+    }
 
 };
 
@@ -199,6 +212,18 @@ std::ostream& operator<<(std::ostream& os, const typename map<V>::BinaryTree::Bi
 
 int main() {
     ft::map<int> teste;
+    std::cout << std::boolalpha;
+    std::cout << "empty: " << teste.empty() << "\n";
+    std::cout << "size: " << teste.size() << "\n";
+    teste.insert(42);
+    teste.insert(41);
+    teste.insert(43);
+    teste.insert(45);
+    teste.insert(46);
+    teste.insert(747);
+    teste.insert(124);
+    std::cout << "empty: " << teste.empty() << "\n";
+    std::cout << "size: " << teste.size() << "\n";
     return 0;
 }
 
@@ -213,23 +238,23 @@ int main() {
 //     ft::BinaryTree<int> teste3(teste2);
 //     ft::BinaryTree<int> teste4;
 //     teste4 = teste1;
-
+//
 //     teste1.insert(6);
 //     teste1.insert(5);
 //     teste1.insert(4);
 //     teste2.insert(41);
 //     teste2.insert(40);
-
+//
 //     std::cout << "\nTeste 1: (size: " << teste1.getSize() << ")\n";
 //     teste1.printTree();
-
+//
 //     std::cout << "\nTeste 2: (size: " << teste2.getSize() << ")\n";
 //     teste2.printTree();
 //     std::cout << "\nTeste 3: (size: " << teste3.getSize() << ")\n";
 //     teste3.printTree();
 //     std::cout << "\nTeste 4: (size: " << teste4.getSize() << ")\n";
 //     teste4.printTree();
-
+//
 //     std::cout << std::boolalpha << std::endl;
 //     std::cout << "teste1 == teste1: " << (teste1 == teste1) << std::endl;
 //     std::cout << "teste1 == teste2: " << (teste1 == teste2) << std::endl;
