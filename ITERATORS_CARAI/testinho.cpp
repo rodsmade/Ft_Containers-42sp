@@ -15,6 +15,8 @@ class map {
         // Prototypes
         class BinaryTreeNode;
 
+        friend class map;
+
         friend std::ostream& operator<<(std::ostream& os, const BinaryTreeNode& node);
 
         // Implementation
@@ -172,6 +174,9 @@ class map {
         size_t getSize(void) { return this->_size; };
     };
 
+    class BinaryTreeIterator {
+
+    };
 
     // Attributes
     BinaryTree   _container;
@@ -196,10 +201,20 @@ class map {
         return (size() == 0);
     }
 
+    BinaryTreeIterator begin(void) {
+        BinaryTree::BinaryTreeNode *pivot = _container._root;
+        while (pivot->_smaller)
+            pivot = pivot->_smaller;
+        return (BinaryTreeIterator(pivot));
+    };
+
+    BinaryTreeIterator end(void) {
+        return (BinaryTreeIterator(NULL));
+    };
 };
 
-template <typename V>
-std::ostream& operator<<(std::ostream& os, const typename map<V>::BinaryTree::BinaryTreeNode& node) {
+template <typename T>
+std::ostream& operator<<(std::ostream& os, const typename map<T>::BinaryTree::BinaryTreeNode& node) {
     os << node._content;
     return os;
 };
