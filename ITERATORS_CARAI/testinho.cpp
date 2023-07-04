@@ -1,5 +1,5 @@
+#include <iomanip>  // std::boolalpha
 #include <iostream>
-#include <iomanip> // std::boolalpha
 
 namespace ft {
 
@@ -17,6 +17,7 @@ class map {
 
         friend class map;
 
+        template <typename U>
         friend std::ostream& operator<<(std::ostream& os, const BinaryTreeNode& node);
 
         // Implementation
@@ -24,6 +25,8 @@ class map {
            private:
             // Prototypes
             friend class BinaryTree;
+            template <typename U>
+            friend class map;
 
             // Private members
             T _content;
@@ -38,6 +41,8 @@ class map {
                 _smaller = other._smaller;
                 _greater = other._greater;
             };
+
+            T get_content(void) { return _content; };
 
             BinaryTreeNode& operator=(const BinaryTreeNode& other) {
                 if (*this != other) {
@@ -134,7 +139,7 @@ class map {
             }
         };
 
-    public:
+       public:
         BinaryTree() : _root(NULL), _size(0) {}
         BinaryTree(T value) {
             _root = new BinaryTreeNode(value);
@@ -175,16 +180,26 @@ class map {
     };
 
     class BinaryTreeIterator {
+       private:
+        typename BinaryTree::BinaryTreeNode* _node;
 
+       public:
+        BinaryTreeIterator(typename BinaryTree::BinaryTreeNode* node) : _node(node){};
+        ~BinaryTreeIterator(void){};
+
+        T &operator*(void) {
+            return _node->_content;
+        }
     };
 
     // Attributes
-    BinaryTree   _container;
+    BinaryTree _container;
 
    public:
-    // Aliases 
+    // Aliases
     typedef T value_type;
     typedef size_t size_type;
+    typedef BinaryTreeIterator iterator;
 
     map() : _container(BinaryTree()) { std::cout << "Map default constructor called\n"; };
     ~map() { std::cout << "Map destructor called\n"; };
@@ -202,7 +217,7 @@ class map {
     }
 
     BinaryTreeIterator begin(void) {
-        BinaryTree::BinaryTreeNode *pivot = _container._root;
+        typename BinaryTree::BinaryTreeNode* pivot = _container._root;
         while (pivot->_smaller)
             pivot = pivot->_smaller;
         return (BinaryTreeIterator(pivot));
@@ -233,8 +248,12 @@ int main() {
     teste.insert(46);
     teste.insert(747);
     teste.insert(124);
+    teste.insert(2);
     std::cout << "empty: " << teste.empty() << "\n";
     std::cout << "size: " << teste.size() << "\n";
+
+    ft::map<int>::iterator it = teste.begin();
+    std::cout << "begin iterator: " << *it << "\n";
     return 0;
 }
 
