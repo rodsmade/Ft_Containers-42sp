@@ -30,23 +30,24 @@ class map {
 
             // Private members
             T _content;
+            BinaryTreeNode* _parent;
             BinaryTreeNode* _smaller;
             BinaryTreeNode* _greater;
 
            public:
-            BinaryTreeNode(T content = T(), BinaryTreeNode* smaller = NULL, BinaryTreeNode* greater = NULL) : _content(content), _smaller(smaller), _greater(greater){};
+            BinaryTreeNode(T content = T(), BinaryTreeNode* parent = NULL, BinaryTreeNode* smaller = NULL, BinaryTreeNode* greater = NULL) : _content(content), _parent(parent), _smaller(smaller), _greater(greater){};
             ~BinaryTreeNode(){};
             BinaryTreeNode(const BinaryTreeNode& other) {
                 _content = T(other._content);
+                _parent = other._parent;
                 _smaller = other._smaller;
                 _greater = other._greater;
             };
 
-            T get_content(void) { return _content; };
-
             BinaryTreeNode& operator=(const BinaryTreeNode& other) {
                 if (*this != other) {
                     _content = other._content;
+                    _parent = other._parent;
                     _smaller = other._smaller;
                     _greater = other._greater;
                 }
@@ -54,7 +55,7 @@ class map {
             }
 
             bool operator==(const BinaryTreeNode& rhs) {
-                return (this->_content == rhs._content && this->_smaller == rhs._smaller && this->_greater == rhs._greater);
+                return (this->_content == rhs._content && this->_parent == rhs._parent && this->_smaller == rhs._smaller && this->_greater == rhs._greater);
             }
 
             bool operator!=(const BinaryTreeNode& rhs) {
@@ -67,14 +68,16 @@ class map {
         size_t _size;
 
         // Private member functions
-        void _insert_recursively(const T& value, BinaryTreeNode*& current_node) {
+        void _insert_recursively(const T& value, BinaryTreeNode*& current_node, BinaryTreeNode** parent_node) {
             if (current_node == NULL) {
                 current_node = new BinaryTreeNode(value);
+                if (*parent_node)
+                    current_node->_parent = *parent_node;
                 _size++;
             } else if (current_node->_content < value) {
-                _insert_recursively(value, current_node->_greater);
+                _insert_recursively(value, current_node->_greater, &current_node);
             } else if (current_node->_content > value) {
-                _insert_recursively(value, current_node->_smaller);
+                _insert_recursively(value, current_node->_smaller, &current_node);
             }
         };
         void _delete_in_post_order_traversal(BinaryTreeNode* current_node) {
@@ -109,12 +112,12 @@ class map {
                 std::cout << "\t";
             }
 
-            std::cout << current_node->_content << std::endl;
-            // if (current_node->_parent)
-            //     std::cout << current_node->_parent->_content << "/" << current_node->_content << std::endl;
-            // else
-            //     std::cout << "NULL"
-            //               << "/" << current_node->_content << std::endl;
+            // std::cout << current_node->_content << std::endl;
+            if (current_node->_parent)
+                std::cout << current_node->_parent->_content << "/" << current_node->_content << std::endl;
+            else
+                std::cout << "🌱 "
+                          << "/" << current_node->_content << std::endl;
 
             _print_tree_helper(current_node->_smaller, level + 1);
         }
@@ -171,7 +174,9 @@ class map {
             return (!(this->_root == other._root));
         }
         void insert(const T& value) {
-            _insert_recursively(value, _root);
+            BinaryTreeNode* nullPtr = NULL;
+
+            _insert_recursively(value, _root, &nullPtr);
         };
         void printTree() {
             _print_tree_helper(_root, 0);
@@ -190,6 +195,23 @@ class map {
         T &operator*(void) {
             return _node->_content;
         }
+        BinaryTreeIterator &operator++(void) {
+            if (!_node->_greater)
+                _node = _node->_parent;
+            else {
+                _node = _node->_greater;
+                while (_node->_smaller)
+                    _node = _node->_smaller;
+            }
+            return (*this);
+        }
+
+        bool operator==(const BinaryTreeIterator &rhs) {
+            return (_node == rhs._node);
+        }
+        bool operator!=(const BinaryTreeIterator &rhs) {
+            return (!(*this == rhs));
+        }
     };
 
     // Attributes
@@ -203,6 +225,9 @@ class map {
 
     map() : _container(BinaryTree()) { std::cout << "Map default constructor called\n"; };
     ~map() { std::cout << "Map destructor called\n"; };
+
+    // TODO: REMOVE
+    BinaryTree &get_bin_tree(void) { return _container; };
 
     void insert(T value) {
         _container.insert(value);
@@ -252,8 +277,24 @@ int main() {
     std::cout << "empty: " << teste.empty() << "\n";
     std::cout << "size: " << teste.size() << "\n";
 
+    // for (ft::map<int>::iterator it = teste.begin(); it != teste.end(); ++it)
+    //     std::cout << "begin iterator: " << *it << "\n";
+
     ft::map<int>::iterator it = teste.begin();
-    std::cout << "begin iterator: " << *it << "\n";
+    for (ft::map<int>::size_type i = 0; i < teste.size(); i++) {
+        std::cout << "begin iterator: " << *it << "\n";
+        ++it;
+    }
+
+    // std::cout << "begin iterator: " << *it << "\n";
+    // ++it;
+    // std::cout << "begin iterator: " << *it << "\n";
+    // ++it;
+    // std::cout << "begin iterator: " << *it << "\n";
+    // ++it;
+    // std::cout << "begin iterator: " << *it << "\n";
+
+    teste.get_bin_tree().printTree();
     return 0;
 }
 
