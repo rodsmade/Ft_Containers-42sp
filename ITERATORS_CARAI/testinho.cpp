@@ -192,12 +192,27 @@ class map {
         BinaryTreeIterator(typename BinaryTree::BinaryTreeNode* node) : _node(node){};
         ~BinaryTreeIterator(void){};
 
-        T &operator*(void) {
+        T& operator*(void) {
             return _node->_content;
         }
-        BinaryTreeIterator &operator++(void) {
-            if (!_node->_greater)
-                _node = _node->_parent;
+        BinaryTreeIterator& operator++(void) {
+            if (!_node || (!_node->_greater && !_node->_parent)) {
+                // tree is empty or root is the highest element
+                _node = NULL;
+                return (*this);
+            }
+            if (!_node->_greater) {
+                while (_node->_parent) {
+                    // do something!
+                    if (_node->_parent->_content > _node->_content) {
+                        _node = _node->_parent;
+                        return (*this);
+                    } else {
+                        _node = _node->_parent;
+                    }
+                }
+                _node = NULL;
+            }
             else {
                 _node = _node->_greater;
                 while (_node->_smaller)
@@ -206,10 +221,10 @@ class map {
             return (*this);
         }
 
-        bool operator==(const BinaryTreeIterator &rhs) {
+        bool operator==(const BinaryTreeIterator& rhs) {
             return (_node == rhs._node);
         }
-        bool operator!=(const BinaryTreeIterator &rhs) {
+        bool operator!=(const BinaryTreeIterator& rhs) {
             return (!(*this == rhs));
         }
     };
@@ -227,7 +242,7 @@ class map {
     ~map() { std::cout << "Map destructor called\n"; };
 
     // TODO: REMOVE
-    BinaryTree &get_bin_tree(void) { return _container; };
+    BinaryTree& get_bin_tree(void) { return _container; };
 
     void insert(T value) {
         _container.insert(value);
@@ -267,24 +282,42 @@ int main() {
     std::cout << "empty: " << teste.empty() << "\n";
     std::cout << "size: " << teste.size() << "\n";
     teste.insert(42);
-    teste.insert(41);
+    teste.insert(1);
+    teste.insert(-3);
+    teste.insert(37);
+    teste.insert(14);
+    teste.insert(23);
+    teste.insert(5);
+    teste.insert(6);
+    teste.insert(9);
+    teste.insert(369);
+    teste.insert(52);
     teste.insert(43);
-    teste.insert(45);
-    teste.insert(46);
-    teste.insert(747);
-    teste.insert(124);
-    teste.insert(2);
+    teste.insert(69);
+    teste.insert(323);
+    teste.insert(87);
+    teste.insert(326);
+    teste.insert(2207);
+    teste.insert(1813);
+    teste.insert(6549);
+    teste.insert(649);
+    teste.insert(2042);
+    teste.insert(619);
+    teste.insert(443);
+    teste.insert(400);
+    teste.insert(949);
+    teste.insert(777);
     std::cout << "empty: " << teste.empty() << "\n";
     std::cout << "size: " << teste.size() << "\n";
 
-    // for (ft::map<int>::iterator it = teste.begin(); it != teste.end(); ++it)
-    //     std::cout << "begin iterator: " << *it << "\n";
-
-    ft::map<int>::iterator it = teste.begin();
-    for (ft::map<int>::size_type i = 0; i < teste.size(); i++) {
+    for (ft::map<int>::iterator it = teste.begin(); it != teste.end(); ++it)
         std::cout << "begin iterator: " << *it << "\n";
-        ++it;
-    }
+
+    // ft::map<int>::iterator it = teste.begin();
+    // for (ft::map<int>::size_type i = 0; i < teste.size(); i++) {
+    //     std::cout << "begin iterator: " << *it << "\n";
+    //     ++it;
+    // }
 
     // std::cout << "begin iterator: " << *it << "\n";
     // ++it;
