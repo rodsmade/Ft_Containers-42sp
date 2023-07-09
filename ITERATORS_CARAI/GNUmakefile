@@ -12,7 +12,7 @@ $(NAME): $(SOURCE) ft_map.hpp ft_map.tpp
 	clear && c++ -Wall -Wextra -Werror -std=c++98 -g $(SOURCE) -o $(NAME)
 
 fclean:
-	rm $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
 

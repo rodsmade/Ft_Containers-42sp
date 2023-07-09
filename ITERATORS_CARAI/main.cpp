@@ -53,7 +53,7 @@ int main() {
     // ++it;
     // std::cout << "begin iterator: " << *it << "\n";
 
-    teste.get_bin_tree().printTree();
+    // teste.get_bin_tree().printTree();
     return 0;
 }
 
