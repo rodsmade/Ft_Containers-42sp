@@ -195,31 +195,25 @@ class map {
         T& operator*(void) {
             return _node->_content;
         }
-        BinaryTreeIterator& operator++(void) {
-            if (!_node || (!_node->_greater && !_node->_parent)) {
-                // tree is empty or root is the highest element
-                _node = NULL;
-                return (*this);
-            }
+        BinaryTreeIterator& operator++() {
+        if (!_node) {
+            // Tree is empty
+            _node = NULL;
+        } else {
             if (!_node->_greater) {
-                while (_node->_parent) {
-                    // do something!
-                    if (_node->_parent->_content > _node->_content) {
-                        _node = _node->_parent;
-                        return (*this);
-                    } else {
-                        _node = _node->_parent;
-                    }
+                while (_node->_parent && _node->_parent->_content <= _node->_content) {
+                    _node = _node->_parent;
                 }
-                _node = NULL;
-            }
-            else {
+                _node = _node->_parent;
+            } else {
                 _node = _node->_greater;
                 while (_node->_smaller)
                     _node = _node->_smaller;
             }
-            return (*this);
         }
+
+        return *this;
+}
 
         bool operator==(const BinaryTreeIterator& rhs) {
             return (_node == rhs._node);
