@@ -48,7 +48,7 @@ class map {
         /*=============================================
         ===        PRIVATE MEMBER FUNCTIONS         ===
         =============================================*/
-        void            _insert_recursively(const T& value, BinaryTreeNode*& current_node, BinaryTreeNode** parent_node);
+        bool            _insert_recursively(const T& value, BinaryTreeNode*& current_node, BinaryTreeNode** parent_node);
         void            _delete_in_post_order_traversal(BinaryTreeNode* current_node);
         BinaryTreeNode* _copy_nodes_in_pre_order_traversal(BinaryTreeNode* current_node);
         void            _print_tree_helper(BinaryTreeNode* current_node, int level);
@@ -63,7 +63,7 @@ class map {
         BinaryTree  operator=(const BinaryTree& other);
         bool        operator==(const BinaryTree& other);
         bool        operator!=(const BinaryTree& other);
-        void        insert(const T& value) ;
+        bool        insert(const T& value) ;
         void        printTree();
         size_t      getSize(void);
     };
@@ -99,7 +99,7 @@ class map {
     // TODO: REMOVE
     BinaryTree& get_bin_tree(void) { return _container; };
 
-    void                insert(T value);
+    bool                insert(T value);
     size_type           size(void);
     bool                empty(void);
 

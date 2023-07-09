@@ -97,7 +97,7 @@ test_all_vg: build
 	done
 
 test_vector: vector_tests.out
-	@echo "Running $^"
+	@echo "Running $^ . . ."
 	@./$^ > /dev/null
 	@echo "(if nothing was printed, all is good !!)"
 
@@ -117,7 +117,7 @@ vector_tests.out: $(VECTOR_HEADERS) $(VECTOR_TEST_FILES)
 	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_PROPS) $(VECTOR_TEST_FILES) -o $@
 
 test_stack: stack_tests.out
-	@echo "Running $^"
+	@echo "Running $^ . . ."
 	@./$^
 
 test_stack_vg: stack_tests.out
@@ -136,7 +136,7 @@ stack_tests.out: $(STACK_HEADERS) $(STACK_TEST_FILES)
 	$(CC) $(CFLAGS) -I $(HEADERS_DIR) -I $(TESTS_DIR)/include $(TEST_PROPS) $(STACK_TEST_FILES) -o $@
 
 test_map: map_tests.out
-	@echo "Running $^"
+	@echo "Running $^ . . ."
 	@./$^
 
 test_map_vg: map_tests.out

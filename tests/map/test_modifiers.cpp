@@ -17,6 +17,12 @@ static void test_insert(void) {
     insertionReturn = insertionReturn && testMap.insert(41);
     my_assert(testMap.size() == 3 && insertionReturn == true, "Insertion of one element smaller than _root successful");
 
+    insertionReturn = false;
+    insertionReturn = insertionReturn || testMap.insert(41);
+    insertionReturn = insertionReturn || testMap.insert(42);
+    insertionReturn = insertionReturn || testMap.insert(43);
+    my_assert(testMap.size() == 3 && insertionReturn == false, "Insertion of duplicate successfully ignored");
+
 }
 
 void test_map_modifiers(void) {

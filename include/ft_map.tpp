@@ -10,17 +10,22 @@ namespace ft {
 ===  PRIVATE MEMBER FUNCTIONS                                                ===
 ==============================================================================*/
 template <typename T>
-void map<T>::BinaryTree::_insert_recursively(const T& value, BinaryTreeNode*& current_node, BinaryTreeNode** parent_node) {
+bool map<T>::BinaryTree::_insert_recursively(const T& value, BinaryTreeNode*& current_node, BinaryTreeNode** parent_node) {
     if (current_node == NULL) {
         current_node = new BinaryTreeNode(value);
         if (*parent_node)
             current_node->_parent = *parent_node;
         _size++;
     } else if (current_node->_content < value) {
-        _insert_recursively(value, current_node->_greater, &current_node);
+        if (!_insert_recursively(value, current_node->_greater, &current_node))
+            return false;
     } else if (current_node->_content > value) {
-        _insert_recursively(value, current_node->_smaller, &current_node);
+        if (!_insert_recursively(value, current_node->_smaller, &current_node))
+            return false;
+    } else {
+        return false;
     }
+    return true;
 };
 
 template <typename T>
@@ -138,10 +143,10 @@ bool map<T>::BinaryTree::operator!=(const BinaryTree& other) {
 };
 
 template <typename T>
-void map<T>::BinaryTree::insert(const T& value) {
+bool map<T>::BinaryTree::insert(const T& value) {
     BinaryTreeNode* nullPtr = NULL;
 
-    _insert_recursively(value, _root, &nullPtr);
+    return _insert_recursively(value, _root, &nullPtr);
 };
 
 template <typename T>
@@ -244,8 +249,8 @@ bool map<T>::BinaryTreeIterator::operator!=(const BinaryTreeIterator& rhs) {
 ===  MEMBER FUNCTIONS                                                       ===
 =============================================================================*/
 template <typename T>
-void map<T>::insert(T value) {
-    _container.insert(value);
+bool map<T>::insert(T value) {
+    return _container.insert(value);
 };
 
 template <typename T>
