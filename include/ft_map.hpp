@@ -5,11 +5,13 @@
 
 namespace ft {
 
+// template <class Key, class T, class Compare = std::less<Key>, class Allocator = std::allocator<std::pair<const Key, T> > >
 template <typename T>
 class map {
    private:
-
-    // Implementation
+    /*=============================================
+    ===        AUXILIARY IMPLEMENTATIONS        ===
+    =============================================*/
     class BinaryTree {
        private:
         class BinaryTreeNode {
@@ -65,7 +67,7 @@ class map {
         bool        operator!=(const BinaryTree& other);
         bool        insert(const T& value) ;
         void        printTree();
-        size_t      getSize(void);
+        size_t      getSize(void) const;
     };
 
     class BinaryTreeIterator {
@@ -82,7 +84,9 @@ class map {
         bool                operator!=(const BinaryTreeIterator& rhs);
     };
 
-    // Attributes
+    /*=============================================
+    ===              ATTRIBUTES                 ===
+    =============================================*/
     BinaryTree _container;
 
    public:
@@ -90,8 +94,21 @@ class map {
     ===                ALIASES                  ===
     =============================================*/
     typedef T value_type;
+    // typedef Key key_type;
+    // typedef std::pair<const Key, T> value_type;
     typedef size_t size_type;
+    // typedef Compare key_compare;
+    // typedef T mapped_type;
+    // typedef std::ptrdiff_t difference_type;
+    // typedef Allocator allocator_type;
+    // typedef [...] reference;
+    // typedef [...] const_reference;
+    // typedef [...] pointer;
+    // typedef [...] const_pointer;
     typedef BinaryTreeIterator iterator;
+    // typedef [...] const_iterator;
+    // typedef [...] reverse_iterator;
+    // typedef [...] const_reverse_iterator;
 
     /*=============================================
     ===            MEMBER FUNCTIONS             ===
@@ -99,23 +116,114 @@ class map {
     // TODO: REMOVE
     BinaryTree& get_bin_tree(void) { return _container; };
 
-    bool                insert(T value);
-    size_type           size(void);
-    bool                empty(void);
+    // Allocator:
+    // allocator_type                   get_allocator() const;
 
-    BinaryTreeIterator  begin(void);
-    BinaryTreeIterator  end(void);
+    // Element Access:
+    // T&                               at( const Key& key );
+    // const T&                         at( const Key& key ) const;
+    // T&                               operator[]( const Key& key );
+
+    // Iterators:
+    iterator            begin(void);
+    // const_iterator                              begin() const;
+    iterator            end(void);
+    // const_iterator                              end() const;
+    // reverse_iterator                            rbegin(); // = 1 before o menor elemento de todos
+    // const_reverse_iterator                      rbegin() const;
+    // reverse_iterator                            rend(); // o maior elemento de todos
+    // const_reverse_iterator                      rend() const;
+
+    // Capacity:
+    bool                    empty(void) const;
+    // size_type                                   max_size() const;
+    size_type               size(void) const;
+
+    // Modifiers:
+    void                    clear();
+    // iterator                                    erase( iterator pos );
+    // iterator                                    erase( iterator first, iterator last );
+    // ATTENTION: TO IGNORANDO TUDO O QUE É KEY E TROCANDO PRA T, DEPOIS VOLTAR !!!!!!
+    // size_type                                   erase( const Key& key ); // original
+    // size_type               erase( const T& key ); // adaptado pra T
+    // std::pair<iterator, bool>                   insert(const value_type& value);
+    // TODO: adequar o protótipo abaixo (devolve bool) pro de cima (devolve pair<iterator, bool>)
+    bool                    insert(value_type value);
+    // iterator                                    insert( iterator pos, const value_type& value );
+    // template< class InputIt >
+    // void                                        insert( InputIt first, InputIt last );
+    // void                                        swap( map& other );
+
+    // Lookup:
+    // size_type                                   count( const Key& key ) const;
+    // iterator                                    find( const Key& key );
+    // const_iterator                              find( const Key& key ) const;
+    // std::pair<iterator,iterator>                equal_range( const Key& key );
+    // std::pair<const_iterator,const_iterator>    equal_range( const Key& key ) const;
+    // iterator                                    lower_bound( const Key& key );
+    // const_iterator                              lower_bound( const Key& key ) const;
+    // iterator                                    upper_bound( const Key& key );
+    // const_iterator                              upper_bound( const Key& key ) const;
+
+    // Observers:
+    // key_compare                                 key_comp() const;
+    // ft::map::value_compare                      value_comp() const;
+
 
     /*=============================================
     ===      CONSTRUCTION / DESTRUCTION         ===
     =============================================*/
+    // Default:
+    // TODO: adequar pro prototipo original
+    // explicit map(const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type());
     map();
+
+    // Range:
+    // template <class InputIterator>
+    // map(InputIterator first, InputIterator last, const key_compare& comp = key_compare(), const allocator_type& alloc = allocator_type());
+
+    // Copy::
+    // map(const map& other);
+
+    // Destructor:
     ~map();
+
+    /*=============================================
+    ===           OPERATOR OVERLOADS            ===
+    =============================================*/
+    // map& operator=(const map& other);
 };
 
 // TODO: remover eu acho 
 template <typename T>
 std::ostream& operator<<(std::ostream& os, const typename map<T>::BinaryTree::BinaryTreeNode& node);
+
+/*=============================================
+===          NON-MEMBER FUNCTIONS           ===
+=============================================*/
+/*********************************************/
+/*           OPERATOR OVERLOADS              */
+/*********************************************/
+// template <class T, class Compare, class Allocator>
+// bool operator==(const map<T, Compare, Allocator>& lhs, const map<T, Compare, Allocator>& rhs);
+// template <class T, class Compare, class Allocator>
+// bool operator!=(const map<T, Compare, Allocator>& lhs, const map<T, Compare, Allocator>& rhs);
+// template <class T, class Compare, class Allocator>
+// bool operator<(const map<T, Compare, Allocator>& lhs, const map<T, Compare, Allocator>& rhs);
+// template <class T, class Compare, class Allocator>
+// bool operator<=(const map<T, Compare, Allocator>& lhs, const map<T, Compare, Allocator>& rhs);
+// template <class T, class Compare, class Allocator>
+// bool operator>(const map<T, Compare, Allocator>& lhs, const map<T, Compare, Allocator>& rhs);
+// template <class T, class Compare, class Allocator>
+// bool operator>=(const map<T, Compare, Allocator>& lhs, const map<T, Compare, Allocator>& rhs);
+
+/*********************************************/
+/*                  OTHER                    */
+/*********************************************/
+// template <class Key, class Compare, class Allocator>
+// void swap(ft::map<Key, Compare, Allocator>& lhs, ft::map<Key, Compare, Allocator>& rhs );
+// template <class T, class Compare, class Allocator>
+// void swap(ft::map<T, Compare, Allocator>& lhs, ft::map<T, Compare, Allocator>& rhs );
 
 };  // namespace ft
 

@@ -155,7 +155,7 @@ void map<T>::BinaryTree::printTree() {
 };
 
 template <typename T>
-size_t map<T>::BinaryTree::getSize(void) { return this->_size; };
+size_t map<T>::BinaryTree::getSize(void) const { return this->_size; };
 
 
 /*      /‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\
@@ -249,22 +249,22 @@ bool map<T>::BinaryTreeIterator::operator!=(const BinaryTreeIterator& rhs) {
 ===  MEMBER FUNCTIONS                                                       ===
 =============================================================================*/
 template <typename T>
-bool map<T>::insert(T value) {
+bool map<T>::insert(value_type value) {
     return _container.insert(value);
 };
 
 template <typename T>
-typename map<T>::size_type map<T>::size(void) {
+typename map<T>::size_type map<T>::size(void) const {
     return _container.getSize();
 };
 
 template <typename T>
-bool map<T>::empty(void) {
+bool map<T>::empty(void) const {
     return (size() == 0);
 };
 
 template <typename T>
-typename map<T>::BinaryTreeIterator map<T>::begin(void) {
+typename map<T>::iterator map<T>::begin(void) {
     typename BinaryTree::BinaryTreeNode* pivot = _container._root;
     while (pivot->_smaller)
         pivot = pivot->_smaller;
@@ -272,7 +272,7 @@ typename map<T>::BinaryTreeIterator map<T>::begin(void) {
 };
 
 template <typename T>
-typename map<T>::BinaryTreeIterator map<T>::end(void) {
+typename map<T>::iterator map<T>::end(void) {
     return (BinaryTreeIterator(NULL));
 };
 
