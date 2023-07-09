@@ -1,3 +1,6 @@
+#ifndef FT_MAP_HPP
+#define FT_MAP_HPP
+
 #include <iostream>
 
 namespace ft {
@@ -5,8 +8,6 @@ namespace ft {
 template <typename T>
 class map {
    private:
-    // Prototypes
-    // ...
 
     // Implementation
     class BinaryTree {
@@ -231,7 +232,7 @@ class map {
     typedef size_t size_type;
     typedef BinaryTreeIterator iterator;
 
-    map() : _container(BinaryTree()) {};
+    map();
     ~map() {};
 
     // TODO: REMOVE
@@ -267,4 +268,8 @@ std::ostream& operator<<(std::ostream& os, const typename map<T>::BinaryTree::Bi
     return os;
 };
 
-}  // namespace ft
+};  // namespace ft
+
+#include "ft_map.tpp"
+
+#endif
