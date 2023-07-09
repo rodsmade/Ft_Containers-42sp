@@ -1,3 +1,5 @@
+# Macbook Debug
+*.dSYM
 # Custom
 .vscode
 POCs
