@@ -5,5 +5,5 @@ void test_vector_max_size(void) {
     std::vector<double> stdVector;
     ft::vector<double> ftVector;
 
-    assert(stdVector.max_size() == ftVector.max_size(), "Max size against std::vector");
+    my_assert(stdVector.max_size() == ftVector.max_size(), "Max size against std::vector");
 }

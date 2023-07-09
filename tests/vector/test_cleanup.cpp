@@ -13,9 +13,9 @@ void test_vector_cleanup(void) {
     stdVector.clear();
     ftVector.clear();
 
-    assert(ftVector.size() == 0, "Vector size after cleanup");
-    assert(ftVector.capacity() != 0, "Vector capacity after cleanup");
-    assert(ftVector.size() == stdVector.size(), "Check ft::vector size after cleanup against std::vector");
-    assert(ftVector.capacity() == stdVector.capacity(), "Check ft::vector capacity after cleanup against std::vector");
+    my_assert(ftVector.size() == 0, "Vector size after cleanup");
+    my_assert(ftVector.capacity() != 0, "Vector capacity after cleanup");
+    my_assert(ftVector.size() == stdVector.size(), "Check ft::vector size after cleanup against std::vector");
+    my_assert(ftVector.capacity() == stdVector.capacity(), "Check ft::vector capacity after cleanup against std::vector");
 
 }

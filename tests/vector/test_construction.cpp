@@ -5,7 +5,7 @@ static void test_empty_vector_creation(std::string typeName) {
     try {
         ft::vector<T> ftVector;
 
-        assert(ftVector.size() == 0 && ftVector.capacity() == 0 && ftVector.empty(), "Empty ft::vector<" + typeName + "> creation");
+        my_assert(ftVector.size() == 0 && ftVector.capacity() == 0 && ftVector.empty(), "Empty ft::vector<" + typeName + "> creation");
     } catch (const std::exception& e) {
         std::cerr << TEST_NOK << e.what() << std::endl;
     }
@@ -17,7 +17,7 @@ static void test_against_std_empty_vector_creation(std::string typeName) {
         ft::vector<T> ftVector;
         std::vector<T> stdVector;
 
-        assert(ftVector.size() == stdVector.size() && ftVector.capacity() == stdVector.capacity() && ftVector.empty() == stdVector.empty(), "Empty ft::vector<" + typeName + "> against empty std::vector<" + typeName + "> creation");
+        my_assert(ftVector.size() == stdVector.size() && ftVector.capacity() == stdVector.capacity() && ftVector.empty() == stdVector.empty(), "Empty ft::vector<" + typeName + "> against empty std::vector<" + typeName + "> creation");
     } catch (const std::exception& e) {
         std::cerr << TEST_NOK << e.what() << std::endl;
     }
@@ -48,9 +48,9 @@ static void test_size_type_constructor(void) {
 
         std::stringstream ss;
         ss << "Creating vector of doubles with size " << intendedSize;
-        assert(ftVector.size() == intendedSize, ss.str());
-        assert(ftVector.size() == stdVector.size(), "Checking ft::vector size against std::vector size");
-        assert(ftVector.capacity() == stdVector.capacity(), "Checking ft::vector capacity against std::vector capacity");
+        my_assert(ftVector.size() == intendedSize, ss.str());
+        my_assert(ftVector.size() == stdVector.size(), "Checking ft::vector size against std::vector size");
+        my_assert(ftVector.capacity() == stdVector.capacity(), "Checking ft::vector capacity against std::vector capacity");
     }
     {
         ft::vector<double>::size_type intendedSize = 0;
@@ -59,9 +59,9 @@ static void test_size_type_constructor(void) {
 
         std::stringstream ss;
         ss << "Creating vector of doubles with size " << intendedSize;
-        assert(ftVector.size() == intendedSize, ss.str());
-        assert(ftVector.size() == stdVector.size(), "Checking size of ft::vector<double> upon creation against std::vector<double>");
-        assert(ftVector.capacity() == stdVector.capacity(), "Checking capacity of ft::vector<double> upon creation against std::vector<double>");
+        my_assert(ftVector.size() == intendedSize, ss.str());
+        my_assert(ftVector.size() == stdVector.size(), "Checking size of ft::vector<double> upon creation against std::vector<double>");
+        my_assert(ftVector.capacity() == stdVector.capacity(), "Checking capacity of ft::vector<double> upon creation against std::vector<double>");
     }
     {
         ft::vector<double>::size_type intendedSize = 10000;
@@ -70,9 +70,9 @@ static void test_size_type_constructor(void) {
 
         std::stringstream ss;
         ss << "Creating vector of doubles with size " << intendedSize;
-        assert(ftVector.size() == intendedSize, ss.str());
-        assert(ftVector.size() == stdVector.size(), "Checking size of ft::vector<double> upon creation against std::vector<double>");
-        assert(ftVector.capacity() == stdVector.capacity(), "Checking capacity of ft::vector<double> upon creation against std::vector<double>");
+        my_assert(ftVector.size() == intendedSize, ss.str());
+        my_assert(ftVector.size() == stdVector.size(), "Checking size of ft::vector<double> upon creation against std::vector<double>");
+        my_assert(ftVector.capacity() == stdVector.capacity(), "Checking capacity of ft::vector<double> upon creation against std::vector<double>");
     }
     {
         std::string ftExceptionMessage;
@@ -93,7 +93,7 @@ static void test_size_type_constructor(void) {
         } catch (const std::exception& e) {
             stdExceptionMessage = e.what();
         }
-        assert(ftExceptionMessage == stdExceptionMessage, "Invalid creation size exception message check against std::vector");
+        my_assert(ftExceptionMessage == stdExceptionMessage, "Invalid creation size exception message check against std::vector");
     }
 }
 
@@ -109,7 +109,7 @@ static void test_initialisation_value_constructor(void) {
         for (ft::vector<double>::size_type i = 0; i < intendedSize; i++)
             integrityCheck = integrityCheck && (ftVector.at(i) == value);
 
-        assert(integrityCheck, "Integrity check for vector<double> constructor that receives initialisation value as arg");
+        my_assert(integrityCheck, "Integrity check for vector<double> constructor that receives initialisation value as arg");
     }
     {
         ft::vector<No_default>::size_type intendedSize = 42;
@@ -121,7 +121,7 @@ static void test_initialisation_value_constructor(void) {
         for (ft::vector<No_default>::size_type i = 0; i < intendedSize; i++)
             integrityCheck = integrityCheck && (ftVector.at(i) == value);
 
-        assert(integrityCheck, "Integrity check for vector<No_default> constructor that receives initialisation value as arg");
+        my_assert(integrityCheck, "Integrity check for vector<No_default> constructor that receives initialisation value as arg");
     }
 };
 
@@ -154,7 +154,7 @@ static void test_allocator_arg_constructor(void) {
     for (int i = 0; i < 11; i++)
         integrityCheck = integrityCheck && (charVector.at((ft::vector<char>::size_type) i) == msg[i]);
 
-    assert(integrityCheck, "Manipulation of vector of chars created passing an int allocator as argument");
+    my_assert(integrityCheck, "Manipulation of vector of chars created passing an int allocator as argument");
 }
 
 static void test_triple_args_constructor(void) {
@@ -170,7 +170,7 @@ static void test_triple_args_constructor(void) {
         for (ft::vector<double>::size_type i = 0; i < intendedSize; i++)
             integrityCheck = integrityCheck && (ftVector.at(i) == value);
 
-        assert(integrityCheck, "Integrity check for vector<char> constructor that receives initialisation value as arg and allocator of a vector<int>");
+        my_assert(integrityCheck, "Integrity check for vector<char> constructor that receives initialisation value as arg and allocator of a vector<int>");
     }
 }
 
@@ -182,7 +182,7 @@ static void test_range_constructor(void) {
     {
         ft::vector<double> newVector(baseVector.begin(), baseVector.end());
 
-        assert(newVector == baseVector, "New vector copies full range of base vector");
+        my_assert(newVector == baseVector, "New vector copies full range of base vector");
     }
     {
         ft::vector<double> newVector(baseVector.begin(), baseVector.begin() + 10);
@@ -192,7 +192,7 @@ static void test_range_constructor(void) {
         for (ft::vector<double>::size_type i = 0; i < newVector.size(); i++)
             consistencyCheck = consistencyCheck && (newVector.at(i) == baseVector.at(i));
 
-        assert(newVector.size() == 10 && consistencyCheck, "New vector partially copies base vector from the beginning");
+        my_assert(newVector.size() == 10 && consistencyCheck, "New vector partially copies base vector from the beginning");
     }
     {
         ft::vector<double> newVector(baseVector.end() - 10, baseVector.end());
@@ -202,12 +202,12 @@ static void test_range_constructor(void) {
         for (ft::vector<double>::size_type i = 0; i < newVector.size(); i++)
             consistencyCheck = consistencyCheck && (newVector.at(i) == baseVector.at(baseVector.size() - 10 + i));
 
-        assert(newVector.size() == 10 && consistencyCheck, "New vector partially copies the tail of the vector");
+        my_assert(newVector.size() == 10 && consistencyCheck, "New vector partially copies the tail of the vector");
     }
     {
         ft::vector<double> newVector(baseVector.begin(), baseVector.begin());
 
-        assert(newVector.empty() == true, "New vector out of two equal iterators is empty");
+        my_assert(newVector.empty() == true, "New vector out of two equal iterators is empty");
     }
 
 }
@@ -221,8 +221,8 @@ static void test_copy_constructor() {
 
     bool elementsTest = true;
 
-    assert(copyVector.size() == testVector.size(), "Copy constructor size check");
-    assert(copyVector.capacity() == testVector.capacity(), "Copy constructor capacity check");
+    my_assert(copyVector.size() == testVector.size(), "Copy constructor size check");
+    my_assert(copyVector.capacity() == testVector.capacity(), "Copy constructor capacity check");
 
     for (unsigned int i = 0; i < copyVector.size(); i++) {
         if (copyVector[i] != testVector[i]) {
@@ -230,12 +230,12 @@ static void test_copy_constructor() {
             break;
         }
     }
-    assert(elementsTest, "Copied elements assertion check");
+    my_assert(elementsTest, "Copied elements assertion check");
 
     testVector[0] = 42.0;
     copyVector[1] = 1.0;
 
-    assert(testVector[0] != copyVector[0] && testVector[1] != copyVector[1], "Test for hard copy");
+    my_assert(testVector[0] != copyVector[0] && testVector[1] != copyVector[1], "Test for hard copy");
 };
 
 void test_vector_construction(void) {

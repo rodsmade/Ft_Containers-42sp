@@ -21,7 +21,7 @@ void test_vector_back(void) {
         integrityCheckByRef = integrityCheckByRef && test_by_reference(ftVector, lastElement);
     }
 
-    assert(integrityCheck, "Adding multiple elements in vector via push_back and checking integrity ( reference back() )");
-    assert(integrityCheckByRef, "Checking integrity of element returned by back via const reference ( const_reference back() const )");
+    my_assert(integrityCheck, "Adding multiple elements in vector via push_back and checking integrity ( reference back() )");
+    my_assert(integrityCheckByRef, "Checking integrity of element returned by back via const reference ( const_reference back() const )");
 
 }

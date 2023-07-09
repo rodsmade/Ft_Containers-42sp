@@ -8,19 +8,19 @@ void test_vector_reserve(void) {
 
     ftVector.reserve(50);
     stdVector.reserve(50);
-    assert(ftVector.size() == stdVector.size(), "Size check against std::vector after resizing to a higher value");
-    assert(ftVector.capacity() == stdVector.capacity(), "Capacity check against std::vector after resizing to a higher value");
+    my_assert(ftVector.size() == stdVector.size(), "Size check against std::vector after resizing to a higher value");
+    my_assert(ftVector.capacity() == stdVector.capacity(), "Capacity check against std::vector after resizing to a higher value");
 
     ftVector.reserve(5);
     stdVector.reserve(5);
-    assert(ftVector.size() == stdVector.size(), "Size check against std::vector after resizing to a lower value");
-    assert(ftVector.capacity() == stdVector.capacity(), "Capacity check against std::vector after resizing to a lower value");
+    my_assert(ftVector.size() == stdVector.size(), "Size check against std::vector after resizing to a lower value");
+    my_assert(ftVector.capacity() == stdVector.capacity(), "Capacity check against std::vector after resizing to a lower value");
 
     ft::vector<int> ftEmptyVector;
     std::vector<int> stdEmptyVector;
 
     ftEmptyVector.reserve(42);
     stdEmptyVector.reserve(42);
-    assert(ftEmptyVector.size() == stdEmptyVector.size(), "Size check against std::vector when resizing an empty vector");
-    assert(ftEmptyVector.capacity() == stdEmptyVector.capacity(), "Capacity check against std::vector when resizing an empty vector");
+    my_assert(ftEmptyVector.size() == stdEmptyVector.size(), "Size check against std::vector when resizing an empty vector");
+    my_assert(ftEmptyVector.capacity() == stdEmptyVector.capacity(), "Capacity check against std::vector when resizing an empty vector");
 }

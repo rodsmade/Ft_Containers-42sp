@@ -22,7 +22,7 @@ void test_vector_front(void) {
         integrityCheckByRef = integrityCheckByRef && test_by_reference(ftVector, firstElement);
     }
 
-    assert(integrityCheck, "Adding multiple elements in vector via push_front and checking integrity ( reference front() )");
-    assert(integrityCheckByRef, "Checking integrity of element returned by front via const reference ( const_reference front() const )");
+    my_assert(integrityCheck, "Adding multiple elements in vector via push_front and checking integrity ( reference front() )");
+    my_assert(integrityCheckByRef, "Checking integrity of element returned by front via const reference ( const_reference front() const )");
 
 }

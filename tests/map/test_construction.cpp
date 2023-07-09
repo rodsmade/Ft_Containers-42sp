@@ -5,7 +5,7 @@ static void test_empty_map_creation(std::string typeName) {
     try {
         ft::map<T> ftMap;
 
-        assert(ftMap.size() == 0 && ftMap.empty() == true, "Empty ft::map<" + typeName + "> creation");
+        my_assert(ftMap.size() == 0 && ftMap.empty() == true, "Empty ft::map<" + typeName + "> creation");
     } catch (const std::exception& e) {
         std::cerr << TEST_NOK << e.what() << std::endl;
     }
@@ -45,9 +45,9 @@ static void test_default_constructor() {
 //         //     copyMap.pop();
 //         // }
 
-//         assert(copyMap.size() == ftMap.size(), "Copy constructor size check");
-//         assert(false, "Consistency check - Só vai dar pra terminar isso aqui quando tiver iterador");
-//         // assert(consistencyCheck, "Copied elements integrity check");
+//         my_assert(copyMap.size() == ftMap.size(), "Copy constructor size check");
+//         my_assert(false, "Consistency check - Só vai dar pra terminar isso aqui quando tiver iterador");
+//         // my_assert(consistencyCheck, "Copied elements integrity check");
 //     }
 //     {
 //         ft::map<int> ftMap;
@@ -67,7 +67,7 @@ static void test_default_constructor() {
 //         ftMap.insert(20);
 //         ftMap.insert(30);
 
-//         assert(ftMap.size() != copyMap.size(), "Check for hard copy.");
+//         my_assert(ftMap.size() != copyMap.size(), "Check for hard copy.");
 //     }
 // };
 
@@ -91,7 +91,7 @@ void test_map_construction(void) {
     std::cout << "\n=== Map construction ===" << std::endl;
 
     test_default_constructor();
-    assert(false, "Cant write copy constructor tests while iterators havent been implemented");
+    my_assert(false, "Cant write copy constructor tests while iterators havent been implemented");
     // test_copy_constructor();
 
     return ;

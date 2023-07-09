@@ -8,13 +8,13 @@ void test_vector_resize(void) {
 
     ftVector.resize(100);
     stdVector.resize(100);
-    assert(ftVector.size() == stdVector.size(), "Size check against std::vector after resizing to a higher value");
-    assert(ftVector.capacity() == stdVector.capacity(), "Capacity check against std::vector after resizing to a higher value");
+    my_assert(ftVector.size() == stdVector.size(), "Size check against std::vector after resizing to a higher value");
+    my_assert(ftVector.capacity() == stdVector.capacity(), "Capacity check against std::vector after resizing to a higher value");
 
     ftVector.resize(5);
     stdVector.resize(5);
-    assert(ftVector.size() == stdVector.size(), "Size check against std::vector after resizing to a lower value");
-    assert(ftVector.capacity() == stdVector.capacity(), "Capacity check against std::vector after resizing to a lower value");
+    my_assert(ftVector.size() == stdVector.size(), "Size check against std::vector after resizing to a lower value");
+    my_assert(ftVector.capacity() == stdVector.capacity(), "Capacity check against std::vector after resizing to a lower value");
 
     {
         ft::vector<int>::size_type oldSize = 42;
@@ -33,8 +33,8 @@ void test_vector_resize(void) {
         for (ft::vector<int>::size_type i = oldSize; i < newSize; i++)
             initialisationCheck = initialisationCheck && (ftVector.at(i) == int());
 
-        assert(integrityCheck, "Integrity of values after resizing to a greater value");
-        assert(initialisationCheck, "Initialization of values past old vector size, after resizing to a greater value");
+        my_assert(integrityCheck, "Integrity of values after resizing to a greater value");
+        my_assert(initialisationCheck, "Initialization of values past old vector size, after resizing to a greater value");
     }
     {
         ft::vector<int>::size_type oldSize = 42;
@@ -53,8 +53,8 @@ void test_vector_resize(void) {
         for (ft::vector<int>::size_type i = newSize; i < oldSize; i++)
             initialisationCheck = initialisationCheck && (ftVector[i] == int());
 
-        assert(integrityCheck, "Integrity of values after resizing to a lower value");
-        assert(initialisationCheck, "Initialization of values past new vector size, after resizing to a lower value");
+        my_assert(integrityCheck, "Integrity of values after resizing to a lower value");
+        my_assert(initialisationCheck, "Initialization of values past new vector size, after resizing to a lower value");
     }
     {
         ft::vector<double>::size_type oldSize = 42;
@@ -71,7 +71,7 @@ void test_vector_resize(void) {
         for (ft::vector<double>::size_type i = oldSize; i < newSize; i++)
             initialisationCheck = initialisationCheck && (ftVector.at(i) == value);
 
-        assert(initialisationCheck, "Initialization of values past new vector size, passing value to resize");
+        my_assert(initialisationCheck, "Initialization of values past new vector size, passing value to resize");
 
     }
 }

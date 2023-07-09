@@ -5,7 +5,7 @@ static void test_empty_stack_creation(std::string typeName) {
     try {
         ft::stack<T> ftStack;
 
-        assert(true, "Empty ft::stack<" + typeName + "> creation");
+        my_assert(true, "Empty ft::stack<" + typeName + "> creation");
     } catch (const std::exception& e) {
         std::cerr << TEST_NOK << e.what() << std::endl;
     }
@@ -17,7 +17,7 @@ static void test_against_std_empty_stack_creation(std::string typeName) {
         ft::stack<T> ftStack;
         std::stack<T> stdStack;
 
-        assert(ftStack.size() == stdStack.size() && ftStack.empty() == stdStack.empty(), "Empty ft::stack<" + typeName + "> against empty std::stack<" + typeName + "> creation");
+        my_assert(ftStack.size() == stdStack.size() && ftStack.empty() == stdStack.empty(), "Empty ft::stack<" + typeName + "> against empty std::stack<" + typeName + "> creation");
     } catch (const std::exception& e) {
         std::cerr << TEST_NOK << e.what() << std::endl;
     }
@@ -42,8 +42,8 @@ static void test_copy_constructor() {
             copyStack.pop();
         }
 
-        assert(copyStack.size() == ftStack.size(), "Copy constructor size check");
-        assert(consistencyCheck, "Copied elements integrity check");
+        my_assert(copyStack.size() == ftStack.size(), "Copy constructor size check");
+        my_assert(consistencyCheck, "Copied elements integrity check");
     }
     {
         ft::stack<double> ftStack;
@@ -60,7 +60,7 @@ static void test_copy_constructor() {
         ftStack.pop();
         ftStack.pop();
 
-        assert(ftStack.size() != copyStack.size()
+        my_assert(ftStack.size() != copyStack.size()
                 && ftStack.top() != copyStack.top()
                 , "Check for hard copy");
 

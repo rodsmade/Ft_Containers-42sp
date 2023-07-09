@@ -59,6 +59,6 @@ struct is_same<T, T> {
 };
 
 // Testing Functions
-void    assert(bool condition, const std::string& tagline = "");
+void    my_assert(bool condition, const std::string& tagline = "");
 
 #endif

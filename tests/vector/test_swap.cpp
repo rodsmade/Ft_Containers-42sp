@@ -19,8 +19,8 @@ static void test_member_swap() {
 
     vector1.swap(vector2);
 
-    assert(vector2.size() == originalSizeV1 && vector1.size() == originalSizeV2, "Size check post-swap");
-    assert(vector2.capacity() == originalCapacityV1 && vector1.capacity() == originalCapacityV2, "Capacity check post-swap");
+    my_assert(vector2.size() == originalSizeV1 && vector1.size() == originalSizeV2, "Size check post-swap");
+    my_assert(vector2.capacity() == originalCapacityV1 && vector1.capacity() == originalCapacityV2, "Capacity check post-swap");
 
     bool integrityCheckv1 = true;
     bool integrityCheckv2 = true;
@@ -30,8 +30,8 @@ static void test_member_swap() {
     for (ft::vector<unsigned long>::size_type i = 0; i < originalSizeV2; i++)
         integrityCheckv1 = integrityCheckv1 && (vector1.at(i) == i + 6);
 
-    assert(integrityCheckv1, "Integrity check of vector 1 post-swap");
-    assert(integrityCheckv2, "Integrity check of vector 2 post-swap");
+    my_assert(integrityCheckv1, "Integrity check of vector 1 post-swap");
+    my_assert(integrityCheckv2, "Integrity check of vector 2 post-swap");
 }
 
 static void test_non_member_swap() {
@@ -47,8 +47,8 @@ static void test_non_member_swap() {
 
     foo.swap(bar);
 
-    assert(foo == ft::vector<int>(sizeBar, valueBar), "Integrity of vector 1 post-swap");
-    assert(bar == ft::vector<int>(sizeFoo, valueFoo), "Integrity of vector 2 post-swap");
+    my_assert(foo == ft::vector<int>(sizeBar, valueBar), "Integrity of vector 1 post-swap");
+    my_assert(bar == ft::vector<int>(sizeFoo, valueFoo), "Integrity of vector 2 post-swap");
 }
 
 void test_vector_swap(void) {

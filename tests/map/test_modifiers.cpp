@@ -9,13 +9,13 @@ static void test_insert(void) {
     bool insertionReturn = true;
 
     insertionReturn = insertionReturn && testMap.insert(42);
-    assert(testMap.size() == 1 && insertionReturn == true, "Insertion of one element successful");
+    my_assert(testMap.size() == 1 && insertionReturn == true, "Insertion of one element successful");
 
     insertionReturn = insertionReturn && testMap.insert(43);
-    assert(testMap.size() == 2 && insertionReturn == true, "Insertion of one element greater than _root successful");
+    my_assert(testMap.size() == 2 && insertionReturn == true, "Insertion of one element greater than _root successful");
 
     insertionReturn = insertionReturn && testMap.insert(41);
-    assert(testMap.size() == 3 && insertionReturn == true, "Insertion of one element smaller than _root successful");
+    my_assert(testMap.size() == 3 && insertionReturn == true, "Insertion of one element smaller than _root successful");
 
 }
 

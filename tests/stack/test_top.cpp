@@ -13,14 +13,14 @@ void test_stack_top(void) {
     dish = 42;
     ftStack.push(dish);
 
-    assert(ftStack.top() == dish, "Testing top after single insertion");
-    assert(test_by_reference(ftStack, dish), "Testing top after single insertion, by reference");
+    my_assert(ftStack.top() == dish, "Testing top after single insertion");
+    my_assert(test_by_reference(ftStack, dish), "Testing top after single insertion, by reference");
 
     dish = 43;
     ftStack.push(dish);
 
-    assert(ftStack.top() == dish, "Testing top after second insertion");
-    assert(test_by_reference(ftStack, dish), "Testing top after second insertion, by reference");
+    my_assert(ftStack.top() == dish, "Testing top after second insertion");
+    my_assert(test_by_reference(ftStack, dish), "Testing top after second insertion, by reference");
 
     bool integrityCheck = true;
     bool integrityCheckByRef = true;
@@ -32,18 +32,18 @@ void test_stack_top(void) {
         integrityCheckByRef = integrityCheckByRef && (test_by_reference(ftStack, dish));
     }
 
-    assert(integrityCheck, "Testing top after many insertions");
-    assert(integrityCheckByRef, "Testing top after many insertions, by reference");
+    my_assert(integrityCheck, "Testing top after many insertions");
+    my_assert(integrityCheckByRef, "Testing top after many insertions, by reference");
 
     ftStack.pop();
 
-    assert(ftStack.top() == 242, "Testing top after single pop");
-    assert(test_by_reference(ftStack, 242), "Testing top after single pop, by reference");
+    my_assert(ftStack.top() == 242, "Testing top after single pop");
+    my_assert(test_by_reference(ftStack, 242), "Testing top after single pop, by reference");
 
     ftStack.pop();
 
-    assert(ftStack.top() == 241, "Testing top after second pop");
-    assert(test_by_reference(ftStack, 241), "Testing top after second pop, by reference");
+    my_assert(ftStack.top() == 241, "Testing top after second pop");
+    my_assert(test_by_reference(ftStack, 241), "Testing top after second pop, by reference");
 
     integrityCheck = true;
     integrityCheckByRef = true;
@@ -54,7 +54,7 @@ void test_stack_top(void) {
         integrityCheckByRef = integrityCheckByRef && test_by_reference(ftStack, 241 - i);
     }
 
-    assert(integrityCheck, "Testing top after many pops");
-    assert(integrityCheckByRef, "Testing top after many pops, by reference");
+    my_assert(integrityCheck, "Testing top after many pops");
+    my_assert(integrityCheckByRef, "Testing top after many pops, by reference");
 
 }

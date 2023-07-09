@@ -17,7 +17,7 @@ void test_vector_push_back(void) {
         integrityCheck = integrityCheck && (ftVector[i] == i);
     }
 
-    assert(sizeCheck, "Size check when gradually incrementing an empty vector");
-    assert(capacityCheck, "Capacity check when gradually incrementing an empty vector");
-    assert(integrityCheck, "Integrity of elements when gradually incrementing an empty vector");
+    my_assert(sizeCheck, "Size check when gradually incrementing an empty vector");
+    my_assert(capacityCheck, "Capacity check when gradually incrementing an empty vector");
+    my_assert(integrityCheck, "Integrity of elements when gradually incrementing an empty vector");
 }

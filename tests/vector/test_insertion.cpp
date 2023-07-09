@@ -14,8 +14,8 @@ static void test_single_insert(void) {
 
         ftVector.insert(ftVector.begin() + 5, 42);
 
-        assert(ftVector.size() == oldSize + 1, "Size check for insertion in arbitrary position");
-        assert(ftVector.at(0) == 1 &&
+        my_assert(ftVector.size() == oldSize + 1, "Size check for insertion in arbitrary position");
+        my_assert(ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 3 &&
             ftVector.at(3) == 4 &&
@@ -31,8 +31,8 @@ static void test_single_insert(void) {
         oldSize = ftVector.size();
         ftVector.insert(ftVector.begin(), 21);
 
-        assert(ftVector.size() == oldSize + 1, "Size check for insertion in the beginning of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + 1, "Size check for insertion in the beginning of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 1 &&
             ftVector.at(2) == 2 &&
             ftVector.at(3) == 3 &&
@@ -49,8 +49,8 @@ static void test_single_insert(void) {
         oldSize = ftVector.size();
         ftVector.insert(ftVector.end(), 84);
 
-        assert(ftVector.size() == oldSize + 1, "Size check for insertion at the end of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + 1, "Size check for insertion at the end of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 1 &&
             ftVector.at(2) == 2 &&
             ftVector.at(3) == 3 &&
@@ -75,8 +75,8 @@ static void test_single_insert(void) {
 
         ftVector.insert(ftVector.begin() + 5, 42);
 
-        assert(ftVector.size() == oldSize + 1, "Size check for insertion in arbitrary position");
-        assert(ftVector.at(0) == 1 &&
+        my_assert(ftVector.size() == oldSize + 1, "Size check for insertion in arbitrary position");
+        my_assert(ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 3 &&
             ftVector.at(3) == 4 &&
@@ -92,8 +92,8 @@ static void test_single_insert(void) {
         oldSize = ftVector.size();
         ftVector.insert(ftVector.begin(), 21);
 
-        assert(ftVector.size() == oldSize + 1, "Size check for insertion in the beginning of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + 1, "Size check for insertion in the beginning of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 1 &&
             ftVector.at(2) == 2 &&
             ftVector.at(3) == 3 &&
@@ -110,8 +110,8 @@ static void test_single_insert(void) {
         oldSize = ftVector.size();
         ftVector.insert(ftVector.end(), 84);
 
-        assert(ftVector.size() == oldSize + 1, "Size check for insertion at the end of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + 1, "Size check for insertion at the end of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 1 &&
             ftVector.at(2) == 2 &&
             ftVector.at(3) == 3 &&
@@ -143,8 +143,8 @@ static void test_fill_insert(void) {
 
         ftVector.insert(ftVector.begin() + 5, numberOfCopies, 42);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in arbitrary position");
-        assert(ftVector.at(0) == 1 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in arbitrary position");
+        my_assert(ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 3 &&
             ftVector.at(3) == 4 &&
@@ -166,8 +166,8 @@ static void test_fill_insert(void) {
         numberOfCopies = 3;
         ftVector.insert(ftVector.begin(), numberOfCopies, 21);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
             ftVector.at(3) == 1 &&
@@ -192,8 +192,8 @@ static void test_fill_insert(void) {
         numberOfCopies = 4;
         ftVector.insert(ftVector.end(), numberOfCopies, 84);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
             ftVector.at(3) == 1 &&
@@ -230,8 +230,8 @@ static void test_fill_insert(void) {
 
         ftVector.insert(ftVector.begin() + 5, numberOfCopies, 42);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at arbitrary position");
-        assert(ftVector.at(0) == 1 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at arbitrary position");
+        my_assert(ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 3 &&
             ftVector.at(3) == 4 &&
@@ -253,8 +253,8 @@ static void test_fill_insert(void) {
         numberOfCopies = 3;
         ftVector.insert(ftVector.begin(), numberOfCopies, 21);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
             ftVector.at(3) == 1 &&
@@ -279,8 +279,8 @@ static void test_fill_insert(void) {
         numberOfCopies = 4;
         ftVector.insert(ftVector.end(), numberOfCopies, 84);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
             ftVector.at(3) == 1 &&
@@ -323,8 +323,8 @@ static void test_range_insert(void) {
 
         ftVector.insert(ftVector.begin() + 5, rangeVector.begin(), rangeVector.end());
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in arbitrary position");
-        assert(ftVector.at(0) == 1 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in arbitrary position");
+        my_assert(ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 3 &&
             ftVector.at(3) == 4 &&
@@ -349,8 +349,8 @@ static void test_range_insert(void) {
 
         ftVector.insert(ftVector.begin(), rangeVector.begin(), rangeVector.end());
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
             ftVector.at(3) == 1 &&
@@ -378,8 +378,8 @@ static void test_range_insert(void) {
 
         ftVector.insert(ftVector.end(), rangeVector.begin(), rangeVector.end());
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
             ftVector.at(3) == 1 &&
@@ -416,8 +416,8 @@ static void test_range_insert(void) {
 
         ftVector.insert(ftVector.begin() + 5, numberOfCopies, 42);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at arbitrary position");
-        assert(ftVector.at(0) == 1 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at arbitrary position");
+        my_assert(ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 3 &&
             ftVector.at(3) == 4 &&
@@ -439,8 +439,8 @@ static void test_range_insert(void) {
         numberOfCopies = 3;
         ftVector.insert(ftVector.begin(), numberOfCopies, 21);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion in the beginning of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
             ftVector.at(3) == 1 &&
@@ -465,8 +465,8 @@ static void test_range_insert(void) {
         numberOfCopies = 4;
         ftVector.insert(ftVector.end(), numberOfCopies, 84);
 
-        assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
-        assert(ftVector.at(0) == 21 &&
+        my_assert(ftVector.size() == oldSize + numberOfCopies, "Size check for insertion at the end of vector");
+        my_assert(ftVector.at(0) == 21 &&
             ftVector.at(1) == 21 &&
             ftVector.at(2) == 21 &&
             ftVector.at(3) == 1 &&

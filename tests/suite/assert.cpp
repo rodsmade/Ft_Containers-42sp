@@ -4,7 +4,7 @@
     If `condition`, prints out TEST_OK. else, prints out TEST_NOK.
     If provided, `tagline` will be printed after assertion result.
 */
-void assert(bool condition, const std::string& tagline)
+void my_assert(bool condition, const std::string& tagline)
 {
     (condition)
         ? ( std::cout << TEST_OK << tagline << std::endl)

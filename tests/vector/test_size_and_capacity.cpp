@@ -7,8 +7,8 @@ void test_vector_size_and_capacity(void) {
     ft::vector<int> ftVector(intendedSize);
     std::vector<int> stdVector(intendedSize);
 
-    assert(ftVector.size() == intendedSize, "Size upon creation");
-    assert(ftVector.capacity() == intendedSize, "Capacity upon creation");
-    assert(ftVector.size() == stdVector.size(), "Size check against std::vector");
-    assert(ftVector.capacity() == stdVector.capacity(), "Size check against std::vector");
+    my_assert(ftVector.size() == intendedSize, "Size upon creation");
+    my_assert(ftVector.capacity() == intendedSize, "Capacity upon creation");
+    my_assert(ftVector.size() == stdVector.size(), "Size check against std::vector");
+    my_assert(ftVector.capacity() == stdVector.capacity(), "Size check against std::vector");
 }

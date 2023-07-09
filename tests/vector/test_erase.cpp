@@ -13,12 +13,12 @@ static void test_positional_erase_returns(void) {
     posToDelete = &(*ftVector.begin());
     eraseReturn = &(*ftVector.erase(ftVector.begin()));
 
-    assert(posToDelete == eraseReturn, "Check iterator return when erasing first element");
+    my_assert(posToDelete == eraseReturn, "Check iterator return when erasing first element");
 
     posToDelete = &(*(ftVector.begin() + 4));
     eraseReturn = &(*ftVector.erase(ftVector.begin() + 4));
 
-    assert(posToDelete == eraseReturn, "Check iterator return when erasing arbitrary element");
+    my_assert(posToDelete == eraseReturn, "Check iterator return when erasing arbitrary element");
 
     ftVector.erase(ftVector.begin());
     ftVector.erase(ftVector.begin());
@@ -30,7 +30,7 @@ static void test_positional_erase_returns(void) {
 
     posToDelete = &(*ftVector.begin());
     eraseReturn = &(*ftVector.erase(ftVector.begin()));
-    assert(posToDelete == eraseReturn, "Check iterator return when vector has only one element left");
+    my_assert(posToDelete == eraseReturn, "Check iterator return when vector has only one element left");
     return ;
 }
 
@@ -45,7 +45,7 @@ static void test_positional_erase(void) {
 
     ftVector.erase(ftVector.begin());
 
-    assert(ftVector.size() == 9
+    my_assert(ftVector.size() == 9
             && (*(ftVector.begin()) == 2)
             && (*(ftVector.begin() + 1) == 3)
             && (*(ftVector.begin() + 2) == 4)
@@ -58,7 +58,7 @@ static void test_positional_erase(void) {
             , "Consistency check after one erase() in the beginning of vector");
 
     ftVector.erase(ftVector.begin() + 4);
-    assert(ftVector.size() == 8
+    my_assert(ftVector.size() == 8
             && (*(ftVector.begin()) == 2)
             && (*(ftVector.begin() + 1) == 3)
             && (*(ftVector.begin() + 2) == 4)
@@ -76,12 +76,12 @@ static void test_positional_erase(void) {
     ftVector.erase(ftVector.begin());
     ftVector.erase(ftVector.begin());
     ftVector.erase(ftVector.begin());
-    assert(ftVector.size() == 1
+    my_assert(ftVector.size() == 1
             && (*(ftVector.begin()) == 10)
             , "Consistency check after many erase()s");
 
     ftVector.erase(ftVector.begin());
-    assert(ftVector.size() == 0, "Size check when emptying vector");
+    my_assert(ftVector.size() == 0, "Size check when emptying vector");
 }
 
 static void test_range_erase(void) {
@@ -97,8 +97,8 @@ static void test_range_erase(void) {
     returnIt = ftVector.erase(ftVector.begin() + 2, ftVector.begin() + 7);
     ft::vector<int>::size_type sizeAfter = ftVector.size();
 
-    assert(returnIt == ftVector.begin() + 2, "Return iterator check for range erase");
-    assert(sizeAfter == sizeBefore - 5 &&
+    my_assert(returnIt == ftVector.begin() + 2, "Return iterator check for range erase");
+    my_assert(sizeAfter == sizeBefore - 5 &&
             ftVector.at(0) == 1 &&
             ftVector.at(1) == 2 &&
             ftVector.at(2) == 8 &&

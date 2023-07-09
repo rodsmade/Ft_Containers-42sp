@@ -10,7 +10,7 @@ void test_stack_assignment_operator(void) {
 
         ft::stack<double> assignedStack = testStack;
 
-        assert(assignedStack.size() == testStack.size()
+        my_assert(assignedStack.size() == testStack.size()
                 && assignedStack.top() == testStack.top()
                 , "Size check");
 
@@ -22,7 +22,7 @@ void test_stack_assignment_operator(void) {
             assignedStack.pop();
         }
 
-        assert(consistencyCheck, "Assigned elements assertion check");
+        my_assert(consistencyCheck, "Assigned elements assertion check");
     }
     {
         ft::stack<double> testStack;
@@ -38,7 +38,7 @@ void test_stack_assignment_operator(void) {
         testStack.pop();
         testStack.pop();
 
-        assert(testStack.size() != assignedStack.size()
+        my_assert(testStack.size() != assignedStack.size()
                 && testStack.top() != assignedStack.top()
                 , "Test for hard copy");
     }
@@ -54,7 +54,7 @@ void test_stack_assignment_operator(void) {
 
         assignedStack = testStack;
 
-        assert(assignedStack.size() == testStack.size()
+        my_assert(assignedStack.size() == testStack.size()
                 && assignedStack.top() == testStack.top()
                 , "Size check for assignedStack previously smaller than testStack");
 
@@ -66,7 +66,7 @@ void test_stack_assignment_operator(void) {
             assignedStack.pop();
         }
 
-        assert(consistencyCheck, "Assigned elements integrity check for assignedStack previously smaller than testStack");
+        my_assert(consistencyCheck, "Assigned elements integrity check for assignedStack previously smaller than testStack");
     }
     {
         ft::stack<double> testStack;
@@ -80,7 +80,7 @@ void test_stack_assignment_operator(void) {
 
         assignedStack = testStack;
 
-        assert(assignedStack.size() == testStack.size()
+        my_assert(assignedStack.size() == testStack.size()
                 && assignedStack.top() == testStack.top()
                 , "Size check for assignedStack previously greater than testStack");
 
@@ -92,7 +92,7 @@ void test_stack_assignment_operator(void) {
             assignedStack.pop();
         }
 
-        assert(consistencyCheck, "Assigned elements integrity check for assignedStack previously greater than testStack");
+        my_assert(consistencyCheck, "Assigned elements integrity check for assignedStack previously greater than testStack");
     }
     {
         ft::stack<double> testStack;
@@ -104,7 +104,7 @@ void test_stack_assignment_operator(void) {
             testStack.push(1.0 + i);
 
         assignedStack = testStack;
-        assert(assignedStack.size() == testStack.size(), "Source stack greater than destination stack: Size check");
+        my_assert(assignedStack.size() == testStack.size(), "Source stack greater than destination stack: Size check");
 
         bool consistencyCheck = true;
         while (!assignedStack.empty()) {
@@ -113,7 +113,7 @@ void test_stack_assignment_operator(void) {
             testStack.pop();
         }
 
-        assert(consistencyCheck, "Source stack greater than destination stack: Assigned elements assertion check");
+        my_assert(consistencyCheck, "Source stack greater than destination stack: Assigned elements assertion check");
     }
     {
         ft::stack<double> testStack;
@@ -125,7 +125,7 @@ void test_stack_assignment_operator(void) {
             testStack.push(1.0 + i);
 
         assignedStack = testStack;
-        assert(assignedStack.size() == testStack.size(), "Source stack smaller than destination stack: Size check");
+        my_assert(assignedStack.size() == testStack.size(), "Source stack smaller than destination stack: Size check");
 
         bool consistencyCheck = true;
         while (!assignedStack.empty()) {
@@ -134,7 +134,7 @@ void test_stack_assignment_operator(void) {
             testStack.pop();
         }
 
-        assert(consistencyCheck, "Source stack smaller than destination stack: Assigned elements assertion check");
+        my_assert(consistencyCheck, "Source stack smaller than destination stack: Assigned elements assertion check");
     }
 
     return;
