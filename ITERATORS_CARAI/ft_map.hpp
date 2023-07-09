@@ -189,84 +189,48 @@ class map {
         typename BinaryTree::BinaryTreeNode* _node;
 
        public:
-        BinaryTreeIterator(typename BinaryTree::BinaryTreeNode* node) : _node(node){};
-        ~BinaryTreeIterator(void){};
+        BinaryTreeIterator(typename BinaryTree::BinaryTreeNode* node);
+        ~BinaryTreeIterator(void);
 
-        T& operator*(void) {
-            return _node->_content;
-        }
-        BinaryTreeIterator& operator++() {
-        if (!_node) {
-            // Tree is empty
-            _node = NULL;
-        } else {
-            if (!_node->_greater) {
-                while (_node->_parent && _node->_parent->_content <= _node->_content) {
-                    _node = _node->_parent;
-                }
-                _node = _node->_parent;
-            } else {
-                _node = _node->_greater;
-                while (_node->_smaller)
-                    _node = _node->_smaller;
-            }
-        }
-
-        return *this;
-}
-
-        bool operator==(const BinaryTreeIterator& rhs) {
-            return (_node == rhs._node);
-        }
-        bool operator!=(const BinaryTreeIterator& rhs) {
-            return (!(*this == rhs));
-        }
+        T&                  operator*(void);
+        BinaryTreeIterator& operator++(void);
+        bool                operator==(const BinaryTreeIterator& rhs);
+        bool                operator!=(const BinaryTreeIterator& rhs);
     };
 
     // Attributes
     BinaryTree _container;
 
    public:
-    // Aliases
+    /*=============================================
+    ===                ALIASES                  ===
+    =============================================*/
     typedef T value_type;
     typedef size_t size_type;
     typedef BinaryTreeIterator iterator;
 
-    map();
-    ~map() {};
-
+    /*=============================================
+    ===            MEMBER FUNCTIONS             ===
+    =============================================*/
     // TODO: REMOVE
     BinaryTree& get_bin_tree(void) { return _container; };
 
-    void insert(T value) {
-        _container.insert(value);
-    };
+    void        insert(T value);
+    size_type   size(void);
+    bool        empty(void);
 
-    size_type size(void) {
-        return _container.getSize();
-    };
+    BinaryTreeIterator begin(void);
+    BinaryTreeIterator end(void);
 
-    bool empty(void) {
-        return (size() == 0);
-    }
-
-    BinaryTreeIterator begin(void) {
-        typename BinaryTree::BinaryTreeNode* pivot = _container._root;
-        while (pivot->_smaller)
-            pivot = pivot->_smaller;
-        return (BinaryTreeIterator(pivot));
-    };
-
-    BinaryTreeIterator end(void) {
-        return (BinaryTreeIterator(NULL));
-    };
+    /*=============================================
+    ===      CONSTRUCTION / DESTRUCTION         ===
+    =============================================*/
+    map();
+    ~map();
 };
 
 template <typename T>
-std::ostream& operator<<(std::ostream& os, const typename map<T>::BinaryTree::BinaryTreeNode& node) {
-    os << node._content;
-    return os;
-};
+std::ostream& operator<<(std::ostream& os, const typename map<T>::BinaryTree::BinaryTreeNode& node);
 
 };  // namespace ft
 
