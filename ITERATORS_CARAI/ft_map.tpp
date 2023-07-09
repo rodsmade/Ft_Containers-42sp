@@ -10,6 +10,40 @@ namespace ft {
 /*      /‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\
        C|               B I N A R Y   T R E E   N O D E               |Ↄ
         \_____________________________________________________________/      */
+template <typename T>
+map<T>::BinaryTree::BinaryTreeNode::BinaryTreeNode(T content, BinaryTreeNode* parent, BinaryTreeNode* smaller, BinaryTreeNode* greater) : _content(content), _parent(parent), _smaller(smaller), _greater(greater) {};
+
+template <typename T>
+map<T>::BinaryTree::BinaryTreeNode::~BinaryTreeNode(void) {};
+
+template <typename T>
+map<T>::BinaryTree::BinaryTreeNode::BinaryTreeNode(const BinaryTreeNode& other) {
+    _content = T(other._content);
+    _parent = other._parent;
+    _smaller = other._smaller;
+    _greater = other._greater;
+};
+
+template <typename T>
+typename map<T>::BinaryTree::BinaryTreeNode& map<T>::BinaryTree::BinaryTreeNode::operator=(const BinaryTreeNode& other) {
+    if (*this != other) {
+        _content = other._content;
+        _parent = other._parent;
+        _smaller = other._smaller;
+        _greater = other._greater;
+    }
+    return (*this);
+};
+
+template <typename T>
+bool map<T>::BinaryTree::BinaryTreeNode::operator==(const BinaryTreeNode& rhs) {
+    return (this->_content == rhs._content && this->_parent == rhs._parent && this->_smaller == rhs._smaller && this->_greater == rhs._greater);
+}
+
+template <typename T>
+bool map<T>::BinaryTree::BinaryTreeNode::operator!=(const BinaryTreeNode& rhs) {
+    return !(*this == rhs);
+}
 
 /*      /‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾\
        C|           B I N A R Y   T R E E   I T E R A T O R           |Ↄ

@@ -13,3 +13,7 @@ $(NAME): $(SOURCE) ft_map.hpp ft_map.tpp
 
 fclean:
 	rm $(NAME)
+
+re: fclean all
+
+.PHONY: all vaval fclean re

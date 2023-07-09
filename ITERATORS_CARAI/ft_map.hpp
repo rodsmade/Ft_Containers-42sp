@@ -29,38 +29,19 @@ class map {
             friend class map;
 
             // Private members
-            T _content;
+            T               _content;
             BinaryTreeNode* _parent;
             BinaryTreeNode* _smaller;
             BinaryTreeNode* _greater;
 
            public:
-            BinaryTreeNode(T content = T(), BinaryTreeNode* parent = NULL, BinaryTreeNode* smaller = NULL, BinaryTreeNode* greater = NULL) : _content(content), _parent(parent), _smaller(smaller), _greater(greater){};
-            ~BinaryTreeNode(){};
-            BinaryTreeNode(const BinaryTreeNode& other) {
-                _content = T(other._content);
-                _parent = other._parent;
-                _smaller = other._smaller;
-                _greater = other._greater;
-            };
+            BinaryTreeNode(T content = T(), BinaryTreeNode* parent = NULL, BinaryTreeNode* smaller = NULL, BinaryTreeNode* greater = NULL);
+            ~BinaryTreeNode(void);
+            BinaryTreeNode(const BinaryTreeNode& other);
 
-            BinaryTreeNode& operator=(const BinaryTreeNode& other) {
-                if (*this != other) {
-                    _content = other._content;
-                    _parent = other._parent;
-                    _smaller = other._smaller;
-                    _greater = other._greater;
-                }
-                return (*this);
-            }
-
-            bool operator==(const BinaryTreeNode& rhs) {
-                return (this->_content == rhs._content && this->_parent == rhs._parent && this->_smaller == rhs._smaller && this->_greater == rhs._greater);
-            }
-
-            bool operator!=(const BinaryTreeNode& rhs) {
-                return !(*this == rhs);
-            }
+            BinaryTreeNode& operator=(const BinaryTreeNode& other);
+            bool            operator==(const BinaryTreeNode& rhs);
+            bool            operator!=(const BinaryTreeNode& rhs);
         };
 
         // Attributes
