@@ -64,6 +64,7 @@ STACK_TEST_FILES =	$(addprefix $(TESTS_DIR)/,	$(TESTS_STACK_DIR)/main.cpp \
 MAP_TEST_FILES =	$(addprefix $(TESTS_DIR)/,	$(TESTS_MAP_DIR)/main.cpp \
 												$(TESTS_MAP_DIR)/test_construction.cpp \
 												$(TESTS_MAP_DIR)/test_modifiers.cpp \
+												$(TESTS_MAP_DIR)/test_iterators.cpp \
 											)
 
 build: $(TESTS)

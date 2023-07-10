@@ -79,6 +79,7 @@ class map {
         ~BinaryTreeIterator(void);
 
         T&                  operator*(void);
+        T&                  operator*(void) const;
         BinaryTreeIterator& operator++(void);
         bool                operator==(const BinaryTreeIterator& rhs);
         bool                operator!=(const BinaryTreeIterator& rhs);
@@ -106,7 +107,7 @@ class map {
     // typedef [...] pointer;
     // typedef [...] const_pointer;
     typedef BinaryTreeIterator iterator;
-    // typedef [...] const_iterator;
+    typedef const BinaryTreeIterator const_iterator;
     // typedef [...] reverse_iterator;
     // typedef [...] const_reverse_iterator;
 
@@ -125,9 +126,9 @@ class map {
     // T&                               operator[]( const Key& key );
 
     // Iterators:
-    iterator            begin(void);
-    // const_iterator                              begin() const;
-    iterator            end(void);
+    iterator                        begin(void);
+    const_iterator                  begin(void) const;
+    iterator                        end(void);
     // const_iterator                              end() const;
     // reverse_iterator                            rbegin(); // = 1 before o menor elemento de todos
     // const_reverse_iterator                      rbegin() const;
@@ -140,7 +141,7 @@ class map {
     size_type               size(void) const;
 
     // Modifiers:
-    void                    clear();
+    // void                    clear();
     // iterator                                    erase( iterator pos );
     // iterator                                    erase( iterator first, iterator last );
     // ATTENTION: TO IGNORANDO TUDO O QUE É KEY E TROCANDO PRA T, DEPOIS VOLTAR !!!!!!

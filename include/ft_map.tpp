@@ -211,6 +211,11 @@ T& map<T>::BinaryTreeIterator::operator*(void) {
 };
 
 template <typename T>
+T& map<T>::BinaryTreeIterator::operator*(void) const {
+    return _node->_content;
+};
+
+template <typename T>
 typename map<T>::BinaryTreeIterator& map<T>::BinaryTreeIterator::operator++() {
     if (!_node) {
         // Tree is empty
@@ -248,23 +253,21 @@ bool map<T>::BinaryTreeIterator::operator!=(const BinaryTreeIterator& rhs) {
 /*=============================================================================
 ===  MEMBER FUNCTIONS                                                       ===
 =============================================================================*/
-template <typename T>
-bool map<T>::insert(value_type value) {
-    return _container.insert(value);
-};
+// └----- Allocator
 
-template <typename T>
-typename map<T>::size_type map<T>::size(void) const {
-    return _container.getSize();
-};
+// └----- Element Access:
 
-template <typename T>
-bool map<T>::empty(void) const {
-    return (size() == 0);
-};
-
+// └----- Iterators:
 template <typename T>
 typename map<T>::iterator map<T>::begin(void) {
+    typename BinaryTree::BinaryTreeNode* pivot = _container._root;
+    while (pivot->_smaller)
+        pivot = pivot->_smaller;
+    return (BinaryTreeIterator(pivot));
+};
+
+template <typename T>
+typename map<T>::const_iterator map<T>::begin(void) const {
     typename BinaryTree::BinaryTreeNode* pivot = _container._root;
     while (pivot->_smaller)
         pivot = pivot->_smaller;
@@ -275,6 +278,27 @@ template <typename T>
 typename map<T>::iterator map<T>::end(void) {
     return (BinaryTreeIterator(NULL));
 };
+
+// └----- Capacity:
+template <typename T>
+bool map<T>::empty(void) const {
+    return (size() == 0);
+};
+
+template <typename T>
+typename map<T>::size_type map<T>::size(void) const {
+    return _container.getSize();
+};
+
+// └----- Modifiers:
+template <typename T>
+bool map<T>::insert(value_type value) {
+    return _container.insert(value);
+};
+
+// └----- Lookup:
+
+// └----- Observers:
 
 /*=============================================================================
 ===  CONSTRUCTION / DESTRUCTION                                             ===
@@ -294,6 +318,10 @@ std::ostream& operator<<(std::ostream& os, const typename map<T>::BinaryTree::Bi
     os << node._content;
     return os;
 };
+
+/******************************************************************************/
+/*   OPERATOR OVERLOADS                                                       */
+/******************************************************************************/
 
 }  // namespace ft
 
