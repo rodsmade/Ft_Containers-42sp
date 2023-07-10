@@ -260,6 +260,9 @@ bool map<T>::BinaryTreeIterator::operator!=(const BinaryTreeIterator& rhs) {
 // └----- Iterators:
 template <typename T>
 typename map<T>::iterator map<T>::begin(void) {
+    if (this->size() == 0)
+        return (BinaryTreeIterator(NULL));
+
     typename BinaryTree::BinaryTreeNode* pivot = _container._root;
     while (pivot->_smaller)
         pivot = pivot->_smaller;
@@ -268,6 +271,9 @@ typename map<T>::iterator map<T>::begin(void) {
 
 template <typename T>
 typename map<T>::const_iterator map<T>::begin(void) const {
+    if (this->size() == 0)
+        return (BinaryTreeIterator(NULL));
+
     typename BinaryTree::BinaryTreeNode* pivot = _container._root;
     while (pivot->_smaller)
         pivot = pivot->_smaller;

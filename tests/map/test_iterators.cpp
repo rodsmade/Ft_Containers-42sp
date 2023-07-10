@@ -10,6 +10,11 @@ static void test_begin() {
 
     ft::map<int> ftMap;
     {
+        ft::map<int>::iterator nullIt(NULL);
+
+        my_assert(ftMap.begin() == nullIt, "Begin iterator to empty map");
+    }
+    {
         std::cout << " └ Balanced Tree" << std::endl;
 
         ftMap.insert(4);
