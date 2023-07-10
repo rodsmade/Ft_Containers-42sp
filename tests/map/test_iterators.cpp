@@ -48,6 +48,36 @@ static void test_begin() {
     }
 }
 
+static void test_end_by_reference(const ft::map<int> &ftMap, int lastValue) {
+    ft::map<int>::iterator expectedEnd(ftMap.begin());
+    for (ft::map<int>::size_type i = 0; i < ftMap.size(); i++)
+        ++expectedEnd;
+
+    ft::map<int>::iterator actualEnd = ftMap.end();
+
+    my_assert(actualEnd == expectedEnd, "End const_iterator points to the correct element (test by reference)");
+    my_assert(*(--actualEnd) == lastValue, "Last element of map accessed via end()");
+}
+
+static void test_end() {
+    std::cout << "\n=== Test end() iterator ===" << std::endl;
+    ft::map<int> ftMap;
+
+    ftMap.insert(1);
+    ftMap.insert(2);
+    ftMap.insert(3);
+    ftMap.insert(4);
+    ftMap.insert(5);
+
+    ft::map<int>::iterator expectedEnd(ftMap.begin());
+    for (int i = 0; i < 5; i++)
+        ++expectedEnd;
+
+    my_assert(ftMap.end() == expectedEnd, "End iterator points to the correct element");
+    test_end_by_reference(ftMap, 5);
+}
+
 void test_map_iterators(void) {
     test_begin();
+    test_end();
 }

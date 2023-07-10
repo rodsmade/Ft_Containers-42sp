@@ -285,6 +285,11 @@ typename map<T>::iterator map<T>::end(void) {
     return (BinaryTreeIterator(NULL));
 };
 
+template <typename T>
+typename map<T>::const_iterator map<T>::end(void) const {
+    return (BinaryTreeIterator(NULL));
+};
+
 // └----- Capacity:
 template <typename T>
 bool map<T>::empty(void) const {

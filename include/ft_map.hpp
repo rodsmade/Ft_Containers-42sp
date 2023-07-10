@@ -129,7 +129,7 @@ class map {
     iterator                        begin(void);
     const_iterator                  begin(void) const;
     iterator                        end(void);
-    // const_iterator                              end() const;
+    const_iterator                  end(void) const;
     // reverse_iterator                            rbegin(); // = 1 before o menor elemento de todos
     // const_reverse_iterator                      rbegin() const;
     // reverse_iterator                            rend(); // o maior elemento de todos
